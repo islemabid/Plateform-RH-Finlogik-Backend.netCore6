@@ -8,9 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Plateform RH Finlogik . JWT\Plateform RH Finlogik . JWT.csproj" />
     <ProjectReference Include="..\Plateform RH Finlogik.Application\Plateform RH Finlogik.Application.csproj" />
-    <ProjectReference Include="..\Plateform RH Finlogik.Identity\Plateform RH Finlogik.Identity.csproj" />
-    <ProjectReference Include="..\Plateform RH Finlogik.Infrastructure\Plateform RH Finlogik.Infrastructure.csproj" />
     <ProjectReference Include="..\Plateform RH Finlogik.Persistance\Plateform RH Finlogik.Persistance.csproj" />
   </ItemGroup>
 
@@ -21,6 +20,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

@@ -25,9 +25,9 @@ namespace Plateform_RH_Finlogik.Persistance.Repositories
             return entity;
         }
 
-        public  async Task DeleteAsync(long ID)
+        public  async Task DeleteAsync(T entity)
         {
-            var entity = await _dbContext.Set<T>().FindAsync(ID);
+            
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();
         }
@@ -37,18 +37,17 @@ namespace Plateform_RH_Finlogik.Persistance.Repositories
             return await _dbContext.Set<T>().ToListAsync();
         }
 
-        public  async Task<T> GetByIDAsync(long ID)
+        public  async Task<T> GetByIDAsync(int  ID)
         {
            return await _dbContext.Set<T>().FindAsync(ID);
         }
 
-        public  async Task<T> UpdateAsync(long ID, T entity)
+        public  async Task<T> UpdateAsync( T entity)
         {
 
-            T t = await _dbContext.Set<T>().FindAsync(ID);
-            _dbContext.Update(t);
-            await _dbContext.SaveChangesAsync();
-            return t;
+            _dbContext.Entry(entity).State = EntityState.Modified;
+            _dbContext.SaveChanges();
+            return entity;
         }
 
         

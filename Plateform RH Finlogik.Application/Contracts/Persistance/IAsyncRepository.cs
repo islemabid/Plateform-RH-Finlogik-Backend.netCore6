@@ -9,10 +9,10 @@ namespace Plateform_RH_Finlogik.Application.Persistance
     public interface IAsyncRepository<T> where T:class
     {
         Task<IReadOnlyList<T>> GetAllAsync();
-        Task<T> GetByIDAsync(long ID);
+        Task<T> GetByIDAsync(int  ID);
         Task<T> AddAsync(T entity);
-        Task<T> UpdateAsync(long ID ,T entity);
-        Task DeleteAsync(long ID);
+        Task<T> UpdateAsync(T entity);
+        Task DeleteAsync(T entity);
 
     }
 }

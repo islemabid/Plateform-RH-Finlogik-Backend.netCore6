@@ -1,9 +1,7 @@
 ﻿
-
 using Microsoft.AspNetCore.Mvc;
-using Plateform_RH_Finlogik.Application.Contracts.Identity;
-using Plateform_RH_Finlogik.Application.Models.Authentication;
-using System.Threading.Tasks;
+using Plateform_RH_Finlogik.Application.Contracts.Jwt;
+using Plateform_RH_Finlogik.Application.Models.Authentification;
 
 namespace Plateform_RH_Finlogik.Api.Controllers
 {
@@ -16,17 +14,12 @@ namespace Plateform_RH_Finlogik.Api.Controllers
         {
             _authenticationService = authenticationService;
         }
-
-        [HttpPost("authenticate")]
+        [HttpPost("authenticatejwt")]
         public async Task<ActionResult<AuthenticationResponse>> AuthenticateAsync(AuthenticationRequest request)
         {
             return Ok(await _authenticationService.AuthenticateAsync(request));
         }
 
-        [HttpPost("register")]
-        public async Task<ActionResult<RegistrationResponse>> RegisterAsync(RegistrationRequest request)
-        {
-            return Ok(await _authenticationService.RegisterAsync(request));
-        }
+       
     }
 }

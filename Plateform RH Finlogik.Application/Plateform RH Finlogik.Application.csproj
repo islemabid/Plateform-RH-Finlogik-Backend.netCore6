@@ -18,10 +18,4 @@
     <ProjectReference Include="..\Plateform RH Finlogik.Domain\Plateform RH Finlogik.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Employees\Commands\CreateEmployee\" />
-    <Folder Include="Features\Employees\Commands\DeleteEmployee\" />
-    <Folder Include="Features\Employees\Commands\UpdateEmployee\" />
-  </ItemGroup>
-
 </Project>

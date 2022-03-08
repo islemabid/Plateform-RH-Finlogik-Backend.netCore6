@@ -1,13 +1,9 @@
 
-using Microsoft.OpenApi.Models;
+
 using Plateform_RH_Finlogik.Api.Middleware;
-using Plateform_RH_Finlogik.Api.Services;
-using Plateform_RH_Finlogik.Api.Utility;
 using Plateform_RH_Finlogik.Application;
-using Plateform_RH_Finlogik.Application.Contracts;
-using Plateform_RH_Finlogik.Identity;
-using Plateform_RH_Finlogik.Infrastructure;
 using Plateform_RH_Finlogik.Persistance;
+using Plateform_RH_Finlogik_._JWT;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,53 +12,22 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
 builder.Services.AddApplicationServices();
-//lil Email hetha 
-builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddPersistenceServices(builder.Configuration);
-builder.Services.AddIdentityServices(builder.Configuration);
-builder.Services.AddScoped<ILoggedInUserService, LoggedInUserService>();
-builder.Services.AddControllers();
-builder.Services.AddSwaggerGen(c =>
+builder.Services.AddJwtServices(builder.Configuration);
+builder.Services.AddCors(options =>
 {
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    options.AddPolicy("EnableCORS", builder =>
     {
-        Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n 
-                      Enter 'Bearer' [space] and then your token in the text input below.
-                      \r\n\r\nExample: 'Bearer 12345abcdef'",
-        Name = "Authorization",
-        In = ParameterLocation.Header,
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer"
+        builder.AllowAnyOrigin()
+           .AllowAnyHeader()
+           .AllowAnyMethod();
     });
-
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement()
-                  {
-                    {
-                      new OpenApiSecurityScheme
-                      {
-                        Reference = new OpenApiReference
-                          {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer"
-                          },
-                          Scheme = "oauth2",
-                          Name = "Bearer",
-                          In = ParameterLocation.Header,
-
-                        },
-                        new List<string>()
-                      }
-                    });
-
-    c.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Version = "v1",
-        Title = "Plateform RH Finlogik API",
-
-    });
-
-    c.OperationFilter<FileResultContentTypeOperationFilter>();
 });
+
+
+builder.Services.AddControllers();
+builder.Services.AddSwaggerGen();
+
 
 var app = builder.Build();
 
@@ -76,13 +41,11 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseCors("EnableCORS");
 
 app.UseRouting();
 app.UseSwagger();
-app.UseSwaggerUI(c =>
-{
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Plateform_RH_Finlogik API");
-});
+app.UseSwaggerUI();
 
 app.UseCustomExceptionHandler();
 
@@ -95,7 +58,7 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllers();
 });
 
-app.UseAuthorization();
+
 
 app.MapRazorPages();
 

@@ -87,7 +87,7 @@ namespace Plateform_RH_Finlogik.Identity.Services
 
                 if (result.Succeeded)
                 {
-                    return new RegistrationResponse() { UserId = "succed registration" };
+                    return new RegistrationResponse() { UserId = user.Id };
                 }
                 else
                 {
