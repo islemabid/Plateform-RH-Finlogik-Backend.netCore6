@@ -7,11 +7,12 @@ using Plateform_RH_Finlogik.Application.Features.Employees;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEmployee;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.DeleteEmployee;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.UpdateEmployee;
+using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeeDetail;
 using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeesList;
 
 namespace Plateform_RH_Finlogik.Api.Controllers
 {
-    
+ 
     [Route("api/[controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
     [ApiController]
@@ -31,12 +32,18 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             var dtos = await _mediator.Send(new GetEmployeesListQuery());
             return Ok(dtos);
         }
+        [HttpGet("{id}", Name = "GetEmployeeById")]
+        public async Task<ActionResult<EmployeeDetailVm>> GetEmployeeById(int id)
+        {
+            var getEmployeeDetailQuery = new GetEmployeeDetailQuery() { Id = id };
+            return Ok(await _mediator.Send(getEmployeeDetailQuery));
+        }
 
         [HttpPost(Name = "AddEmployee")]
-        public async Task<ActionResult<int>> Create([FromBody] CreateEmployeeCommand createEmployeeCommand)
+        public async Task<ActionResult<EmployeeDto>> Create([FromBody] CreateEmployeeCommand createEmployeeCommand)
         {
-            var id = await _mediator.Send(createEmployeeCommand);
-            return Ok(id);
+            var employee = await _mediator.Send(createEmployeeCommand);
+            return Ok(employee);
         }
 
         [HttpPut(Name = "UpdateEmployee")]
@@ -49,7 +56,7 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}", Name = "DeleteEmployee")]
+        [HttpDelete("{id}", Name = "DeleteEmployee"), Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]

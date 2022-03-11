@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEmployee
 {
-    public class CreateEmployeeCommand : IRequest<int>
+    public class CreateEmployeeCommand : IRequest<EmployeeDto>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

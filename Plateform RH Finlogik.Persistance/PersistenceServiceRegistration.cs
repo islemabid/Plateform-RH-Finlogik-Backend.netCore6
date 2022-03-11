@@ -23,7 +23,11 @@ namespace Plateform_RH_Finlogik.Persistance
             services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
 
             services.AddScoped<IEmployeeRepository,EmployeeRepository>();
-          
+
+            services.AddScoped< IRoleRepository, RoleRepository >();
+         
+
+
 
 
             return services;

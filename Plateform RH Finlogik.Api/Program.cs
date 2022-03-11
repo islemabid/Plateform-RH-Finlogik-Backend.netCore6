@@ -1,5 +1,6 @@
 
 
+using Microsoft.Extensions.FileProviders;
 using Plateform_RH_Finlogik.Api.Middleware;
 using Plateform_RH_Finlogik.Application;
 using Plateform_RH_Finlogik.Persistance;
@@ -40,7 +41,11 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions()
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Ressources")),
+    RequestPath = new PathString("/Ressources")
+});
 app.UseCors("EnableCORS");
 
 app.UseRouting();

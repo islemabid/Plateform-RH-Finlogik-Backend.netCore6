@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Ressources\images\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

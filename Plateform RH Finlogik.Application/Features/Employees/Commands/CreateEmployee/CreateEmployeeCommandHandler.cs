@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEmployee
 {
-    public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeCommand, int>
+    public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeCommand, EmployeeDto>
     {
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IMapper _mapper;
@@ -21,16 +21,41 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEm
             
         }
 
-           public async Task<int> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
+        
+
+        public async Task<EmployeeDto> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
         {
-                var @employee = _mapper.Map<Employee>(request);
+            var employee = new Employee()
+            {
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                Adress = request.Adress,
+                Cin = request.Cin,
+                PersonnelEmail = request.PersonnelEmail,
+                WorkEmail = request.WorkEmail,
+                WorkPhone = request.WorkPhone,
+                IdRole = request.IdRole,
+                ImageUrl = request.ImageUrl,
+                BirthDate = request.BirthDate,
+                City = request.City,
+                Contry = request.Contry,
+                CNSSNumber = request.CNSSNumber,
+                ContratType = request.ContratType,
+                postalCode = request.postalCode,
+                Region = request.Region,
+                Diplome = request.Diplome,
+                Password = request.Password,
+                PersonnelPhone = request.PersonnelPhone,
+                HoursPerWeek = request.HoursPerWeek,
+                Gender = request.Gender,
 
-                @employee = await _employeeRepository.AddAsync(@employee);
 
+            };
 
+            employee = await _employeeRepository.AddAsync(employee);
+            EmployeeDto @employeeDTo = _mapper.Map<EmployeeDto>(employee);
+            return @employeeDTo;
 
-                return @employee.Id;
-            
         }
     }
 }

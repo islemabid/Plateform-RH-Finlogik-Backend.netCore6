@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeesList
+namespace Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeeDetail
 {
-    public class EmployeeListVm
+    public class EmployeeDetailVm
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
