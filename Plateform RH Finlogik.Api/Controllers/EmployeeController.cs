@@ -14,7 +14,7 @@ namespace Plateform_RH_Finlogik.Api.Controllers
 {
  
     [Route("api/[controller]")]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
     [ApiController]
     public class EmployeeController : ControllerBase
     {

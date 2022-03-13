@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
 using Plateform_RH_Finlogik.Application.Contracts.Persistance;
+using BC = BCrypt.Net.BCrypt;
 using Plateform_RH_Finlogik.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEmployee
 {
@@ -44,7 +40,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEm
                 postalCode = request.postalCode,
                 Region = request.Region,
                 Diplome = request.Diplome,
-                Password = request.Password,
+                Password = BC.HashPassword(request.Password),
                 PersonnelPhone = request.PersonnelPhone,
                 HoursPerWeek = request.HoursPerWeek,
                 Gender = request.Gender,
