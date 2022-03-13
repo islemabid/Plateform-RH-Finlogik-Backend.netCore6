@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Plateform_RH_Finlogik.Application.Features.Roles.Commands.CreateRole;
+using Plateform_RH_Finlogik.Application.Features.Roles.Commands.DeleteRole;
+using Plateform_RH_Finlogik.Application.Features.Roles.Commands.UpdateRole;
 using Plateform_RH_Finlogik.Application.Features.Roles.Queries.GetRolesList;
 
 namespace Plateform_RH_Finlogik.Api.Controllers
@@ -26,8 +29,44 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             var dtos = await _mediator.Send(new GetRolesListQuery());
             return Ok(dtos);
         }
-       
+        /*[HttpGet("{id}", Name = "GetRoleById")]
+        public async Task<ActionResult<EmployeeDetailVm>> GetEmployeeById(int id)
+        {
+            var getEmployeeDetailQuery = new GetEmployeeDetailQuery() { Id = id };
+            return Ok(await _mediator.Send(getEmployeeDetailQuery));
+        }*/
 
-       
+        [HttpPost(Name = "AddRole")]
+        public async Task<ActionResult> Create([FromBody] CreateRoleCommand createRoleCommand)
+        {
+            var role = await _mediator.Send(createRoleCommand);
+            return Ok(role);
+        }
+
+        [HttpPut(Name = "UpdateRole")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult> Update([FromBody] UpdateRoleCommand updateRoleCommand)
+        {
+            await _mediator.Send(updateRoleCommand);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}", Name = "DeleteRole")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var deleteRoleCommand = new DeleteRoleCommand() { Id = id };
+            await _mediator.Send(deleteRoleCommand);
+            return NoContent();
+        }
     }
 }
+
+
+
+
+

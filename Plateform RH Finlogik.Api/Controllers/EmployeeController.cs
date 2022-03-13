@@ -14,7 +14,7 @@ namespace Plateform_RH_Finlogik.Api.Controllers
 {
  
     [Route("api/[controller]")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
     [ApiController]
     public class EmployeeController : ControllerBase
     {
@@ -56,7 +56,7 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}", Name = "DeleteEmployee"), Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
+        [HttpDelete("{id}", Name = "DeleteEmployee")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
