@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEmployee;
+using Plateform_RH_Finlogik.Application.Features.Employees.Commands.DeleteEmployee;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.UpdateEmployee;
 using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeeDetail;
 using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeesList;

@@ -19,17 +19,25 @@ namespace Plateform_RH_Finlogik.Persistance.Repositories
 
         public  async Task<T> AddAsync(T entity)
         {
-            await _dbContext.Set<T>().AddAsync(entity);
-            await _dbContext.SaveChangesAsync();
+            try
+            {
+                await _dbContext.Set<T>().AddAsync(entity);
+                await _dbContext.SaveChangesAsync();
 
-            return entity;
+                return entity;
+            }catch(Exception ex) { return null; }
         }
 
         public  async Task DeleteAsync(T entity)
         {
+
+            try {
+                _dbContext.Set<T>().Remove(entity);
+                await _dbContext.SaveChangesAsync();
             
-            _dbContext.Set<T>().Remove(entity);
-            await _dbContext.SaveChangesAsync();
+            }
+            catch  (Exception e)
+            { }
         }
 
         public  async Task<IReadOnlyList<T>> GetAllAsync()
