@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Plateform_RH_Finlogik.Application.Features.Employees;
+using Plateform_RH_Finlogik.Application.Features.Employees.Commands.AffecterEmployeePost;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEmployee;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.DeleteEmployee;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.UpdateEmployee;
@@ -12,7 +13,7 @@ using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeesL
 
 namespace Plateform_RH_Finlogik.Api.Controllers
 {
- 
+
     [Route("api/[controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
     [ApiController]
@@ -24,7 +25,7 @@ namespace Plateform_RH_Finlogik.Api.Controllers
         {
             _mediator = mediator;
         }
-        
+
         [HttpGet("all", Name = "GetAllEmployees")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<List<EmployeeListVm>>> GetAllEmployees()
@@ -46,13 +47,25 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             return Ok(employee);
         }
 
-        [HttpPut(Name = "UpdateEmployee")]
+        [HttpPut("{id}", Name = "UpdateEmployee")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public async Task<ActionResult> Update([FromBody] UpdateEmployeeCommand updateEmployeeCommand)
+        public async Task<ActionResult> Update(int id, [FromBody] UpdateEmployeeCommand updateEmployeeCommand)
         {
+           var updateEmployee=new UpdateEmployeeCommand (){ Id = id };
             await _mediator.Send(updateEmployeeCommand);
+            return NoContent();
+        }
+
+        [HttpPut(Name = "AffectEmployeePost")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult> Affect([FromBody] AffectEmployeePostCommand affectEmployeePostCommand)
+        {
+          
+            await _mediator.Send(affectEmployeePostCommand);
             return NoContent();
         }
 

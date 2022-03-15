@@ -31,13 +31,12 @@ namespace Plateform_RH_Finlogik.Persistance.Repositories
         public  async Task DeleteAsync(T entity)
         {
 
-            try {
+           
                 _dbContext.Set<T>().Remove(entity);
                 await _dbContext.SaveChangesAsync();
             
-            }
-            catch  (Exception e)
-            { }
+            
+         
         }
 
         public  async Task<IReadOnlyList<T>> GetAllAsync()

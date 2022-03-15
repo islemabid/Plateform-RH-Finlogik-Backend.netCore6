@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Plateform_RH_Finlogik.Application.Features.Posts.Queries.GetPostsList
+{
+    public class PostListVm
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+    }
+}

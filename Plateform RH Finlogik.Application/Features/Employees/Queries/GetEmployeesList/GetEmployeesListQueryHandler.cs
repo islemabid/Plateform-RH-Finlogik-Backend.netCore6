@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeesList
 {
-    internal class GetEmployeesListQueryHandler : IRequestHandler <GetEmployeesListQuery, List<EmployeeListVm>>
+    public class GetEmployeesListQueryHandler : IRequestHandler <GetEmployeesListQuery, List<EmployeeListVm>>
     {
         private readonly IAsyncRepository<Employee> _employeeRepository;
         private readonly IMapper _mapper;
