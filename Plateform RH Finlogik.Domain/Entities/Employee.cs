@@ -40,11 +40,7 @@ namespace Plateform_RH_Finlogik.Domain.Entities
 
         public virtual Role Role { get; set; }
 
-
-        [ForeignKey("Post")]
-        public int ?IdPost { get; set; }
-
-        public virtual Post? Post { get; set; }
+        public virtual ICollection<EmployeePost> EmployeePosts { get; set; }
 
 
 

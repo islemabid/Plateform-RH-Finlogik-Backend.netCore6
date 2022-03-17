@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Plateform_RH_Finlogik.Application.Features.Employees;
-using Plateform_RH_Finlogik.Application.Features.Employees.Commands.AffecterEmployeePost;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEmployee;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.DeleteEmployee;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.UpdateEmployee;
@@ -47,27 +46,17 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             return Ok(employee);
         }
 
-        [HttpPut("{id}", Name = "UpdateEmployee")]
+        [HttpPut( Name = "UpdateEmployee")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public async Task<ActionResult> Update(int id, [FromBody] UpdateEmployeeCommand updateEmployeeCommand)
+        public async Task<ActionResult> Update( [FromBody] UpdateEmployeeCommand updateEmployeeCommand)
         {
-           var updateEmployee=new UpdateEmployeeCommand (){ Id = id };
+          
             await _mediator.Send(updateEmployeeCommand);
             return NoContent();
         }
 
-        [HttpPut(Name = "AffectEmployeePost")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesDefaultResponseType]
-        public async Task<ActionResult> Affect([FromBody] AffectEmployeePostCommand affectEmployeePostCommand)
-        {
-          
-            await _mediator.Send(affectEmployeePostCommand);
-            return NoContent();
-        }
 
         [HttpDelete("{id}", Name = "DeleteEmployee")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

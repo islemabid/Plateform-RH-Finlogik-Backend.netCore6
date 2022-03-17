@@ -9,11 +9,10 @@ namespace Plateform_RH_Finlogik.Application.Features.Posts.Commands.CreatePost
 {
     public  class CreatePostCommand : IRequest<int>
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string ShortDescription { get; set; }
+        public string LongDescription { get; set; }
 
         public bool IsDeleted { get; set; } = false;
-
 
     }
 }

@@ -4,6 +4,9 @@ using Plateform_RH_Finlogik.Application.Features.Employees.Commands.DeleteEmploy
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.UpdateEmployee;
 using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeeDetail;
 using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeesList;
+using Plateform_RH_Finlogik.Application.Features.EmployeesPosts.Commands.createEmployeePost;
+using Plateform_RH_Finlogik.Application.Features.EmployeesPosts.Queries.GetEmployeesPostsList;
+using Plateform_RH_Finlogik.Application.Features.EmployeesPosts.Queries.GetPostsByEmployeeIDList;
 using Plateform_RH_Finlogik.Application.Features.Posts.Commands.CreatePost;
 using Plateform_RH_Finlogik.Application.Features.Posts.Commands.updatePost;
 using Plateform_RH_Finlogik.Application.Features.Posts.Queries.GetPostsList;
@@ -19,6 +22,9 @@ namespace Plateform_RH_Finlogik.Application.Application.Profiles
         public MappingProfile()
         {
             CreateMap<Employee, EmployeeListVm>().ReverseMap();
+            CreateMap<EmployeePost, EmployeePostListVm>().ReverseMap();
+            CreateMap<EmployeePost, PostListByIDEmployeeVm>().ReverseMap();
+            CreateMap<EmployeePost, CreateEmployeePostCommand>().ReverseMap();
             CreateMap<Role, RolesListVm>().ReverseMap();
             CreateMap<Role, CreateRoleCommand>().ReverseMap();
             CreateMap<Role, UpdateRoleCommand>().ReverseMap();

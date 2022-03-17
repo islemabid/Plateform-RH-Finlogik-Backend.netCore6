@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Plateform_RH_Finlogik.Persistance.Migrations
 {
-    public partial class updateTableEmployeeandPost : Migration
+    public partial class addEmployeePost : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,8 +15,8 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ShortDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LongDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -97,17 +97,11 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
                     HoursPerWeek = table.Column<float>(type: "real", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IdRole = table.Column<int>(type: "int", nullable: false),
-                    IdPost = table.Column<int>(type: "int", nullable: true)
+                    IdRole = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Employees", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Employees_Posts_IdPost",
-                        column: x => x.IdPost,
-                        principalTable: "Posts",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Employees_Roles_IdRole",
                         column: x => x.IdRole,
@@ -116,9 +110,42 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "EmployeePost",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdPost = table.Column<int>(type: "int", nullable: false),
+                    IdEmployee = table.Column<int>(type: "int", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    isActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeePost", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EmployeePost_Employees_IdEmployee",
+                        column: x => x.IdEmployee,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EmployeePost_Posts_IdPost",
+                        column: x => x.IdPost,
+                        principalTable: "Posts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
-                name: "IX_Employees_IdPost",
-                table: "Employees",
+                name: "IX_EmployeePost_IdEmployee",
+                table: "EmployeePost",
+                column: "IdEmployee");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployeePost_IdPost",
+                table: "EmployeePost",
                 column: "IdPost");
 
             migrationBuilder.CreateIndex(
@@ -130,10 +157,13 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Employees");
+                name: "EmployeePost");
 
             migrationBuilder.DropTable(
                 name: "TermiantedEmployees");
+
+            migrationBuilder.DropTable(
+                name: "Employees");
 
             migrationBuilder.DropTable(
                 name: "Posts");

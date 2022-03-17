@@ -17,7 +17,7 @@ namespace Plateform_RH_Finlogik.Api.Controllers
         [HttpPost("authenticatejwt")]
         public async Task<ActionResult<AuthenticationResponse>> AuthenticateAsync(AuthenticationRequest request)
         {
-            return Ok(await _authenticationService.AuthenticateAsync(request));
+             return Ok(await _authenticationService.AuthenticateAsync(request));
         }
 
        

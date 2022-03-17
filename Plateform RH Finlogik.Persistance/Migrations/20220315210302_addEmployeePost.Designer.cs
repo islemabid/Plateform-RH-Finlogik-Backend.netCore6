@@ -12,8 +12,8 @@ using Plateform_RH_Finlogik.Persistance;
 namespace Plateform_RH_Finlogik.Persistance.Migrations
 {
     [DbContext(typeof(PlateformRHDbcontext))]
-    [Migration("20220315143033_updateTableEmployeeandPost")]
-    partial class updateTableEmployeeandPost
+    [Migration("20220315210302_addEmployeePost")]
+    partial class addEmployeePost
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -73,9 +73,6 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
                     b.Property<float>("HoursPerWeek")
                         .HasColumnType("real");
 
-                    b.Property<int?>("IdPost")
-                        .HasColumnType("int");
-
                     b.Property<int>("IdRole")
                         .HasColumnType("int");
 
@@ -113,11 +110,38 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdPost");
-
                     b.HasIndex("IdRole");
 
                     b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.EmployeePost", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("IdEmployee")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdPost")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdEmployee");
+
+                    b.HasIndex("IdPost");
+
+                    b.ToTable("EmployeePost");
                 });
 
             modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.Post", b =>
@@ -128,14 +152,14 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("LongDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShortDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -255,24 +279,42 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
 
             modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.Employee", b =>
                 {
-                    b.HasOne("Plateform_RH_Finlogik.Domain.Entities.Post", "Post")
-                        .WithMany("Employee")
-                        .HasForeignKey("IdPost");
-
                     b.HasOne("Plateform_RH_Finlogik.Domain.Entities.Role", "Role")
                         .WithMany("Employees")
                         .HasForeignKey("IdRole")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Post");
-
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.EmployeePost", b =>
+                {
+                    b.HasOne("Plateform_RH_Finlogik.Domain.Entities.Employee", "Employee")
+                        .WithMany("EmployeePosts")
+                        .HasForeignKey("IdEmployee")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Plateform_RH_Finlogik.Domain.Entities.Post", "Post")
+                        .WithMany("EmployeePosts")
+                        .HasForeignKey("IdPost")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("Post");
+                });
+
+            modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.Employee", b =>
+                {
+                    b.Navigation("EmployeePosts");
                 });
 
             modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.Post", b =>
                 {
-                    b.Navigation("Employee");
+                    b.Navigation("EmployeePosts");
                 });
 
             modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.Role", b =>
