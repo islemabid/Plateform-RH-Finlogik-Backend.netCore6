@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Plateform_RH_Finlogik.Domain.Entities
@@ -40,6 +41,7 @@ namespace Plateform_RH_Finlogik.Domain.Entities
 
         public virtual Role Role { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<EmployeePost> EmployeePosts { get; set; }
 
 

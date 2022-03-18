@@ -18,7 +18,7 @@ namespace Plateform_RH_Finlogik.Persistance.Repositories
 
         public  List<EmployeePost> GetAllEmployeesPostsByEmployeeID(int id)
         {
-            return  _dbContext.Set<EmployeePost>().Include(x => x.Post).Where(x => x.IdEmployee == id).ToList();
+            return  _dbContext.Set<EmployeePost>().Include("Post").Include("Employee").Where(x => x.IdEmployee == id).ToList();
         }
     }
 

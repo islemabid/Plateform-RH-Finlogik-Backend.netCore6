@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plateform_RH_Finlogik.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +9,14 @@ namespace Plateform_RH_Finlogik.Application.Features.EmployeesPosts.Queries.GetE
 {
     public class EmployeePostListVm
     {
-        public int Id { get; set; }
         public int IdPost { get; set; }
 
+        public Post Post { get; set; }
         public int IdEmployee { get; set; }
 
+        public Employee Employee { get; set; }
+
         public DateTime StartDate { get; set; }
-      
+
     }
 }
