@@ -51,6 +51,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEm
                 PersonnelPhone = request.PersonnelPhone,
                 HoursPerWeek = request.HoursPerWeek,
                 Gender = request.Gender,
+                IdDepartement=request.IdDepartement,
                
             };
 

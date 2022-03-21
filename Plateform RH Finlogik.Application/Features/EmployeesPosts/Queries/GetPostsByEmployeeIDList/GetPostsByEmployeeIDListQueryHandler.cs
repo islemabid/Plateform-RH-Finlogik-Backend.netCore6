@@ -22,7 +22,7 @@ namespace Plateform_RH_Finlogik.Application.Features.EmployeesPosts.Queries.GetP
 
         public async Task<List<PostListByIDEmployeeVm>> Handle(GetPostsByEmployeeIDListQuery request, CancellationToken cancellationToken)
         {
-            var allEmployeePostsByEmployeeID = (_employeePostRepository.GetAllEmployeesPostsByEmployeeID(request.IdEmployee).OrderBy(x => x.StartDate));
+            var allEmployeePostsByEmployeeID = _employeePostRepository.GetAllEmployeesPostsByEmployeeID(request.IdEmployee).OrderBy(x => x.StartDate);
             return _mapper.Map<List<PostListByIDEmployeeVm>>(allEmployeePostsByEmployeeID);
         }
 

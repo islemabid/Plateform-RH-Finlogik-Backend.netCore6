@@ -24,17 +24,12 @@ namespace Plateform_RH_Finlogik.Api.Controllers
 
         [HttpGet("all", Name = "GetAllRoles")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<RolesListVm>>> GetAllEmployees()
+        public async Task<ActionResult<List<RolesListVm>>> GetAllRoles()
         {
             var dtos = await _mediator.Send(new GetRolesListQuery());
             return Ok(dtos);
         }
-        /*[HttpGet("{id}", Name = "GetRoleById")]
-        public async Task<ActionResult<EmployeeDetailVm>> GetEmployeeById(int id)
-        {
-            var getEmployeeDetailQuery = new GetEmployeeDetailQuery() { Id = id };
-            return Ok(await _mediator.Send(getEmployeeDetailQuery));
-        }*/
+      
 
         [HttpPost(Name = "AddRole")]
         public async Task<ActionResult> Create([FromBody] CreateRoleCommand createRoleCommand)

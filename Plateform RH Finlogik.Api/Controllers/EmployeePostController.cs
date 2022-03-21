@@ -34,11 +34,6 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             return Ok(await _mediator.Send(PostsByEmployeeIDListQuery));
         }
 
-        [HttpPost(Name = "AddEmployeePost")]
-        public async Task<ActionResult<int>> Create([FromBody] CreateEmployeePostCommand createEmployeePostCommand)
-        {
-            var employeePost = await _mediator.Send(createEmployeePostCommand);
-            return Ok(employeePost);
-        }
+      
     }
 }
