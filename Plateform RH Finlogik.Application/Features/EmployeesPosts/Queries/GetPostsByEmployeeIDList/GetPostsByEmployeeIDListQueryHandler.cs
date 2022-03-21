@@ -29,5 +29,5 @@ namespace Plateform_RH_Finlogik.Application.Features.EmployeesPosts.Queries.GetP
     }
 }
 
-   
+
 

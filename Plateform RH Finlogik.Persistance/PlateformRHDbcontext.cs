@@ -19,6 +19,9 @@ namespace Plateform_RH_Finlogik.Persistance
         public DbSet<Role> Roles { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<EmployeePost> EmployeePost { get; set; }
+        public DbSet<HistoryContrat> HistoryContrat { get; set; }
+        public DbSet<Contrat> Contrat { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder model)
         {
@@ -31,7 +34,17 @@ namespace Plateform_RH_Finlogik.Persistance
                .HasOne(x => x.Employee)
                .WithMany(x => x.EmployeePosts)
                .HasForeignKey(x => x.IdEmployee);
+            model.Entity<HistoryContrat>()
+              .HasOne(x => x.Contrat)
+              .WithMany(x => x.HistoryContrats)
+              .HasForeignKey(x => x.IdContrat);
+
+            model.Entity<HistoryContrat>()
+               .HasOne(x => x.Employee)
+               .WithMany(x => x.HistoryContrats)
+               .HasForeignKey(x => x.IdEmployee);
         }
+
 
     }
 }

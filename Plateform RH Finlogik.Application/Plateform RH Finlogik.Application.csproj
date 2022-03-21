@@ -19,4 +19,11 @@
     <ProjectReference Include="..\Plateform RH Finlogik.Domain\Plateform RH Finlogik.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Contrats\Commands\" />
+    <Folder Include="Features\Contrats\Queries\" />
+    <Folder Include="Features\HistoryContrats\Commands\" />
+    <Folder Include="Features\HistoryContrats\Queries\" />
+  </ItemGroup>
+
 </Project>

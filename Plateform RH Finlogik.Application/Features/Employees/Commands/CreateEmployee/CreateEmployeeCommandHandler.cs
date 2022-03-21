@@ -9,12 +9,19 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEm
     public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeCommand, EmployeeDto>
     {
         private readonly IEmployeeRepository _employeeRepository;
+        private readonly IEmployeePostRepository _employeePostRepository;
+        private readonly IHistoryContratRepository _historyContratRepository;
         private readonly IMapper _mapper;
-        public CreateEmployeeCommandHandler(IMapper mapper, IEmployeeRepository employeeRepository)
+        public CreateEmployeeCommandHandler(IMapper mapper, IEmployeeRepository employeeRepository , IEmployeePostRepository employeePostRepository, IHistoryContratRepository historyContratRepository)
         {
             _mapper = mapper;
             _employeeRepository = employeeRepository;
-            
+            _employeePostRepository = employeePostRepository;
+            _historyContratRepository = historyContratRepository;
+
+
+
+
         }
 
         
@@ -44,11 +51,36 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEm
                 PersonnelPhone = request.PersonnelPhone,
                 HoursPerWeek = request.HoursPerWeek,
                 Gender = request.Gender,
-
-
+               
             };
 
             employee = await _employeeRepository.AddAsync(employee);
+
+            var employeePost = new EmployeePost
+            {
+                IdEmployee = employee.Id,
+                IdPost = request.IdPost,
+                StartDate = DateTime.Now,
+                isActive = true
+
+            };
+
+             await _employeePostRepository.AddAsync(employeePost);
+
+
+            var employeeContrat = new HistoryContrat
+            {
+                IdEmployee = employee.Id,
+                IdContrat = request.IdContrat,
+                StartDate = DateTime.Now,
+                isActive = true
+
+            };
+
+             await _historyContratRepository.AddAsync(employeeContrat);
+
+
+
             EmployeeDto @employeeDTo = _mapper.Map<EmployeeDto>(employee);
             return @employeeDTo;
 

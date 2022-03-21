@@ -44,6 +44,14 @@ namespace Plateform_RH_Finlogik.Domain.Entities
         [JsonIgnore]
         public virtual ICollection<EmployeePost> EmployeePosts { get; set; }
 
+     
+        public virtual ICollection<HistoryContrat> HistoryContrats { get; set; }
+
+
+        [ForeignKey("Departement")]
+        public int IdDepartement { get; set; }
+
+        public virtual Departement Departement { get; set; }
 
 
 

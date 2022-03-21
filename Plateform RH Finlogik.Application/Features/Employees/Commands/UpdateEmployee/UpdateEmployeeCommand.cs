@@ -31,5 +31,9 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Commands.UpdateEm
         public string? ImageUrl { get; set; }
         public DateTime BirthDate { get; set; }
         public int IdRole { get; set; }
+
+        public int IdContrat{ get; set; }
+
+        public int IdPost { get; set; }
     }
 }

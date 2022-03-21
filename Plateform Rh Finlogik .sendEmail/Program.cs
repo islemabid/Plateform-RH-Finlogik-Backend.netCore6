@@ -1,4 +1,6 @@
 ﻿
+using Plateform_Rh_Finlogik_.sendEmail.Helper;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Net;
@@ -317,7 +319,7 @@ table, td { color: #000000; } @media (max-width: 480px) { #u_content_image_1 .v-
        
   <div style='line-height: 160%; text-align: center; word-wrap: break-word;'>
     <p style='font-size: 14px; line-height: 160%;'><span style='font-family: Lato, sans-serif; font-size: 14px; line-height: 22.4px;'>
-Dear "+ firstName + @" " + lastName + @", <br>
+Dear " + firstName + @" " + lastName + @", <br>
 
 We value your special day just as much as we value you. On your birthday, we send you our warmest and most heartfelt wishes.
 
@@ -396,32 +398,34 @@ Regards,
 
 </html>";
 
-           
+            Mail.sendMail(ConfigurationManager.AppSettings.Get("From"), "Birthday Wishes", htmlString);
 
 
 
 
-            MailMessage message = new MailMessage();
-            SmtpClient smtp = new SmtpClient();
-            message.From = new MailAddress("islem.abid@enis.tn");
-            message.To.Add(new MailAddress("ghaziigassara@gmail.com"));
-            message.Subject = "Birthday Wishes";
-            message.IsBodyHtml = true; //to make message body as html  
-            message.Body = htmlString;
 
 
-            smtp.Port = 587;
-            smtp.Host = "smtp.gmail.com"; //for gmail host  
-            smtp.EnableSsl = true;
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("islem.abid@enis.tn", "to07W_53Fu");
-            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtp.Send(message);
+        }
+    }
+    using (SqlConnection con = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=PlateFormRHFinlogik;Trusted_Connection=True"))
+    {
+
+        SqlCommand cmd2 = new SqlCommand(@"select e.FirstName+' '+e.LastName as name,h.EndDate from Employees e inner join HistoryContrat h
+on h.IdEmployee = e.Id
+where h.isActive = 1 and h.EndDate is not null
+and DAY(h.EndDate) = DAY(dateadd(dd, 7, getdate()))", con);
+        cmd2.CommandType = CommandType.Text;
+        con.Open();
+        SqlDataReader rdr2 = cmd2.ExecuteReader();
+        while (rdr2.Read())
+        {
+            Mail.sendMail("ghaziigassara@gmail.com", "Rappel fin contrat", "pssst");
         }
     }
 }
 
-catch (Exception ex) {
+catch (Exception ex)
+{
 }
 
 
