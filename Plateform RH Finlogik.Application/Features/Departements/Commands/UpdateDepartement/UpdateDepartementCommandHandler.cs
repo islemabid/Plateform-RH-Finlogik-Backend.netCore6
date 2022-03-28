@@ -44,4 +44,4 @@ namespace Plateform_RH_Finlogik.Application.Features.Departements.Commands.Updat
     }
 
 }
-}
+

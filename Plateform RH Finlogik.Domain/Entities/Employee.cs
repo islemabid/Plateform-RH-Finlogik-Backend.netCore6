@@ -46,12 +46,15 @@ namespace Plateform_RH_Finlogik.Domain.Entities
 
      
         public virtual ICollection<HistoryContrat> HistoryContrats { get; set; }
+        public virtual ICollection<TimeOffBalances> TimeOffBalances { get; set; }
 
 
         [ForeignKey("Departement")]
         public int IdDepartement { get; set; }
 
         public virtual Departement Departement { get; set; }
+
+       
 
 
 

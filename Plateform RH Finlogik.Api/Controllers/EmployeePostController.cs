@@ -1,4 +1,6 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeeDetail;
@@ -9,6 +11,7 @@ using Plateform_RH_Finlogik.Application.Features.EmployeesPosts.Queries.GetPosts
 namespace Plateform_RH_Finlogik.Api.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
     [ApiController]
     public class EmployeePostController : ControllerBase
     {

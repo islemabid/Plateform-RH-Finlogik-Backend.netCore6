@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Plateform_RH_Finlogik.Application.Features.Posts.Commands.CreatePost;
 using Plateform_RH_Finlogik.Application.Features.Posts.Commands.DeletePost;
 using Plateform_RH_Finlogik.Application.Features.Posts.Commands.updatePost;
@@ -9,6 +11,7 @@ using Plateform_RH_Finlogik.Application.Features.Posts.Queries.GetPostsList;
 namespace Plateform_RH_Finlogik.Api.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
     [ApiController]
     public class PostController : ControllerBase
     {

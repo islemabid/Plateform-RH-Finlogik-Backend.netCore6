@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Plateform_RH_Finlogik.Application.Features.Contrats.Commands.CreateContrat;
 using Plateform_RH_Finlogik.Application.Features.Contrats.Commands.DeleteContrat;
 using Plateform_RH_Finlogik.Application.Features.Contrats.Commands.UpdateContrat;
+using Plateform_RH_Finlogik.Application.Features.Contrats.Queries.GetContratByID;
 using Plateform_RH_Finlogik.Application.Features.Contrats.Queries.GetContratsList;
 using System.Net;
 
@@ -30,7 +31,12 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             var dtos = await _mediator.Send(new GetContratsListQuery());
             return Ok(dtos);
         }
-
+        [HttpGet("{id}", Name = "GetContratById")]
+        public async Task<ActionResult<ContratByIDdetails>> GetContratById(int id)
+        {
+            var getContratByIDQuery = new GetContratByIDQuery() { Id = id };
+            return Ok(await _mediator.Send(getContratByIDQuery));
+        }
         [HttpPost(Name = "AddContrat")]
         public async Task<ActionResult> Create([FromBody] CreateContratCommand createContratCommand)
         {

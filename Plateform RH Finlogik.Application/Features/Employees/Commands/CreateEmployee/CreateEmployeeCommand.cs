@@ -29,6 +29,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEm
         public float HoursPerWeek { get; set; }
         public string? ImageUrl { get; set; }
         public DateTime BirthDate { get; set; }
+        public DateTime ? EndDate { get; set; }
         public int IdRole { get; set; }
         public int IdPost { get; set; }
         public int IdContrat { get; set; }

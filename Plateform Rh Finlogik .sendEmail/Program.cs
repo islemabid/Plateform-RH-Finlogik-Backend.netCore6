@@ -419,7 +419,7 @@ and DAY(h.EndDate) = DAY(dateadd(dd, 7, getdate()))", con);
         SqlDataReader rdr2 = cmd2.ExecuteReader();
         while (rdr2.Read())
         {
-            Mail.sendMail("ghaziigassara@gmail.com", "Rappel fin contrat", "pssst");
+            Mail.sendMail("islem.abid@enis.tn", "Rappel fin contrat", "rappel fin de contrat");
         }
     }
 }

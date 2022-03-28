@@ -22,6 +22,7 @@ namespace Plateform_RH_Finlogik.Persistance
         public DbSet<EmployeePost> EmployeePost { get; set; }
         public DbSet<HistoryContrat> HistoryContrat { get; set; }
         public DbSet<Contrat> Contrat { get; set; }
+        public DbSet<TimeOffBalances> TimeOffBalances { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder model)

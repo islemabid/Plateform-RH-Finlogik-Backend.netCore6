@@ -51,7 +51,7 @@ namespace Plateform_RH_Finlogik_._JWT.Services
                        "JWTAuthenticationServer",
                        "JWTServicePostmanClient",
                         claims,
-                        expires: DateTime.UtcNow.AddMinutes(60),
+                        expires: DateTime.UtcNow.AddMinutes(12000),
                         signingCredentials: signIn);
 
                     return new AuthenticationResponse() { Token = new JwtSecurityTokenHandler().WriteToken(token) };

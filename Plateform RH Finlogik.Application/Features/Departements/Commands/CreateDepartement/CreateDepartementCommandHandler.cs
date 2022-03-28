@@ -1,4 +1,7 @@
-﻿using Plateform_RH_Finlogik.Domain.Entities;
+﻿using AutoMapper;
+using MediatR;
+using Plateform_RH_Finlogik.Application.Contracts.Persistance;
+using Plateform_RH_Finlogik.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +34,5 @@ namespace Plateform_RH_Finlogik.Application.Features.Departements.Commands.Creat
         }
 
     }
-    {
-    }
+   
 }

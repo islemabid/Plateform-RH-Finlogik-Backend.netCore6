@@ -31,6 +31,7 @@ namespace Plateform_RH_Finlogik.Persistance
             services.AddScoped<IHistoryContratRepository, HistoryContratRepository>();
             services.AddScoped<IContratRepository, ContratRepository>();
             services.AddScoped<IDepartementRepository, DepartementRepository>();
+            services.AddScoped<ItimeoffBalancesRepository, TimeoffBalancesRepository>();
 
 
 

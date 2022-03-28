@@ -74,6 +74,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEm
                 IdEmployee = employee.Id,
                 IdContrat = request.IdContrat,
                 StartDate = DateTime.Now,
+                EndDate=request.EndDate,
                 isActive = true
 
             };
