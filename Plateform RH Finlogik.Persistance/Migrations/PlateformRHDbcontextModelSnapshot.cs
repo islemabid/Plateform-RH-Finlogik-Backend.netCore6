@@ -61,7 +61,7 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Departements");
+                    b.ToTable("Departement");
                 });
 
             modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.Employee", b =>
@@ -87,10 +87,6 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ContratType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -285,10 +281,6 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ContratType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

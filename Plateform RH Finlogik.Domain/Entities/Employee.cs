@@ -29,10 +29,14 @@ namespace Plateform_RH_Finlogik.Domain.Entities
         public long Cin  { get; set; }
         public string WorkEmail { get; set; }
         public int  WorkPhone { get; set; }
-        public string ContratType { get; set; }
         public string Diplome { get; set; }
         public string CNSSNumber { get; set; }
         public float  HoursPerWeek { get; set; }
+
+        [ForeignKey("Departement")]
+        public int IdDepartement { get; set; }
+
+        public virtual Departement Departement { get; set; }
         public string? ImageUrl { get; set; }
         public DateTime BirthDate { get; set; }
 
@@ -43,16 +47,10 @@ namespace Plateform_RH_Finlogik.Domain.Entities
 
         [JsonIgnore]
         public virtual ICollection<EmployeePost> EmployeePosts { get; set; }
-
-     
         public virtual ICollection<HistoryContrat> HistoryContrats { get; set; }
         public virtual ICollection<TimeOffBalances> TimeOffBalances { get; set; }
 
 
-        [ForeignKey("Departement")]
-        public int IdDepartement { get; set; }
-
-        public virtual Departement Departement { get; set; }
 
        
 

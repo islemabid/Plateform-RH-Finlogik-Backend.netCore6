@@ -43,7 +43,6 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEm
                 City = request.City,
                 Contry = request.Contry,
                 CNSSNumber = request.CNSSNumber,
-                ContratType = request.ContratType,
                 postalCode = request.postalCode,
                 Region = request.Region,
                 Diplome = request.Diplome,
@@ -55,7 +54,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEm
                
             };
 
-            employee = await _employeeRepository.AddAsync(employee);
+             await _employeeRepository.AddAsync(employee);
 
             var employeePost = new EmployeePost
             {

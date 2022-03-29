@@ -51,7 +51,6 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Commands.DeleteEm
                     City = employeeToDelete.City,
                     Contry = employeeToDelete.Contry,
                     CNSSNumber = employeeToDelete.CNSSNumber,
-                    ContratType = employeeToDelete.ContratType,
                     postalCode = employeeToDelete.postalCode,
                     Region = employeeToDelete.Region,
                     Diplome = employeeToDelete.Diplome,

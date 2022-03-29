@@ -12,8 +12,8 @@ using Plateform_RH_Finlogik.Persistance;
 namespace Plateform_RH_Finlogik.Persistance.Migrations
 {
     [DbContext(typeof(PlateformRHDbcontext))]
-    [Migration("20220315210302_addEmployeePost")]
-    partial class addEmployeePost
+    [Migration("20220329093131_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,48 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.Contrat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("LongDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShortDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contrat");
+                });
+
+            modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.Departement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("LongDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShortDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Departement");
+                });
 
             modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.Employee", b =>
                 {
@@ -50,10 +92,6 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ContratType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Contry")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -72,6 +110,9 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
 
                     b.Property<float>("HoursPerWeek")
                         .HasColumnType("real");
+
+                    b.Property<int>("IdDepartement")
+                        .HasColumnType("int");
 
                     b.Property<int>("IdRole")
                         .HasColumnType("int");
@@ -110,6 +151,8 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("IdDepartement");
+
                     b.HasIndex("IdRole");
 
                     b.ToTable("Employees");
@@ -142,6 +185,38 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
                     b.HasIndex("IdPost");
 
                     b.ToTable("EmployeePost");
+                });
+
+            modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.HistoryContrat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdContrat")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdEmployee")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdContrat");
+
+                    b.HasIndex("IdEmployee");
+
+                    b.ToTable("HistoryContrat");
                 });
 
             modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.Post", b =>
@@ -211,10 +286,6 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ContratType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Contry")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -277,13 +348,52 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
                     b.ToTable("TermiantedEmployees");
                 });
 
+            modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.TimeOffBalances", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdEmployee")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdEmployee");
+
+                    b.ToTable("TimeOffBalances");
+                });
+
             modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.Employee", b =>
                 {
+                    b.HasOne("Plateform_RH_Finlogik.Domain.Entities.Departement", "Departement")
+                        .WithMany("Employees")
+                        .HasForeignKey("IdDepartement")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Plateform_RH_Finlogik.Domain.Entities.Role", "Role")
                         .WithMany("Employees")
                         .HasForeignKey("IdRole")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Departement");
 
                     b.Navigation("Role");
                 });
@@ -307,9 +417,53 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
                     b.Navigation("Post");
                 });
 
+            modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.HistoryContrat", b =>
+                {
+                    b.HasOne("Plateform_RH_Finlogik.Domain.Entities.Contrat", "Contrat")
+                        .WithMany("HistoryContrats")
+                        .HasForeignKey("IdContrat")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Plateform_RH_Finlogik.Domain.Entities.Employee", "Employee")
+                        .WithMany("HistoryContrats")
+                        .HasForeignKey("IdEmployee")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contrat");
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.TimeOffBalances", b =>
+                {
+                    b.HasOne("Plateform_RH_Finlogik.Domain.Entities.Employee", "Employee")
+                        .WithMany("TimeOffBalances")
+                        .HasForeignKey("IdEmployee")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.Contrat", b =>
+                {
+                    b.Navigation("HistoryContrats");
+                });
+
+            modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.Departement", b =>
+                {
+                    b.Navigation("Employees");
+                });
+
             modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.Employee", b =>
                 {
                     b.Navigation("EmployeePosts");
+
+                    b.Navigation("HistoryContrats");
+
+                    b.Navigation("TimeOffBalances");
                 });
 
             modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.Post", b =>
