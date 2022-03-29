@@ -9,33 +9,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.UpdateTimeOffBalances
+namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.ValidateTimeOffBalances
 {
-    public class UpdateTimeOffBalancesCommandHandler : IRequestHandler<UpdateTimeOffBalancesCommand>
+    public class ValidateTimeOffBalancesCommandHandler : IRequestHandler<ValidateTimeOffBalancesCommand>
     {
         private readonly ItimeoffBalancesRepository _timeoffbalanceRepository;
         private readonly IMapper _mapper;
 
-        public UpdateTimeOffBalancesCommandHandler(IMapper mapper, ItimeoffBalancesRepository timeoffbalanceRepository)
+        public ValidateTimeOffBalancesCommandHandler(IMapper mapper, ItimeoffBalancesRepository timeoffbalanceRepository)
         {
             _mapper = mapper;
             _timeoffbalanceRepository = timeoffbalanceRepository;
         }
 
-        public async Task<Unit> Handle(UpdateTimeOffBalancesCommand   request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(ValidateTimeOffBalancesCommand request, CancellationToken cancellationToken)
         {
 
             var timeoffbalnceToUpdate = await _timeoffbalanceRepository.GetByIDAsync(request.Id);
 
             if (timeoffbalnceToUpdate == null)
             {
-                throw new NotFoundException(nameof(TimeOffBalances), request.Id);
+                throw new NotFoundException(nameof(TimeOffBalances ), request.Id);
             }
 
-            timeoffbalnceToUpdate.IsActive = request.IsActive;
-           
+            if (timeoffbalnceToUpdate.IsActive == false)
+            {
+                timeoffbalnceToUpdate.IsActive=true;
+            }
 
-            _mapper.Map(request, timeoffbalnceToUpdate, typeof(UpdateTimeOffBalancesCommand), typeof(TimeOffBalances));
+            _mapper.Map(request, timeoffbalnceToUpdate, typeof(ValidateTimeOffBalancesCommand), typeof(TimeOffBalances));
 
             await _timeoffbalanceRepository.UpdateAsync(timeoffbalnceToUpdate);
 
@@ -45,3 +47,5 @@ namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.Updat
     }
 
 }
+ 
+

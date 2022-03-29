@@ -7,6 +7,7 @@ using Plateform_RH_Finlogik.Application.Features.Employees;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEmployee;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.DeleteEmployee;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.UpdateEmployee;
+using Plateform_RH_Finlogik.Application.Features.Employees.Commands.UpdateProfil;
 using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeeDetail;
 using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeeListwithTimeoffbalances;
 using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeesList;
@@ -15,7 +16,7 @@ namespace Plateform_RH_Finlogik.Api.Controllers
 {
 
     [Route("api/[controller]")]
-  [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
     [ApiController]
     public class EmployeeController : ControllerBase
     {
@@ -57,7 +58,8 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             await _mediator.Send(updateEmployeeCommand);
             return NoContent();
         }
-
+      
+        
 
         [HttpDelete("{id}", Name = "DeleteEmployee")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -78,6 +80,17 @@ namespace Plateform_RH_Finlogik.Api.Controllers
 
             var dtos = await _mediator.Send(getEmployeeListwithTimeoffbalancesQuery);
             return Ok(dtos);
+        }
+
+        [HttpPut("profil",Name = "UpdateEmployeeProfil")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult> UpdateEmployeeProfil([FromBody] UpdateProfilCommand updateProfilCommand)
+        {
+
+            await _mediator.Send(updateProfilCommand);
+            return NoContent();
         }
     }
 }

@@ -8,10 +8,10 @@ using Plateform_RH_Finlogik.Application.Features.Departements.Commands.UpdateDep
 using Plateform_RH_Finlogik.Application.Features.Departements.Queries.GetDepartementsList;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEmployee;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.UpdateEmployee;
+using Plateform_RH_Finlogik.Application.Features.Employees.Commands.UpdateProfil;
 using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeeDetail;
 using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeeListwithTimeoffbalances;
 using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeesList;
-using Plateform_RH_Finlogik.Application.Features.EmployeesPosts.Commands.createEmployeePost;
 using Plateform_RH_Finlogik.Application.Features.EmployeesPosts.Queries.GetEmployeesPostsList;
 using Plateform_RH_Finlogik.Application.Features.EmployeesPosts.Queries.GetPostsByEmployeeIDList;
 using Plateform_RH_Finlogik.Application.Features.HistoryContrats.Queries.GetHistoryContratsByEmployeeIDList;
@@ -39,6 +39,7 @@ namespace Plateform_RH_Finlogik.Application.Application.Profiles
             CreateMap<Employee, EmployeeDetailVm>().ReverseMap();
             CreateMap<Employee, UpdateEmployeeCommand>().ReverseMap();
             CreateMap<Employee, EmployeeTimeoffbalancesListVm>().ReverseMap();
+            CreateMap<Employee, UpdateProfilCommand>().ReverseMap();
             //mapping EmployeePost
             CreateMap<EmployeePost, EmployeePostListVm>().ReverseMap();
             CreateMap<EmployeePost, PostListByIDEmployeeVm>().ReverseMap();
@@ -71,7 +72,7 @@ namespace Plateform_RH_Finlogik.Application.Application.Profiles
             //mapping Timeoffbalances
             CreateMap<TimeOffBalances, TimeoffBalancesListVm>().ReverseMap();
             CreateMap<TimeOffBalances, CreateTimeOffBalancesCommand>().ReverseMap();
-            CreateMap<TimeOffBalances, UpdateTimeOffBalancesCommand>().ReverseMap();
+            CreateMap<TimeOffBalances,UpdateTimeOffBalancesCommand>().ReverseMap();
 
 
         }

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.UpdateTimeOffBalances
+namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.ValidateTimeOffBalances
 {
-    public class UpdateTimeOffBalancesCommand : IRequest
+    public class ValidateTimeOffBalancesCommand : IRequest
     {
         public int Id { get; set; }
         public DateTime StartDate { get; set; } = DateTime.Now;
@@ -16,5 +16,5 @@ namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.Updat
         public string Type { get; set; }
         public int IdEmployee { get; set; }
     }
-
 }
+
