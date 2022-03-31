@@ -23,7 +23,6 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmploy
         public long Cin { get; set; }
         public string WorkEmail { get; set; }
         public int WorkPhone { get; set; }
-        public string ContratType { get; set; }
         public string Diplome { get; set; }
         public string CNSSNumber { get; set; }
         public float HoursPerWeek { get; set; }
@@ -31,5 +30,6 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmploy
         public DateTime BirthDate { get; set; }
         public int IdRole { get; set; }
         public int IdDepartement { get; set; }
+
     }
 }

@@ -11,6 +11,7 @@ namespace Plateform_RH_Finlogik.Application.Contracts.Persistance
     public interface IEmployeePostRepository : IAsyncRepository<EmployeePost>
     {
        List<EmployeePost> GetAllEmployeesPostsByEmployeeID(int id);
+        Post GetCurrentPostByEmployeeID(int id);
 
     }
 }

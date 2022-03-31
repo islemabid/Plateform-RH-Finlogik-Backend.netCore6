@@ -21,5 +21,18 @@ namespace Plateform_RH_Finlogik.Persistance.Repositories
         {
             return _dbContext.Set<HistoryContrat>().Include("Contrat").Include("Employee").Where(x => x.IdEmployee == id).ToList();
         }
+        public Contrat GetCurrentContratByEmployeeID(int id)
+        {
+            List<HistoryContrat> lists = _dbContext.Set<HistoryContrat>().Include("Contrat").Include("Employee").Where(x => x.IdEmployee == id).ToList();
+            foreach (HistoryContrat contrat in lists)
+            {
+                if (contrat.isActive == true)
+                {
+
+                    return contrat.Contrat;
+                }
+            }
+            return null;
+        }
     }
 }

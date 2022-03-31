@@ -30,5 +30,6 @@ namespace Plateform_RH_Finlogik.Persistance.Repositories
         {
             return await _dbContext.Set<Employee>().Include(u=> u.Role).SingleOrDefaultAsync(u => u.WorkEmail == email && u.Password == password);
         }
+       
     }
 }

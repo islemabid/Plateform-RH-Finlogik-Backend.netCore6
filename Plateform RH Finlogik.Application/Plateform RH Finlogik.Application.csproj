@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\EmployeesPosts\Commands\" />
     <Folder Include="Features\HistoryContrats\Commands\" />
   </ItemGroup>
 

@@ -20,6 +20,19 @@ namespace Plateform_RH_Finlogik.Persistance.Repositories
         {
             return  _dbContext.Set<EmployeePost>().Include("Post").Include("Employee").Where(x => x.IdEmployee == id).ToList();
         }
+        public Post GetCurrentPostByEmployeeID(int id)
+        {
+            List<EmployeePost> lists= _dbContext.Set<EmployeePost>().Include("Post").Include("Employee").Where(x => x.IdEmployee == id).ToList();
+            foreach(EmployeePost post in lists)
+            {
+                if (post.isActive == true)
+                {
+
+                    return post.Post;
+                }
+            }
+            return null;
+        }
     }
 
     }
