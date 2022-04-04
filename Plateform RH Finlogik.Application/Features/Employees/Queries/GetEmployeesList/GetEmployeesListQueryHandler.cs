@@ -16,20 +16,53 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmploy
         private readonly IAsyncRepository<Employee> _employeeRepository;
         private readonly IEmployeePostRepository _employeePostRepository;
         private readonly IHistoryContratRepository _historyContratRepository;
-        private readonly IMapper _mapper;
 
-        public GetEmployeesListQueryHandler(IMapper mapper, IAsyncRepository<Employee> employeeRepository, IEmployeePostRepository employeePostRepository, IHistoryContratRepository historyContratRepository)
+
+        public GetEmployeesListQueryHandler(IAsyncRepository<Employee> employeeRepository, IEmployeePostRepository employeePostRepository, IHistoryContratRepository historyContratRepository)
         {
-            _mapper = mapper;
+           
             _employeeRepository = employeeRepository;
             _employeePostRepository = employeePostRepository;
             _historyContratRepository = historyContratRepository;
+
         }
 
         public async Task<List<EmployeeListVm>> Handle(GetEmployeesListQuery request, CancellationToken cancellationToken)
         {
-            var allEmployees = (await _employeeRepository.GetAllAsync()).OrderBy(x => x.BirthDate);
-            return _mapper.Map<List<EmployeeListVm>>(allEmployees);
+            IEnumerable<Employee> allEmployees = (await _employeeRepository.GetAllAsync()).OrderBy(x => x.BirthDate);
+            List <EmployeeListVm> employeeListVm = new List<EmployeeListVm>();
+            foreach (Employee employee in allEmployees)
+            {
+                EmployeeListVm e = new EmployeeListVm()
+                {
+                    FirstName = employee.FirstName,
+                    LastName = employee.LastName,
+                    Adress = employee.Adress,
+                    Cin = employee.Cin,
+                    PersonnelEmail = employee.PersonnelEmail,
+                    WorkEmail = employee.WorkEmail,
+                    WorkPhone = employee.WorkPhone,
+                    IdRole = employee.IdRole,
+                    ImageUrl = employee.ImageUrl,
+                    BirthDate = employee.BirthDate,
+                    City = employee.City,
+                    Contry = employee.Contry,
+                    CNSSNumber = employee.CNSSNumber,
+                    postalCode = employee.postalCode,
+                    Region = employee.Region,
+                    Diplome = employee.Diplome,
+                    Password = employee.Password,
+                    PersonnelPhone = employee.PersonnelPhone,
+                    HoursPerWeek = employee.HoursPerWeek,
+                    Gender = employee.Gender,
+                    IdDepartement = employee.IdDepartement,
+                    IdPost = _employeePostRepository.GetCurrentPostByEmployeeID(employee.Id).Id,
+                    Id = employee.Id,
+                    IdContrat = _historyContratRepository.GetCurrentContratByEmployeeID(employee.Id).Id
+                };
+                employeeListVm.Add(e);
+                }
+            return employeeListVm;
         }
     }
 }

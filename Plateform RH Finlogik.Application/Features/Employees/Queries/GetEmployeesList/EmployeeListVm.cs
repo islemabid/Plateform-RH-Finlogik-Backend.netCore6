@@ -30,6 +30,8 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmploy
         public DateTime BirthDate { get; set; }
         public int IdRole { get; set; }
         public int IdDepartement { get; set; }
+        public int IdContrat { get; set; }
+        public int IdPost { get; set; }
 
     }
 }
