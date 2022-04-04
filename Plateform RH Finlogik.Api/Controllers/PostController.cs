@@ -29,7 +29,7 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             var dtos = await _mediator.Send(new GetPostsListQuery());
             return Ok(dtos);
         }
-      
+
 
         [HttpPost(Name = "AddPost")]
         public async Task<ActionResult> Create([FromBody] CreatePostCommand createPostCommand)
@@ -60,5 +60,8 @@ namespace Plateform_RH_Finlogik.Api.Controllers
         }
     }
 }
+
+
+
 
 

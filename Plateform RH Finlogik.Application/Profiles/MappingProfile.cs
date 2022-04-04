@@ -15,8 +15,11 @@ using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeesL
 using Plateform_RH_Finlogik.Application.Features.EmployeesPosts.Queries.GetEmployeesPostsList;
 using Plateform_RH_Finlogik.Application.Features.EmployeesPosts.Queries.GetPostsByEmployeeIDList;
 using Plateform_RH_Finlogik.Application.Features.HistoryContrats.Queries.GetHistoryContratsByEmployeeIDList;
+using Plateform_RH_Finlogik.Application.Features.Posts.Commands.CreateOffer;
 using Plateform_RH_Finlogik.Application.Features.Posts.Commands.CreatePost;
+using Plateform_RH_Finlogik.Application.Features.Posts.Commands.updateOffer;
 using Plateform_RH_Finlogik.Application.Features.Posts.Commands.updatePost;
+using Plateform_RH_Finlogik.Application.Features.Posts.Queries.GetOffersList;
 using Plateform_RH_Finlogik.Application.Features.Posts.Queries.GetPostsList;
 using Plateform_RH_Finlogik.Application.Features.Roles.Commands.CreateRole;
 using Plateform_RH_Finlogik.Application.Features.Roles.Commands.UpdateRole;
@@ -48,10 +51,16 @@ namespace Plateform_RH_Finlogik.Application.Application.Profiles
             CreateMap<Role, RolesListVm>().ReverseMap();
             CreateMap<Role, CreateRoleCommand>().ReverseMap();
             CreateMap<Role, UpdateRoleCommand>().ReverseMap();
+
             //mapping Post
             CreateMap<Post, PostListVm>().ReverseMap();
             CreateMap<Post, CreatePostCommand>().ReverseMap();
             CreateMap<Post, UpdatePostCommand>().ReverseMap();
+
+            //mapping Offer
+            CreateMap<Offer, OffersListVm>().ReverseMap();
+            CreateMap<Offer, CreateOfferCommand>().ReverseMap();
+            CreateMap<Offer, UpdateOfferCommand>().ReverseMap();
             //mapping Departement
             CreateMap<Departement, DepartementsListVm>().ReverseMap();
             CreateMap<Departement, CreateDepartementCommand>().ReverseMap();

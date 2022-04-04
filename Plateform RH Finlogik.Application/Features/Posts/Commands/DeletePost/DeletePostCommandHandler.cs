@@ -32,7 +32,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Posts.Commands.DeletePost
             }
             postToDelete.IsDeleted = true;
 
-            Post postDeleted= await _postRepository.UpdateAsync(postToDelete);
+            Post postDeleted = await _postRepository.UpdateAsync(postToDelete);
 
             return Unit.Value;
         }

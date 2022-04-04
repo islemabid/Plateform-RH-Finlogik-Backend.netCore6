@@ -8,6 +8,6 @@ using System.Threading.Tasks;
 namespace Plateform_RH_Finlogik.Application.Features.Posts.Queries.GetPostsList
 {
     public class GetPostsListQuery : IRequest<List<PostListVm>>
-    { 
+    {
     }
 }

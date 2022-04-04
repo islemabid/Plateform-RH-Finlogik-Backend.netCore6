@@ -38,6 +38,22 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Offers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OfferDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OfferName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OfferMinExperience = table.Column<int>(type: "int", nullable: false),
+                    type = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Offers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Posts",
                 columns: table => new
                 {
@@ -266,6 +282,9 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
 
             migrationBuilder.DropTable(
                 name: "HistoryContrat");
+
+            migrationBuilder.DropTable(
+                name: "Offers");
 
             migrationBuilder.DropTable(
                 name: "TermiantedEmployees");

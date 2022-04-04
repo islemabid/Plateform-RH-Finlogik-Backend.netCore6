@@ -12,7 +12,7 @@ using Plateform_RH_Finlogik.Persistance;
 namespace Plateform_RH_Finlogik.Persistance.Migrations
 {
     [DbContext(typeof(PlateformRHDbcontext))]
-    [Migration("20220329093131_initial")]
+    [Migration("20220404095240_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -217,6 +217,34 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
                     b.HasIndex("IdEmployee");
 
                     b.ToTable("HistoryContrat");
+                });
+
+            modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.Offer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("OfferDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OfferMinExperience")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OfferName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Offers");
                 });
 
             modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.Post", b =>

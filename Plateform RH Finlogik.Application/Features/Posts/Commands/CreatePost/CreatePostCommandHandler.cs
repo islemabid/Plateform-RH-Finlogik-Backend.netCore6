@@ -35,3 +35,4 @@ namespace Plateform_RH_Finlogik.Application.Features.Posts.Commands.CreatePost
 
     }
 }
+
