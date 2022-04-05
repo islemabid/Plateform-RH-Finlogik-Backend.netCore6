@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Plateform_RH_Finlogik.Application.Features.ApplicationOffers.Commands.CreateApplicationOffer;
+using Plateform_RH_Finlogik.Application.Features.Candidats.Commands.CreateCandidat;
 using Plateform_RH_Finlogik.Application.Features.Contrats.Commands.CreateContrat;
 using Plateform_RH_Finlogik.Application.Features.Contrats.Commands.UpdateContrat;
 using Plateform_RH_Finlogik.Application.Features.Contrats.Queries.GetContratByID;
@@ -71,7 +73,12 @@ namespace Plateform_RH_Finlogik.Application.Application.Profiles
             CreateMap<Contrat, ContratByIDdetails>().ReverseMap();
             CreateMap<Contrat, CreateContratCommand>().ReverseMap();
             CreateMap<Contrat, UpdateContratCommand>().ReverseMap();
-            
+
+            //mapping Candidat 
+            CreateMap<Candidat, CreateCandidatCommand>().ReverseMap();
+
+            //mapping ApplicationOffer
+            CreateMap<ApplicationOffer, CreateApplicationOfferCommand>().ReverseMap();
 
 
 

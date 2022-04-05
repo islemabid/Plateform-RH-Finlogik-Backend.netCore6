@@ -8,20 +8,23 @@ using System.Threading.Tasks;
 
 namespace Plateform_RH_Finlogik.Domain.Entities
 {
-    public class Offer
+    public class Candidat
     {
         [Key]
 
         public int Id { get; set; }
-        public string OfferDescription { get; set; }
-
-        public string OfferName { get; set; }
-        
-        public int OfferMinExperience { get; set; }
-
-        public string type { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Gender { get; set; }
+        public string Adress { get; set; }
+        public string SchoolLevel { get; set; }
+        public string Establishment { get; set; }
 
         [JsonIgnore]
         public virtual ICollection<ApplicationOffer> ApplicationOffers { get; set; }
+
+
     }
 }

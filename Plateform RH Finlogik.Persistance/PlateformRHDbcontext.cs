@@ -24,6 +24,8 @@ namespace Plateform_RH_Finlogik.Persistance
         public DbSet<Contrat> Contrat { get; set; }
         public DbSet<TimeOffBalances> TimeOffBalances { get; set; }
         public DbSet<Offer> Offers { get; set; }
+        public DbSet<Candidat> Candidats { get; set; }
+        public DbSet<ApplicationOffer> ApplicationOffer { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder model)
@@ -46,6 +48,14 @@ namespace Plateform_RH_Finlogik.Persistance
                .HasOne(x => x.Employee)
                .WithMany(x => x.HistoryContrats)
                .HasForeignKey(x => x.IdEmployee);
+            model.Entity<ApplicationOffer>()
+              .HasOne(x => x.Candidat)
+              .WithMany(x => x.ApplicationOffers)
+              .HasForeignKey(x => x.IdCandidat);
+            model.Entity<ApplicationOffer>()
+                .HasOne(x => x.Offer)
+                .WithMany(x => x.ApplicationOffers)
+                .HasForeignKey(x => x.IdOffer);
         }
 
 
