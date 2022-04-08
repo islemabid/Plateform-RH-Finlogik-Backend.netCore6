@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace GloboTicket.TicketManagement.Application.Exceptions
+namespace Plateform_RH_Finlogik.Application.Exceptions
 {
     public class ValidationException : ApplicationException
     {

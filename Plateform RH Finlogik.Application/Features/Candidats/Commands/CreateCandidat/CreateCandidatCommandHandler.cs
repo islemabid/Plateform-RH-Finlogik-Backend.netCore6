@@ -5,11 +5,7 @@ using Plateform_RH_Finlogik.Application.Contracts.Interfaces;
 using Plateform_RH_Finlogik.Application.Contracts.Persistance;
 using Plateform_RH_Finlogik.Application.Features.HubClient;
 using Plateform_RH_Finlogik.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Plateform_RH_Finlogik.Application.Features.Candidats.Commands.CreateCandidat
 {

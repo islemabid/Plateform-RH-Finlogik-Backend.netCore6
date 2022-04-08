@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Plateform_RH_Finlogik.Application.Features.Posts.Commands.updateOffer
+namespace Plateform_RH_Finlogik.Application.Features.Offers.Commands.updateOffer
 {
     public class UpdateOfferCommand : IRequest
     {

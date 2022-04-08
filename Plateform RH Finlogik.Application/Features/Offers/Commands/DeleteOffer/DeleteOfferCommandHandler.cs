@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using GloboTicket.TicketManagement.Application.Exceptions;
 using MediatR;
+using Plateform_RH_Finlogik.Application.Exceptions;
 using Plateform_RH_Finlogik.Application.Persistance;
 using Plateform_RH_Finlogik.Domain.Entities;
 using System;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Plateform_RH_Finlogik.Application.Features.Posts.Commands.DeleteOffer
+namespace Plateform_RH_Finlogik.Application.Features.Offers.Commands.DeleteOffer
 {
     public class DeleteOfferCommandHandler : IRequestHandler<DeleteOfferCommand>
     {
