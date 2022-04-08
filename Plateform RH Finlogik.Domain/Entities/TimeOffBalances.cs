@@ -14,6 +14,7 @@ namespace Plateform_RH_Finlogik.Domain.Entities
         public DateTime  EndDate { get; set; }
         public bool IsActive { get; set; }
         public string   Type { get; set; }
+         public string  State { get; set; }
 
         [ForeignKey("Employee")]
         public int IdEmployee { get; set; }

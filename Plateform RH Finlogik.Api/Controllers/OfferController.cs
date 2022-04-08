@@ -12,7 +12,6 @@ using System.Net;
 namespace Plateform_RH_Finlogik.Api.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
     [ApiController]
     public class OfferController : ControllerBase
     {   
@@ -31,14 +30,14 @@ namespace Plateform_RH_Finlogik.Api.Controllers
                 return Ok(dtos);
             }
 
-            [HttpPost(Name = "AddOffer")]
+            [HttpPost(Name = "AddOffer"),Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
             public async Task<ActionResult> Create([FromBody] CreateOfferCommand createOfferCommand)
             {
                 var offer = await _mediator.Send(createOfferCommand);
                 return Ok(offer);
             }
 
-            [HttpPut(Name = "UpdateOffer")]
+            [HttpPut(Name = "UpdateOffer"),Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
             [ProducesResponseType(StatusCodes.Status204NoContent)]
             [ProducesResponseType(StatusCodes.Status404NotFound)]
             [ProducesDefaultResponseType]
@@ -48,7 +47,7 @@ namespace Plateform_RH_Finlogik.Api.Controllers
                 return NoContent();
             }
 
-            [HttpDelete("{id}", Name = "DeleteOffer")]
+            [HttpDelete("{id}", Name = "DeleteOffer"),Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
             [ProducesResponseType(StatusCodes.Status204NoContent)]
             [ProducesResponseType(StatusCodes.Status404NotFound)]
             [ProducesDefaultResponseType]

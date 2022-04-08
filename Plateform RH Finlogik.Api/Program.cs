@@ -28,6 +28,7 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSignalR();
 
 
 var app = builder.Build();
@@ -57,6 +58,12 @@ app.UseCustomExceptionHandler();
 app.UseCors("Open");
 
 app.UseAuthorization();
+
+/*app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<BroadcastHub>("/notify");
+});*/
+
 
 app.UseEndpoints(endpoints =>
 {

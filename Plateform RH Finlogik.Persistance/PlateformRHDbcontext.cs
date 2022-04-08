@@ -26,6 +26,7 @@ namespace Plateform_RH_Finlogik.Persistance
         public DbSet<Offer> Offers { get; set; }
         public DbSet<Candidat> Candidats { get; set; }
         public DbSet<ApplicationOffer> ApplicationOffer { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder model)

@@ -14,7 +14,7 @@ namespace Plateform_RH_Finlogik.Application.Features.ApplicationOffers.Commands.
 
         public int IdCandidat { get; set; }
 
-        public DateTime AssignmentDate { get; set; }
+        public DateTime AssignmentDate { get; set; }=DateTime.Now;
         public string CvUrl { get; set; }
 
         public string CoverLetter { get; set; }

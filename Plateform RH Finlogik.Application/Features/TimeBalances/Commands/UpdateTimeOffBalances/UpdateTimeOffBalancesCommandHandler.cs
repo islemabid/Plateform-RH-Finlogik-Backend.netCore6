@@ -32,7 +32,7 @@ namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.Updat
                 throw new NotFoundException(nameof(TimeOffBalances), request.Id);
             }
 
-            timeoffbalnceToUpdate.IsActive = request.IsActive;
+            timeoffbalnceToUpdate.State = request.State;
            
 
             _mapper.Map(request, timeoffbalnceToUpdate, typeof(UpdateTimeOffBalancesCommand), typeof(TimeOffBalances));
