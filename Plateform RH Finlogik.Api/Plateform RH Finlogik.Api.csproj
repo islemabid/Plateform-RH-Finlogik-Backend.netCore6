@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <Folder Include="Ressources\images\" />
+    <Folder Include="Ressources\CVs\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

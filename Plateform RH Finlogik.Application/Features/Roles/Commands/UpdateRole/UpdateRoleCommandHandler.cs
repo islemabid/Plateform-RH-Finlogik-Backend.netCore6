@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Plateform_RH_Finlogik.Application.Exceptions;
 using Plateform_RH_Finlogik.Application.Persistance;
 using Plateform_RH_Finlogik.Domain.Entities;
 

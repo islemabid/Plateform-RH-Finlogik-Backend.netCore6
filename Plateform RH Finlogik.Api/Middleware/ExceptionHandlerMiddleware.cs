@@ -1,6 +1,7 @@
-﻿using GloboTicket.TicketManagement.Application.Exceptions;
+﻿
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Plateform_RH_Finlogik.Application.Exceptions;
 using System;
 using System.Net;
 using System.Threading.Tasks;

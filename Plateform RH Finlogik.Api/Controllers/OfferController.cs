@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Plateform_RH_Finlogik.Application.Features.Posts.Commands.CreateOffer;
-using Plateform_RH_Finlogik.Application.Features.Posts.Commands.DeleteOffer;
-using Plateform_RH_Finlogik.Application.Features.Posts.Commands.updateOffer;
-using Plateform_RH_Finlogik.Application.Features.Posts.Queries.GetOffersList;
+using Plateform_RH_Finlogik.Application.Features.Offers.Commands.CreateOffer;
+using Plateform_RH_Finlogik.Application.Features.Offers.Commands.DeleteOffer;
+using Plateform_RH_Finlogik.Application.Features.Offers.Commands.updateOffer;
+using Plateform_RH_Finlogik.Application.Features.Offers.Queries.GetOfferById;
+using Plateform_RH_Finlogik.Application.Features.Offers.Queries.GetOffersList;
 using System.Net;
 
 namespace Plateform_RH_Finlogik.Api.Controllers
@@ -29,8 +30,14 @@ namespace Plateform_RH_Finlogik.Api.Controllers
                 var dtos = await _mediator.Send(new GetOffersListQuery());
                 return Ok(dtos);
             }
+            [HttpGet("{id}", Name = "GetOfferById")]
+            public async Task<ActionResult<OfferVm>> GetOfferById(int id)
+            {
+            var getofferByIDQuery = new GetOfferByIdQuery() { Id = id };
+            return Ok(await _mediator.Send(getofferByIDQuery));
+            }
 
-            [HttpPost(Name = "AddOffer"),Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
+        [HttpPost(Name = "AddOffer"),Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
             public async Task<ActionResult> Create([FromBody] CreateOfferCommand createOfferCommand)
             {
                 var offer = await _mediator.Send(createOfferCommand);

@@ -17,11 +17,11 @@ using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeesL
 using Plateform_RH_Finlogik.Application.Features.EmployeesPosts.Queries.GetEmployeesPostsList;
 using Plateform_RH_Finlogik.Application.Features.EmployeesPosts.Queries.GetPostsByEmployeeIDList;
 using Plateform_RH_Finlogik.Application.Features.HistoryContrats.Queries.GetHistoryContratsByEmployeeIDList;
-using Plateform_RH_Finlogik.Application.Features.Posts.Commands.CreateOffer;
+using Plateform_RH_Finlogik.Application.Features.Offers.Commands.CreateOffer;
 using Plateform_RH_Finlogik.Application.Features.Posts.Commands.CreatePost;
-using Plateform_RH_Finlogik.Application.Features.Posts.Commands.updateOffer;
+using Plateform_RH_Finlogik.Application.Features.Offers.Commands.updateOffer;
 using Plateform_RH_Finlogik.Application.Features.Posts.Commands.updatePost;
-using Plateform_RH_Finlogik.Application.Features.Posts.Queries.GetOffersList;
+using Plateform_RH_Finlogik.Application.Features.Offers.Queries.GetOffersList;
 using Plateform_RH_Finlogik.Application.Features.Posts.Queries.GetPostsList;
 using Plateform_RH_Finlogik.Application.Features.Roles.Commands.CreateRole;
 using Plateform_RH_Finlogik.Application.Features.Roles.Commands.UpdateRole;
@@ -30,6 +30,7 @@ using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.CreateTim
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.UpdateTimeOffBalances;
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Queries.GetTimeOffBalancesList;
 using Plateform_RH_Finlogik.Domain.Entities;
+using Plateform_RH_Finlogik.Application.Features.Offers.Queries.GetOfferById;
 
 namespace Plateform_RH_Finlogik.Application.Application.Profiles
 {
@@ -62,7 +63,9 @@ namespace Plateform_RH_Finlogik.Application.Application.Profiles
             //mapping Offer
             CreateMap<Offer, OffersListVm>().ReverseMap();
             CreateMap<Offer, CreateOfferCommand>().ReverseMap();
+            CreateMap<Offer, OfferVm>().ReverseMap();
             CreateMap<Offer, UpdateOfferCommand>().ReverseMap();
+
             //mapping Departement
             CreateMap<Departement, DepartementsListVm>().ReverseMap();
             CreateMap<Departement, CreateDepartementCommand>().ReverseMap();

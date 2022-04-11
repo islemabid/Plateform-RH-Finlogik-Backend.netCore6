@@ -24,7 +24,6 @@
     <Folder Include="Features\EmployeesPosts\Commands\" />
     <Folder Include="Features\HistoryContrats\Commands\" />
     <Folder Include="Features\Notifications\Commands\" />
-    <Folder Include="Features\Notifications\Queries\" />
   </ItemGroup>
 
 </Project>
