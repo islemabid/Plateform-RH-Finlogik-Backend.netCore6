@@ -18,10 +18,10 @@ namespace Plateform_RH_Finlogik.Persistance.Repositories
             _context = dbContext;
         }
 
-        public    Task<int> GetNotificationCount()
+        public   async  Task<int> GetNotificationCount()
         {
 
-            var count = (from not in _context.Notifications
+            var count =  await (from not in _context.Notifications
                          select not).CountAsync();
            return count;
         }

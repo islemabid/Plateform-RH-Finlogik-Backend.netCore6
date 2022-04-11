@@ -4,6 +4,6 @@ namespace Plateform_RH_Finlogik.Application.Features.Notifications.Queries.GetNo
 {
     public class NotificationCountResult
     {
-        public string Count { get; set; }
+        public int Count { get; set; }
     }
 }

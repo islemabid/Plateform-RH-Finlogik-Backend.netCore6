@@ -20,16 +20,16 @@ namespace Plateform_RH_Finlogik.Application.Features.Notifications.Queries.GetNo
         
             _notificationRepository = notificationRepository;
         }
-        public Task<NotificationCountResult> Handle(GetNotificationCountQuery request, CancellationToken cancellationToken)
+        public async Task<NotificationCountResult> Handle(GetNotificationCountQuery request, CancellationToken cancellationToken)
         {
-            var @Count  =  _notificationRepository.GetNotificationCount();
+            var @Count  = await _notificationRepository.GetNotificationCount();
 
             NotificationCountResult notif = new NotificationCountResult()
             {
-                Count = @Count.ToString()
+                Count = @Count
             };
             
-            return Task.FromResult(notif);
+            return notif;
 
 
         }
