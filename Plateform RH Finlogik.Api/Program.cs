@@ -20,10 +20,11 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("EnableCORS", builder =>
     {
-        builder.AllowAnyOrigin()
+        builder.AllowAnyMethod()
            .AllowAnyHeader()
-           .AllowAnyMethod();
-    });
+           .SetIsOriginAllowed(origin => true)
+           .AllowCredentials();
+});
 });
 
 
@@ -48,27 +49,21 @@ app.UseStaticFiles(new StaticFileOptions()
     FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Ressources")),
     RequestPath = new PathString("/Ressources")
 });
-app.UseCors("EnableCORS");
 
+app.UseCors("EnableCORS");
 app.UseRouting();
 app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseCustomExceptionHandler();
 
-app.UseCors("Open");
 
 app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapHub<BroadcastHub>("/notify");
-});
-
-
-app.UseEndpoints(endpoints =>
-{
     endpoints.MapControllers();
+    endpoints.MapHub<BroadcastHub>("/notify");
 });
 
 
