@@ -31,6 +31,9 @@ using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.UpdateTim
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Queries.GetTimeOffBalancesList;
 using Plateform_RH_Finlogik.Domain.Entities;
 using Plateform_RH_Finlogik.Application.Features.Offers.Queries.GetOfferById;
+using Plateform_RH_Finlogik.Application.Features.Candidats.Queries.GetCandidatsList;
+using Plateform_RH_Finlogik.Application.Features.Candidats.Queries.GetCandidatByID;
+using Plateform_RH_Finlogik.Application.Features.ApplicationOffers.Queries.GetApplicationOffersList;
 
 namespace Plateform_RH_Finlogik.Application.Application.Profiles
 {
@@ -79,9 +82,13 @@ namespace Plateform_RH_Finlogik.Application.Application.Profiles
 
             //mapping Candidat 
             CreateMap<Candidat, CreateCandidatCommand>().ReverseMap();
+            CreateMap<Candidat, CandidatsListVm>().ReverseMap();
+            CreateMap<Candidat, CandidatDetails>().ReverseMap();
 
             //mapping ApplicationOffer
             CreateMap<ApplicationOffer, CreateApplicationOfferCommand>().ReverseMap();
+            CreateMap<ApplicationOffer, ApplicationOffersListVm>().ReverseMap();
+            
 
 
 

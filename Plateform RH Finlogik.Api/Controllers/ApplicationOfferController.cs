@@ -1,6 +1,9 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Plateform_RH_Finlogik.Application.Features.ApplicationOffers.Commands.CreateApplicationOffer;
+using Plateform_RH_Finlogik.Application.Features.ApplicationOffers.Queries.GetApplicationOffersList;
 
 namespace Plateform_RH_Finlogik.Api.Controllers
 {
@@ -15,9 +18,16 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             {
                 _mediator = mediator;
             }
+           [HttpGet("all", Name = "GetAllApplicationOffers"), Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
+           [ProducesResponseType(StatusCodes.Status200OK)]
+           public async Task<ActionResult<List<ApplicationOffersListVm>>> GetApplicationOffersList()
+           {
+                var dtos = await _mediator.Send(new GetApplicationOffersListQuery());
+                return Ok(dtos);
+           }
 
-            [HttpPost(Name = "AddapplicationOffer")]
-            public async Task<ActionResult> Create([FromBody] CreateApplicationOfferCommand createApplicationOfferCommand)
+          [HttpPost(Name = "AddapplicationOffer")]
+          public async Task<ActionResult> Create([FromBody] CreateApplicationOfferCommand createApplicationOfferCommand)
             {
                 var applicationOffer = await _mediator.Send(createApplicationOfferCommand);
                 return Ok(applicationOffer);

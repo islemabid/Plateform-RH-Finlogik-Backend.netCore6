@@ -10,5 +10,6 @@ namespace Plateform_RH_Finlogik.Application.Contracts.Persistance
 {
     public interface IApplicationOfferRepository:IAsyncRepository<ApplicationOffer>
     {
+        public List<ApplicationOffer> GetAllApplicationOffers();
     }
 }
