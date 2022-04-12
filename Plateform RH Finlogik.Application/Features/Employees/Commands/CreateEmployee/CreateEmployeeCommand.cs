@@ -26,6 +26,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEm
         public string Diplome { get; set; }
         public string CNSSNumber { get; set; }
         public float HoursPerWeek { get; set; }
+        public bool isActive { get; set; } = true;
         public string? ImageUrl { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime? EndDate { get; set; }

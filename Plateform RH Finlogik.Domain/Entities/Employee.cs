@@ -32,6 +32,7 @@ namespace Plateform_RH_Finlogik.Domain.Entities
         public string Diplome { get; set; }
         public string CNSSNumber { get; set; }
         public float  HoursPerWeek { get; set; }
+        public bool isActive { get; set; }
 
         [ForeignKey("Departement")]
         public int IdDepartement { get; set; }

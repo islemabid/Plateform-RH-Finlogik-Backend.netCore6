@@ -24,8 +24,6 @@ namespace Plateform_RH_Finlogik.Persistance
 
             services.AddScoped<IEmployeeRepository,EmployeeRepository>();
             services.AddScoped<IEmployeePostRepository, EmployeePostRepository>();
-            services.AddScoped<ITerminatedEmployeeRepository, TerminatedEmployeeRepository>();
-
             services.AddScoped< IRoleRepository, RoleRepository >();
             services.AddScoped<IPostRepository, PostRepository>();
             services.AddScoped<IHistoryContratRepository, HistoryContratRepository>();

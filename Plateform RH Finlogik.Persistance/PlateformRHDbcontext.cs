@@ -15,7 +15,6 @@ namespace Plateform_RH_Finlogik.Persistance
         {
         }
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<TerminatedEmployee> TermiantedEmployees{ get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Departement> Departement { get; set; }
