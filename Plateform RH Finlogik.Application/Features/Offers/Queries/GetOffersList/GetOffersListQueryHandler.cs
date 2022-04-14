@@ -24,7 +24,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Offers.Queries.GetOffersLis
 
         public async Task<List<OffersListVm>> Handle(GetOffersListQuery request, CancellationToken cancellationToken)
         {
-            var allOffers = await _offerRepository.GetAllAsync();
+            var allOffers = (await _offerRepository.GetAllAsync()).Where(x => x.IsDeleted == false);
             return _mapper.Map<List<OffersListVm>>(allOffers);
         }
     }

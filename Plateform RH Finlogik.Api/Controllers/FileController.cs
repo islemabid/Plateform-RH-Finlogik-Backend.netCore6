@@ -93,31 +93,7 @@ namespace Plateform_RH_Finlogik.Api.Controllers
 
             return contentType;
             }
-        /*[HttpGet("getCVFiles"), DisableRequestSizeLimit]
-        public IActionResult getCVFiles()
-        {
-            try
-            {
-                var folderName = Path.Combine("Resources", "CVs");
-                var pathToRead = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-                var cvs = Directory.EnumerateFiles(pathToRead)
-                    .Where(IsCVFile)
-                    .Select(fullPath => Path.Combine(folderName, Path.GetFileName(fullPath)));
-
-                return Ok(new { cvs });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex}");
-            }
-        }
-
-        private bool IsCVFile(string fileName)
-        {
-            return fileName.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase)
-                || fileName.EndsWith(".word", StringComparison.OrdinalIgnoreCase)
-              
-        }*/
+       
 
     }
 

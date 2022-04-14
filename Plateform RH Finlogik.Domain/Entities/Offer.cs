@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+
 
 namespace Plateform_RH_Finlogik.Domain.Entities
 {
@@ -14,12 +11,11 @@ namespace Plateform_RH_Finlogik.Domain.Entities
 
         public int Id { get; set; }
         public string OfferDescription { get; set; }
-
         public string OfferName { get; set; }
-        
         public int OfferMinExperience { get; set; }
-
         public string type { get; set; }
+        public DateTime ExpirationDate { get; set; }
+        public bool IsDeleted { get; set; }
 
         [JsonIgnore]
         public virtual ICollection<ApplicationOffer> ApplicationOffers { get; set; }
