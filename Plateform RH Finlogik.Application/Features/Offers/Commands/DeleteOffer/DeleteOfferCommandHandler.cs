@@ -30,7 +30,8 @@ namespace Plateform_RH_Finlogik.Application.Features.Offers.Commands.DeleteOffer
             {
                 throw new NotFoundException(nameof(Offer), request.Id);
             }
-            await _offerRepository.DeleteAsync(offerToDelete);
+            offerToDelete.IsDeleted = true;
+            await _offerRepository.UpdateAsync(offerToDelete);
 
             return Unit.Value;
         }
