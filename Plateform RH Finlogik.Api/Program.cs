@@ -1,11 +1,15 @@
 
 
 using Microsoft.Extensions.FileProviders;
+using Plateform_Rh_Finlogik.InfrastructureMail;
 using Plateform_RH_Finlogik.Api.Middleware;
 using Plateform_RH_Finlogik.Application;
+using Plateform_RH_Finlogik.Application.Contracts.EmailCandidat;
 using Plateform_RH_Finlogik.Application.Features.HubClient;
+using Plateform_RH_Finlogik.Application.Models.EmailCandidat;
 using Plateform_RH_Finlogik.Persistance;
 using Plateform_RH_Finlogik_._JWT;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +20,9 @@ builder.Services.AddRazorPages();
 builder.Services.AddApplicationServices();
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddJwtServices(builder.Configuration);
+builder.Services.AddInfrastructureServices();
+
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("EnableCORS", builder =>

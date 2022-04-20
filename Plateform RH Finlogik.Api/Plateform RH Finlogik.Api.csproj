@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Plateform RH Finlogik . JWT\Plateform RH Finlogik . JWT.csproj" />
     <ProjectReference Include="..\Plateform RH Finlogik.Application\Plateform RH Finlogik.Application.csproj" />
+    <ProjectReference Include="..\Plateform Rh Finlogik.InfrastructureMail\Plateform Rh Finlogik.InfrastructureMail.csproj" />
     <ProjectReference Include="..\Plateform RH Finlogik.Persistance\Plateform RH Finlogik.Persistance.csproj" />
   </ItemGroup>
 

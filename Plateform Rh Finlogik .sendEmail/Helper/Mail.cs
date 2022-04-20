@@ -16,7 +16,6 @@ namespace Plateform_Rh_Finlogik_.sendEmail.Helper
 
             MailMessage message = new MailMessage();
             SmtpClient smtp = new SmtpClient();
-            string t = ConfigurationManager.AppSettings.Get("From");
             message.From = new MailAddress(ConfigurationManager.AppSettings.Get("From"));
             message.To.Add(new MailAddress(to));
             message.Subject = subject;
