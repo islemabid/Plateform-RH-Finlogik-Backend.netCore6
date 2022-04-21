@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Plateform_RH_Finlogik.Application.Contracts.EmailCandidat;
 using Plateform_RH_Finlogik.Application.Models.EmailCandidat;
@@ -15,8 +17,8 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             _mailService = mailService;
         }
 
-        [HttpPost("Send")]
-        public async Task<IActionResult> Send([FromForm] MailRequest request)
+        [HttpPost("Send"), Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
+        public async Task<IActionResult> Send([FromBody] MailRequest request)
         {
             try
             {

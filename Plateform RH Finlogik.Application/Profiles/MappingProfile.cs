@@ -34,6 +34,7 @@ using Plateform_RH_Finlogik.Application.Features.Offers.Queries.GetOfferById;
 using Plateform_RH_Finlogik.Application.Features.Candidats.Queries.GetCandidatsList;
 using Plateform_RH_Finlogik.Application.Features.Candidats.Queries.GetCandidatByID;
 using Plateform_RH_Finlogik.Application.Features.ApplicationOffers.Queries.GetApplicationOffersList;
+using Plateform_RH_Finlogik.Application.Features.ApplicationOffers.Queries.GetApplicationOfferByID;
 
 namespace Plateform_RH_Finlogik.Application.Application.Profiles
 {
@@ -88,7 +89,9 @@ namespace Plateform_RH_Finlogik.Application.Application.Profiles
             //mapping ApplicationOffer
             CreateMap<ApplicationOffer, CreateApplicationOfferCommand>().ReverseMap();
             CreateMap<ApplicationOffer, ApplicationOffersListVm>().ReverseMap();
+            CreateMap<ApplicationOffer, ApplicationOfferDetails>().ReverseMap();
             
+
 
 
 

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Plateform_RH_Finlogik.Application.Features.ApplicationOffers.Commands.CreateApplicationOffer;
+using Plateform_RH_Finlogik.Application.Features.ApplicationOffers.Queries.GetApplicationOfferByID;
 using Plateform_RH_Finlogik.Application.Features.ApplicationOffers.Queries.GetApplicationOffersList;
 
 namespace Plateform_RH_Finlogik.Api.Controllers
@@ -26,7 +27,14 @@ namespace Plateform_RH_Finlogik.Api.Controllers
                 return Ok(dtos);
            }
 
-          [HttpPost(Name = "AddapplicationOffer")]
+        [HttpGet("{id}", Name = "GetApplicationOfferById"), Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
+        public async Task<ActionResult<ApplicationOfferDetails>> GetApplicationOfferById(int id)
+        {
+            var getApplicationOfferById = new GetApplicationOfferByIdQuery() { Id = id };
+            return Ok(await _mediator.Send(getApplicationOfferById));
+        }
+
+        [HttpPost(Name = "AddapplicationOffer")]
           public async Task<ActionResult> Create([FromBody] CreateApplicationOfferCommand createApplicationOfferCommand)
             {
                 var applicationOffer = await _mediator.Send(createApplicationOfferCommand);

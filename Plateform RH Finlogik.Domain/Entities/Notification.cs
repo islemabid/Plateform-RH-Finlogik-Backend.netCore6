@@ -13,5 +13,7 @@ namespace Plateform_RH_Finlogik.Domain.Entities
         [Key]
         public int Id { get; set; }
         public string NameCandidat { get; set; }
+        public bool Status { get; set; }
+
     }
 }

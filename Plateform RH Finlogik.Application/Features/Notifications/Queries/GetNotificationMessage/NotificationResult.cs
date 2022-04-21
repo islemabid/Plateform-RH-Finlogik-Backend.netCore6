@@ -8,6 +8,8 @@ namespace Plateform_RH_Finlogik.Application.Features.Notifications.Queries.GetNo
 {
     public class NotificationResult
     {
+        public int id { get; set; }
         public string CandidatName { get; set; }
+        public bool Status { get; set; }
     }
 }

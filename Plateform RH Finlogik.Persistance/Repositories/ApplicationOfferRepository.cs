@@ -20,6 +20,11 @@ namespace Plateform_RH_Finlogik.Persistance.Repositories
         {
             return _dbContext.Set<ApplicationOffer>().Include("Candidat").Include("Offer").ToList();
         }
+        public ApplicationOffer GetApplicationOfferByID(int ID)
+        {
+            return (ApplicationOffer)_dbContext.Set<ApplicationOffer>().Include("Candidat").Include("Offer").Where(x=>x.Id==ID);
+        }
+
     }
     
 }

@@ -31,6 +31,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Candidats.Commands.CreateCa
             Notification notification = new Notification()
             {
                 NameCandidat = candidat.FirstName,
+                Status=true
 
             };
             _notificationRepository.AddAsync(notification);

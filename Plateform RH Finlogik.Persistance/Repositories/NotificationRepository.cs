@@ -21,8 +21,8 @@ namespace Plateform_RH_Finlogik.Persistance.Repositories
         public   async  Task<int> GetNotificationCount()
         {
 
-            var count =  await (from not in _context.Notifications
-                         select not).CountAsync();
+            var count =  await (from not in _context.Notifications where not.Status== true
+                         select not  ).CountAsync();
            return count;
         }
 
@@ -30,13 +30,23 @@ namespace Plateform_RH_Finlogik.Persistance.Repositories
 
         {
             var results = from message in _context.Notifications
+                          where message.Status ==true
                           orderby message.Id descending
+                    
                           select new NotificationResult
                           {
                               CandidatName = message.NameCandidat,
                              
                           };
-            return await results.ToListAsync();
+            List<NotificationResult> ListNotifications = await results.ToListAsync();
+            foreach (Notification notification in _context.Notifications.Where(a=>a.Status==true).ToList())
+            {
+                notification.Status = false;
+                _context.Notifications.Update(notification);
+                _context.SaveChanges();
+
+            }
+            return  ListNotifications;
           
         }
     }

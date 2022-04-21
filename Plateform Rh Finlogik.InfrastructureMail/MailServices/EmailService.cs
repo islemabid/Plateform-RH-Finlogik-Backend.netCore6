@@ -31,6 +31,7 @@ namespace Plateform_RH_Finlogik_.InfrastructureMail.MailServices
                  smtp.Credentials = new NetworkCredential("islem.abid@enis.tn", "to07W_53Fu");
                  smtp.EnableSsl = true;
                  smtp.Send(email);
+      
         }
         }
     }
