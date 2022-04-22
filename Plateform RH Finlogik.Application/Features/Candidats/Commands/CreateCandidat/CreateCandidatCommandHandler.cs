@@ -28,15 +28,15 @@ namespace Plateform_RH_Finlogik.Application.Features.Candidats.Commands.CreateCa
         {
             var @candidat = _mapper.Map<Candidat>(request);
             @candidat = await _candidatRepository.AddAsync(candidat);
+
             Notification notification = new Notification()
             {
                 NameCandidat = candidat.FirstName,
-                Status=true
+                Status = true
 
             };
             _notificationRepository.AddAsync(notification);
             await _hubContext.Clients.All.BroadcastMessage();
-        
             return @candidat.Id;
 
         }
