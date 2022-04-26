@@ -12,8 +12,9 @@ namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.Creat
      
         public DateTime StartDate { get; set; }=DateTime.Now;
         public DateTime EndDate { get; set; }
-        public bool IsActive { get; set; } = false;
+        public bool IsActive { get; set; } = true;
         public string Type { get; set; }
+        public string State { get; set; } = "Waiting";
         public int IdEmployee { get; set; }
     }
 }

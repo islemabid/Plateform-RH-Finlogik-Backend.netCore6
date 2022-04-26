@@ -16,14 +16,7 @@ namespace Plateform_RH_Finlogik.Persistance.Repositories
            
         }
 
-        public async  Task<List<Employee>> GetEmployeeWithTimeOffBalances()
-        {
-           
-                var alltimeoffbalances = await _dbContext.Employees.Include(x => x.TimeOffBalances).ToListAsync();
-
-                return alltimeoffbalances;
-         
-        }
+       
        
 
         public async Task<Employee> GetUser(string email, string password)

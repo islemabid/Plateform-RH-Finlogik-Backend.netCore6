@@ -11,7 +11,6 @@ namespace Plateform_RH_Finlogik.Application.Contracts.Persistance
     public interface IEmployeeRepository : IAsyncRepository<Employee>
     {
         Task<Employee> GetUser(string email, string password);
-        Task<List<Employee>> GetEmployeeWithTimeOffBalances();
      
     }
 }

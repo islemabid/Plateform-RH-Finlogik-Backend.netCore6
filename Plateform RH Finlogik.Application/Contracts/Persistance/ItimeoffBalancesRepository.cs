@@ -10,5 +10,6 @@ namespace Plateform_RH_Finlogik.Application.Contracts.Persistance
 {
     public interface ItimeoffBalancesRepository : IAsyncRepository<TimeOffBalances>
     {
+        public Task<List<TimeOffBalances>> GetallTimeOffBalancesOfEmployee(int id);
     }
 }

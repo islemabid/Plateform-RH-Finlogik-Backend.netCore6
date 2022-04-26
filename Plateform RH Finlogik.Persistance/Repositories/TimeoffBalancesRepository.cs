@@ -1,4 +1,5 @@
-﻿using Plateform_RH_Finlogik.Application.Contracts.Persistance;
+﻿using Microsoft.EntityFrameworkCore;
+using Plateform_RH_Finlogik.Application.Contracts.Persistance;
 using Plateform_RH_Finlogik.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,14 @@ namespace Plateform_RH_Finlogik.Persistance.Repositories
     {
         public TimeoffBalancesRepository(PlateformRHDbcontext dbContext) : base(dbContext)
         {
+
+        }
+        public async Task<List<TimeOffBalances>> GetallTimeOffBalancesOfEmployee(int id)
+        {
+
+            var alltimeoffbalances = await _dbContext.TimeOffBalances.Where(x => x.IdEmployee == id).ToListAsync();
+
+            return alltimeoffbalances;
 
         }
 

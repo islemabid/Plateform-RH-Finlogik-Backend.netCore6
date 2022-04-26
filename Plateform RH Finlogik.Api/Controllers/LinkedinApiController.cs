@@ -1,13 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Plateform_RH_Finlogik.Application.Contracts.Persistance;
-using Plateform_RH_Finlogik.Application.Features;
+using Plateform_RH_Finlogik.Application.Models;
 using Plateform_RH_Finlogik.Domain.Entities;
-using RestSharp;
 using System.Net.Http.Headers;
-using System.Text;
+
 
 namespace Plateform_RH_Finlogik.Api.Controllers
 {

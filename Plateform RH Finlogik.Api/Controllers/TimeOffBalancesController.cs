@@ -5,6 +5,7 @@ using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.CreateTim
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.DeleteTimeOffBalances;
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.UpdateTimeOffBalances;
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Queries.GetTimeOffBalancesList;
+using Plateform_RH_Finlogik.Application.Features.TimeBalances.Queries.GetTimeOffByEmployeeID;
 
 namespace Plateform_RH_Finlogik.Api.Controllers
 {
@@ -33,6 +34,12 @@ namespace Plateform_RH_Finlogik.Api.Controllers
         {
             var timeoffbalances = await _mediator.Send(createTimeOffBalancesCommand);
             return Ok(timeoffbalances);
+        }
+        [HttpGet("{id}", Name = "GetTimeOffBalancesListByEmployeeId")]
+        public async Task<ActionResult<ListTimeOffBalancesOfEmployeeVm>> GetTimeOffBalancesListByEmployeeId(int id)
+        {
+            var getTimeOffByEmployeeIDQuery = new GetTimeOffByEmployeeIDQuery() { IdEmployee = id };
+            return Ok(await _mediator.Send(getTimeOffByEmployeeIDQuery));
         }
 
         [HttpPut(Name = "Updatetimeoffbalances")]

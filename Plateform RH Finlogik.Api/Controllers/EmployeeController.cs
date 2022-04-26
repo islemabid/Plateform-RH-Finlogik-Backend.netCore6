@@ -9,7 +9,6 @@ using Plateform_RH_Finlogik.Application.Features.Employees.Commands.DeleteEmploy
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.UpdateEmployee;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.UpdateProfil;
 using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeeDetail;
-using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeeListwithTimeoffbalances;
 using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeesList;
 
 namespace Plateform_RH_Finlogik.Api.Controllers
@@ -71,16 +70,7 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             await _mediator.Send(deleteEmployeeCommand);
             return NoContent();
         }
-        [HttpGet("allwithTimeOffBalances", Name = "GetEmployeesWithTimeOffBalances")]
-        [ProducesDefaultResponseType]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<EmployeeTimeoffbalancesListVm>>> GetEmployeesWithTimeOffBalances()
-        {
-            GetEmployeeListwithTimeoffbalancesQuery getEmployeeListwithTimeoffbalancesQuery = new GetEmployeeListwithTimeoffbalancesQuery();
-
-            var dtos = await _mediator.Send(getEmployeeListwithTimeoffbalancesQuery);
-            return Ok(dtos);
-        }
+       
 
         [HttpPut("profil",Name = "UpdateEmployeeProfil")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Plateform_RH_Finlogik.Application.Features
+namespace Plateform_RH_Finlogik.Application.Models
 {
     public class OfferID
     {
