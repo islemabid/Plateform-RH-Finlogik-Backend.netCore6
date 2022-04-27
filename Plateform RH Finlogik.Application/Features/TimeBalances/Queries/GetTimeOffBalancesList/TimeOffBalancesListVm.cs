@@ -15,5 +15,6 @@ namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Queries.GetTim
         public bool IsActive { get; set; }
         public string Type { get; set; }
         public int IdEmployee { get; set; }
+        public string Comment { get; set; }
     }
 }

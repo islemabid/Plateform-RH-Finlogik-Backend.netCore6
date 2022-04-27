@@ -29,7 +29,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmploy
 
         public async Task<List<EmployeeListVm>> Handle(GetEmployeesListQuery request, CancellationToken cancellationToken)
         {
-            IEnumerable<Employee> allEmployees = (await _employeeRepository.GetAllAsync()).OrderBy(x => x.BirthDate).Where(x=>x.isActive=true);
+            IEnumerable<Employee> allEmployees = (await _employeeRepository.GetAllAsync()).Where(x => x.isActive == true).OrderBy(x => x.BirthDate);
             List <EmployeeListVm> employeeListVm = new List<EmployeeListVm>();
             foreach (Employee employee in allEmployees)
             {
@@ -58,7 +58,8 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmploy
                     IdDepartement = employee.IdDepartement,
                     IdPost = _employeePostRepository.GetCurrentPostByEmployeeID(employee.Id).Id,
                     Id = employee.Id,
-                    IdContrat = _historyContratRepository.GetCurrentContratByEmployeeID(employee.Id).Id
+                    IdContrat = _historyContratRepository.GetCurrentContratByEmployeeID(employee.Id).Id,
+           
                 };
                 employeeListVm.Add(e);
                 }

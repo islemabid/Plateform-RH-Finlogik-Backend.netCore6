@@ -15,7 +15,6 @@ namespace Plateform_RH_Finlogik.Api.Controllers
 {
 
     [Route("api/[controller]")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
     [ApiController]
     public class EmployeeController : ControllerBase
     {
@@ -26,7 +25,7 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("all", Name = "GetAllEmployees")]
+        [HttpGet("all", Name = "GetAllEmployees"), Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<List<EmployeeListVm>>> GetAllEmployees()
         {
@@ -40,14 +39,14 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             return Ok(await _mediator.Send(getEmployeeDetailQuery));
         }
 
-        [HttpPost(Name = "AddEmployee")]
+        [HttpPost(Name = "AddEmployee"), Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
         public async Task<ActionResult<EmployeeDto>> Create([FromBody] CreateEmployeeCommand createEmployeeCommand)
         {
             var employee = await _mediator.Send(createEmployeeCommand);
             return Ok(employee);
         }
 
-        [HttpPut( Name = "UpdateEmployee")]
+        [HttpPut( Name = "UpdateEmployee"), Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
@@ -60,7 +59,7 @@ namespace Plateform_RH_Finlogik.Api.Controllers
       
         
 
-        [HttpDelete("{id}", Name = "DeleteEmployee")]
+        [HttpDelete("{id}", Name = "DeleteEmployee"), Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]

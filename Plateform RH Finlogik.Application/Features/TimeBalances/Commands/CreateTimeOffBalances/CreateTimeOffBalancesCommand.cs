@@ -15,6 +15,7 @@ namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.Creat
         public bool IsActive { get; set; } = true;
         public string Type { get; set; }
         public string State { get; set; } = "Waiting";
+        public string Comment { get; set; }
         public int IdEmployee { get; set; }
     }
 }

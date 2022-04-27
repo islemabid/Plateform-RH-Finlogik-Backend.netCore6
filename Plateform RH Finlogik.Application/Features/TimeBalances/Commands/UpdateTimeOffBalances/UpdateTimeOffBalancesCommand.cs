@@ -16,6 +16,7 @@ namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.Updat
         public string Type { get; set; }
         public int IdEmployee { get; set; }
         public string State { get; set; } = "waiting";
+        public string Comment { get; set; }
     }
 
 }
