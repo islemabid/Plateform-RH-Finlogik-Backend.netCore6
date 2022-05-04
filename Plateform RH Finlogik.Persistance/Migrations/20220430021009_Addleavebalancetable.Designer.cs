@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Plateform_RH_Finlogik.Persistance;
 
@@ -11,9 +12,10 @@ using Plateform_RH_Finlogik.Persistance;
 namespace Plateform_RH_Finlogik.Persistance.Migrations
 {
     [DbContext(typeof(PlateformRHDbcontext))]
-    partial class PlateformRHDbcontextModelSnapshot : ModelSnapshot
+    [Migration("20220430021009_Addleavebalancetable")]
+    partial class Addleavebalancetable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -283,32 +285,6 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
                     b.ToTable("HistoryContrat");
                 });
 
-            modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.LeaveBalance", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("IdEmployee")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdLeaveType")
-                        .HasColumnType("int");
-
-                    b.Property<float>("numberDays")
-                        .HasColumnType("real");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdEmployee");
-
-                    b.HasIndex("IdLeaveType");
-
-                    b.ToTable("LeaveBalance");
-                });
-
             modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.LeaveType", b =>
                 {
                     b.Property<int>("Id")
@@ -435,9 +411,11 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("EndDateQuantity")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("EndDatePart")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EndDateQuantity")
+                        .HasColumnType("int");
 
                     b.Property<int>("IdEmployee")
                         .HasColumnType("int");
@@ -451,9 +429,11 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("StartDateQuantity")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("StartDatePart")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StartDateQuantity")
+                        .HasColumnType("int");
 
                     b.Property<string>("State")
                         .IsRequired()
@@ -544,25 +524,6 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.LeaveBalance", b =>
-                {
-                    b.HasOne("Plateform_RH_Finlogik.Domain.Entities.Employee", "Employee")
-                        .WithMany("LeaveBalance")
-                        .HasForeignKey("IdEmployee")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Plateform_RH_Finlogik.Domain.Entities.LeaveType", "LeaveType")
-                        .WithMany("LeaveBalance")
-                        .HasForeignKey("IdLeaveType")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Employee");
-
-                    b.Navigation("LeaveType");
-                });
-
             modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.TimeOffBalances", b =>
                 {
                     b.HasOne("Plateform_RH_Finlogik.Domain.Entities.Employee", "Employee")
@@ -603,14 +564,7 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
 
                     b.Navigation("HistoryContrats");
 
-                    b.Navigation("LeaveBalance");
-
                     b.Navigation("TimeOffBalances");
-                });
-
-            modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.LeaveType", b =>
-                {
-                    b.Navigation("LeaveBalance");
                 });
 
             modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.Offer", b =>

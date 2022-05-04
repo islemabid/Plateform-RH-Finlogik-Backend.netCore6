@@ -10,12 +10,14 @@ namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.Creat
     public class CreateTimeOffBalancesCommand : IRequest<int>
     {
      
-        public DateTime StartDate { get; set; }=DateTime.Now;
+        public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public bool IsActive { get; set; } = true;
-        public string Type { get; set; }
         public string State { get; set; } = "Waiting";
-        public string Comment { get; set; }
+        public string? Comment { get; set; }
+        public int IdLeaveType { get; set; }
         public int IdEmployee { get; set; }
+        public string StartDateQuantity { get; set; }
+        public string EndDateQuantity { get; set; }
     }
 }

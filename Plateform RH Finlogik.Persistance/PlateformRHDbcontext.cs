@@ -26,6 +26,9 @@ namespace Plateform_RH_Finlogik.Persistance
         public DbSet<Candidat> Candidats { get; set; }
         public DbSet<ApplicationOffer> ApplicationOffer { get; set; }
         public DbSet<Notification> Notifications { get; set; }
+        public DbSet<LeaveType> LeaveType { get; set; }
+        public DbSet<LeaveBalance> LeaveBalance { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder model)
@@ -56,6 +59,15 @@ namespace Plateform_RH_Finlogik.Persistance
                 .HasOne(x => x.Offer)
                 .WithMany(x => x.ApplicationOffers)
                 .HasForeignKey(x => x.IdOffer);
+            model.Entity<LeaveBalance>()
+                .HasOne(x => x.LeaveType)
+                .WithMany(x => x.LeaveBalance)
+                .HasForeignKey(x => x.IdLeaveType);
+            model.Entity<LeaveBalance>()
+                .HasOne(x => x.Employee)
+                .WithMany(x => x.LeaveBalance)
+                .HasForeignKey(x => x.IdEmployee);
+
         }
 
 

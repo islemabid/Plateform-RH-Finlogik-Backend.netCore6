@@ -1,6 +1,8 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Plateform_RH_Finlogik.Application.Features.LeaveBalances.Queries.GetLeaveBalncesByIDEmpoyee_IDLeaveType;
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.CreateTimeOffBalances;
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.DeleteTimeOffBalances;
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.UpdateTimeOffBalances;
@@ -29,7 +31,7 @@ namespace Plateform_RH_Finlogik.Api.Controllers
         }
 
 
-        [HttpPost(Name = "AddTimeoffBalances")]
+        [HttpPost(Name = "AddTimeoffBalances"), Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "employee")]
         public async Task<ActionResult> Create([FromBody] CreateTimeOffBalancesCommand createTimeOffBalancesCommand)
         {
             var timeoffbalances = await _mediator.Send(createTimeOffBalancesCommand);
@@ -61,6 +63,13 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             var deleteTimeOffBalances = new DeleteTimeOffBalancesCommand() { Id = id };
             await _mediator.Send(deleteTimeOffBalances);
             return NoContent();
+        }
+      
+        [HttpGet("{idEmployee,idleavetype}", Name = "GetLeaveBalanceByIDEmployee_IDLeaveType")]
+        public async Task<ActionResult<LeaveBalancesVm>> GetLeaveBalanceByIDEmployee_IDLeaveType(int idEmployee,int idleavetype)
+        {
+            var getLeaveBalncesByIDEmpoyee_IDLeaveTypeQuery = new GetLeaveBalncesByIDEmpoyee_IDLeaveTypeQuery() { IdEmployee = idEmployee, IdLeaveType=idleavetype };
+            return Ok(await _mediator.Send(getLeaveBalncesByIDEmpoyee_IDLeaveTypeQuery));
         }
     }
 }

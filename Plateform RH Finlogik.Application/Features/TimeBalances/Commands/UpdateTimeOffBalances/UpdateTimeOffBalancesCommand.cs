@@ -10,13 +10,16 @@ namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.Updat
     public class UpdateTimeOffBalancesCommand : IRequest
     {
         public int Id { get; set; }
-        public DateTime StartDate { get; set; } = DateTime.Now;
+        public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public bool IsActive { get; set; } = false;
-        public string Type { get; set; }
+        public string? Comment { get; set; }
+        public int IdLeaveType { get; set; }
         public int IdEmployee { get; set; }
         public string State { get; set; } = "waiting";
-        public string Comment { get; set; }
+        public string StartDateQuantity { get; set; }
+        public string EndDateQuantity { get; set; }
+
     }
 
 }

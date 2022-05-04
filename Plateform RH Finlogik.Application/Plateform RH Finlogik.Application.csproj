@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\TimeBalances\Queries\GetTimeOffBalancesList\GetTimeOffBalancesListQueryHnadler.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
@@ -23,6 +27,7 @@
   <ItemGroup>
     <Folder Include="Features\EmployeesPosts\Commands\" />
     <Folder Include="Features\HistoryContrats\Commands\" />
+    <Folder Include="Features\LeaveTypes\Commands\CreateLeaveType\" />
     <Folder Include="Features\Notifications\Commands\" />
   </ItemGroup>
 

@@ -35,6 +35,8 @@ using Plateform_RH_Finlogik.Application.Features.Candidats.Queries.GetCandidatBy
 using Plateform_RH_Finlogik.Application.Features.ApplicationOffers.Queries.GetApplicationOffersList;
 using Plateform_RH_Finlogik.Application.Features.ApplicationOffers.Queries.GetApplicationOfferByID;
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Queries.GetTimeOffByEmployeeID;
+using Plateform_RH_Finlogik.Application.Features.LeaveTypes.Queries.GetListLeaveType;
+using Plateform_RH_Finlogik.Application.Features.LeaveBalances.Queries.GetLeaveBalncesByIDEmpoyee_IDLeaveType;
 
 namespace Plateform_RH_Finlogik.Application.Application.Profiles
 {
@@ -89,8 +91,12 @@ namespace Plateform_RH_Finlogik.Application.Application.Profiles
             CreateMap<ApplicationOffer, CreateApplicationOfferCommand>().ReverseMap();
             CreateMap<ApplicationOffer, ApplicationOffersListVm>().ReverseMap();
             CreateMap<ApplicationOffer, ApplicationOfferDetails>().ReverseMap();
-            
 
+            //mapping LeaveType 
+            CreateMap<LeaveType, LeaveTypeListVm>().ReverseMap();
+
+            //mapping LeaveBalances 
+            CreateMap<LeaveBalance, LeaveBalancesVm>().ReverseMap();
 
 
 
