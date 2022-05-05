@@ -12,8 +12,8 @@ using Plateform_RH_Finlogik.Persistance;
 namespace Plateform_RH_Finlogik.Persistance.Migrations
 {
     [DbContext(typeof(PlateformRHDbcontext))]
-    [Migration("20220504203617_updateLeaveBalance")]
-    partial class updateLeaveBalance
+    [Migration("20220505100748_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

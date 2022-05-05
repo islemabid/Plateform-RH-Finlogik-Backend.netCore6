@@ -18,7 +18,7 @@ namespace Plateform_RH_Finlogik.Persistance.Repositories
         public async Task<List<TimeOffBalances>> GetallTimeOffBalancesOfEmployee(int id)
         {
 
-            var alltimeoffbalances = await _dbContext.TimeOffBalances.Where(x => x.IdEmployee == id).ToListAsync();
+            var alltimeoffbalances = await _dbContext.TimeOffBalances.Include("LeaveType").Where(x => x.IdEmployee == id).ToListAsync();
 
             return alltimeoffbalances;
 

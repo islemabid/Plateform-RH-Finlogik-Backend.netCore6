@@ -11,13 +11,15 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEm
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IEmployeePostRepository _employeePostRepository;
         private readonly IHistoryContratRepository _historyContratRepository;
+        private readonly ILeaveBalancesRepository _leaveBalancesRepository;
         private readonly IMapper _mapper;
-        public CreateEmployeeCommandHandler(IMapper mapper, IEmployeeRepository employeeRepository , IEmployeePostRepository employeePostRepository, IHistoryContratRepository historyContratRepository)
+        public CreateEmployeeCommandHandler(IMapper mapper, IEmployeeRepository employeeRepository , IEmployeePostRepository employeePostRepository, IHistoryContratRepository historyContratRepository, ILeaveBalancesRepository leaveBalancesRepository)
         {
             _mapper = mapper;
             _employeeRepository = employeeRepository;
             _employeePostRepository = employeePostRepository;
             _historyContratRepository = historyContratRepository;
+            _leaveBalancesRepository = leaveBalancesRepository;
 
 
 
@@ -50,8 +52,8 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEm
                 PersonnelPhone = request.PersonnelPhone,
                 HoursPerWeek = request.HoursPerWeek,
                 Gender = request.Gender,
-                IdDepartement=request.IdDepartement,
-               
+                IdDepartement = request.IdDepartement,
+                isActive = true
             };
 
              await _employeeRepository.AddAsync(employee);
@@ -80,7 +82,20 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEm
 
              await _historyContratRepository.AddAsync(employeeContrat);
 
-
+            var leaveBalance = new LeaveBalance
+            {
+                IdEmployee = employee.Id,
+                IdLeaveType = 1,
+                numberDays = 5
+            };
+            var leaveBalance1 = new LeaveBalance
+            {
+                IdEmployee = employee.Id,
+                IdLeaveType =2,
+                numberDays = 0
+            };
+            await _leaveBalancesRepository.AddAsync(leaveBalance);
+            await _leaveBalancesRepository.AddAsync(leaveBalance1);
 
             EmployeeDto @employeeDTo = _mapper.Map<EmployeeDto>(employee);
             return @employeeDTo;

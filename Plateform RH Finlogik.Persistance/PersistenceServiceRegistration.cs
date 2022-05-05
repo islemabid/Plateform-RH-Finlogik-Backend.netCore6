@@ -18,7 +18,7 @@ namespace Plateform_RH_Finlogik.Persistance
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<PlateformRHDbcontext >(options =>
-             options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=PlateFormRHFinlogik;Trusted_Connection=True;"));
+             options.UseSqlServer("Server=localhost;Database=PlateFormRHFinlogik;Trusted_Connection=True;"));
 
             services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
 

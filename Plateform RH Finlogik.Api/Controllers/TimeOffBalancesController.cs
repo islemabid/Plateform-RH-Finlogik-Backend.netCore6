@@ -37,7 +37,7 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             var timeoffbalances = await _mediator.Send(createTimeOffBalancesCommand);
             return Ok(timeoffbalances);
         }
-        [HttpGet("{id}", Name = "GetTimeOffBalancesListByEmployeeId")]
+        [HttpGet("ListByEmployeeId/{id}", Name = "GetTimeOffBalancesListByEmployeeId"), Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "employee")]
         public async Task<ActionResult<ListTimeOffBalancesOfEmployeeVm>> GetTimeOffBalancesListByEmployeeId(int id)
         {
             var getTimeOffByEmployeeIDQuery = new GetTimeOffByEmployeeIDQuery() { IdEmployee = id };
