@@ -15,12 +15,16 @@ namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.Updat
     public class UpdateTimeOffBalancesCommandHandler : IRequestHandler<UpdateTimeOffBalancesCommand>
     {
         private readonly ItimeoffBalancesRepository _timeoffbalanceRepository;
+        private readonly ILeaveBalancesRepository _leaveBalancesRepository;
+
         private readonly IMapper _mapper;
 
-        public UpdateTimeOffBalancesCommandHandler(IMapper mapper, ItimeoffBalancesRepository timeoffbalanceRepository)
+        public UpdateTimeOffBalancesCommandHandler(IMapper mapper, ILeaveBalancesRepository leaveBalancesRepository, ItimeoffBalancesRepository timeoffbalanceRepository)
         {
             _mapper = mapper;
             _timeoffbalanceRepository = timeoffbalanceRepository;
+            _leaveBalancesRepository = leaveBalancesRepository;
+
         }
 
         public async Task<Unit> Handle(UpdateTimeOffBalancesCommand request, CancellationToken cancellationToken)
@@ -33,7 +37,7 @@ namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.Updat
                 throw new NotFoundException(nameof(TimeOffBalances), request.Id);
             }
 
-            timeoffbalnceToUpdate.State = "validated";
+            request.State = "validated";
             float NbDays = 0;
             if (timeoffbalnceToUpdate.StartDate == timeoffbalnceToUpdate.EndDate)
             {
@@ -76,8 +80,11 @@ namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.Updat
                     NbDays +=1;
                 }
 
-
             }
+            LeaveBalance leaveBalance = await _leaveBalancesRepository.GetLeaveBalanceByIDEmployee_IDLeaveType(request.IdEmployee, request.IdLeaveType);
+            leaveBalance.numberDays -= NbDays;
+            await _leaveBalancesRepository.UpdateAsync(leaveBalance);
+
             _mapper.Map(request, timeoffbalnceToUpdate, typeof(UpdateTimeOffBalancesCommand), typeof(TimeOffBalances));
 
                 await _timeoffbalanceRepository.UpdateAsync(timeoffbalnceToUpdate);

@@ -67,6 +67,9 @@ namespace Plateform_RH_Finlogik.Persistance
                 .HasOne(x => x.Employee)
                 .WithMany(x => x.LeaveBalance)
                 .HasForeignKey(x => x.IdEmployee);
+            model.Entity<LeaveType>().HasData(new LeaveType {Id=1, Description = "Sick leave" });
+            model.Entity<LeaveType>().HasData(new LeaveType {Id=2, Description = "Paid leave" });
+
 
         }
 

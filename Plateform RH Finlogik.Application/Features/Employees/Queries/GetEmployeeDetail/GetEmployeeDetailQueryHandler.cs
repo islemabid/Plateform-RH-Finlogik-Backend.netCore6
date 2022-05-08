@@ -3,11 +3,11 @@ using MediatR;
 using Plateform_RH_Finlogik.Application.Contracts.Persistance;
 using Plateform_RH_Finlogik.Application.Persistance;
 using Plateform_RH_Finlogik.Domain.Entities;
-using System;
-using System.Collections.Generic;
+using BC = BCrypt.Net.BCrypt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Plateform_RH_Finlogik.Application.Helpers;
 
 namespace Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeeDetail
 {
@@ -31,7 +31,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmploy
         {
 
             var @employee = await _employeeRepository.GetByIDAsync(request.Id);
-
+            string t = Helper.Decrypt(employee.Password);
             return new EmployeeDetailVm()
             {
                 FirstName = employee.FirstName,
@@ -50,7 +50,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmploy
                 postalCode = employee.postalCode,
                 Region = employee.Region,
                 Diplome = employee.Diplome,
-                Password = employee.Password,
+                Password = Helper.Decrypt( employee.Password),
                 PersonnelPhone = employee.PersonnelPhone,
                 HoursPerWeek = employee.HoursPerWeek,
                 Gender = employee.Gender,

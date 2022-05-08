@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Plateform_RH_Finlogik.Application.Features.LeaveBalances.Queries.GetLeaveBalncesByIDEmpoyee_IDLeaveType;
+using Plateform_RH_Finlogik.Application.Features.LeaveTypes.Queries.GetListLeaveType;
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.CreateTimeOffBalances;
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.DeleteTimeOffBalances;
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.UpdateTimeOffBalances;
+using Plateform_RH_Finlogik.Application.Features.TimeBalances.Queries.GetLeaveTotalByIdEmployee;
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Queries.GetTimeOffBalancesList;
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Queries.GetTimeOffByEmployeeID;
 
@@ -70,6 +72,15 @@ namespace Plateform_RH_Finlogik.Api.Controllers
         {
             var getLeaveBalncesByIDEmpoyee_IDLeaveTypeQuery = new GetLeaveBalncesByIDEmpoyee_IDLeaveTypeQuery() { IdEmployee = idEmployee, IdLeaveType=idleavetype };
             return Ok(await _mediator.Send(getLeaveBalncesByIDEmpoyee_IDLeaveTypeQuery));
+        }
+
+
+        [HttpGet("LeaveTotalByIdEmployee/{idEmployee}", Name = "GetLeaveTotalByIdEmployee")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<LeaveTotalByIdEmployeeVm>> GetLeaveTotalByIdEmployee( int idEmployee)
+        {
+            var dtos = await _mediator.Send(new GetLeaveTotalByIdEmployeeQuery() { IdEmployee = idEmployee });
+            return Ok(dtos);
         }
     }
 }

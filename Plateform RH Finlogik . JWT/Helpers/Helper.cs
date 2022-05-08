@@ -1,16 +1,10 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace Plateform_RH_Finlogik.Application.Helpers
+namespace Plateform_RH_Finlogik_._JWT.Helpers
 {
     public static class Helper
     {
-        public static IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
-        {
-            for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
-                yield return day;
-        }
-
         public static string Encrypt(string clearText)
         {
             string EncryptionKey = "abc123";
@@ -54,7 +48,5 @@ namespace Plateform_RH_Finlogik.Application.Helpers
             }
             return cipherText;
         }
-
-
     }
 }

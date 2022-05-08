@@ -5,13 +5,14 @@ using Plateform_RH_Finlogik.Application.Contracts.Persistance;
 using Plateform_RH_Finlogik.Application.Models.Authentification;
 using Plateform_RH_Finlogik.Application.Persistance;
 using Plateform_RH_Finlogik.Domain.Entities;
+using Plateform_RH_Finlogik_._JWT.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
+using BC = BCrypt.Net.BCrypt;
 
 namespace Plateform_RH_Finlogik_._JWT.Services
 {
@@ -29,7 +30,7 @@ namespace Plateform_RH_Finlogik_._JWT.Services
         {
             if (request != null && request.Email != null && request.Password != null)
             {
-                var user = await _employeeRepository.GetUser(request.Email, request.Password);
+                var user = await _employeeRepository.GetUser(request.Email, Helper.Encrypt(request.Password));
                 if (user != null)
                 {
                     //create claims details based on the user information

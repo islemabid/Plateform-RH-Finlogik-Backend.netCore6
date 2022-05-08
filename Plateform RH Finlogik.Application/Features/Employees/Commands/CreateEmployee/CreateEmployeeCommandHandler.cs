@@ -3,6 +3,7 @@ using MediatR;
 using Plateform_RH_Finlogik.Application.Contracts.Persistance;
 using BC = BCrypt.Net.BCrypt;
 using Plateform_RH_Finlogik.Domain.Entities;
+using Plateform_RH_Finlogik.Application.Helpers;
 
 namespace Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEmployee
 {
@@ -48,7 +49,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEm
                 postalCode = request.postalCode,
                 Region = request.Region,
                 Diplome = request.Diplome,
-                Password = BC.HashPassword(request.Password),
+                Password = Helper.Encrypt(request.Password),
                 PersonnelPhone = request.PersonnelPhone,
                 HoursPerWeek = request.HoursPerWeek,
                 Gender = request.Gender,
