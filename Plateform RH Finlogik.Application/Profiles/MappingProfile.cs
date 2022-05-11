@@ -26,7 +26,7 @@ using Plateform_RH_Finlogik.Application.Features.Roles.Commands.CreateRole;
 using Plateform_RH_Finlogik.Application.Features.Roles.Commands.UpdateRole;
 using Plateform_RH_Finlogik.Application.Features.Roles.Queries.GetRolesList;
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.CreateTimeOffBalances;
-using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.UpdateTimeOffBalances;
+using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.ValidateTimeOffBalances;
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Queries.GetTimeOffBalancesList;
 using Plateform_RH_Finlogik.Domain.Entities;
 using Plateform_RH_Finlogik.Application.Features.Offers.Queries.GetOfferById;
@@ -37,6 +37,7 @@ using Plateform_RH_Finlogik.Application.Features.ApplicationOffers.Queries.GetAp
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Queries.GetTimeOffByEmployeeID;
 using Plateform_RH_Finlogik.Application.Features.LeaveTypes.Queries.GetListLeaveType;
 using Plateform_RH_Finlogik.Application.Features.LeaveBalances.Queries.GetLeaveBalncesByIDEmpoyee_IDLeaveType;
+using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.RefuseTimeOffBalances;
 
 namespace Plateform_RH_Finlogik.Application.Application.Profiles
 {
@@ -104,10 +105,11 @@ namespace Plateform_RH_Finlogik.Application.Application.Profiles
             CreateMap<HistoryContrat, HistoryContratsListByEmployeeIDVm>().ReverseMap();
 
             //mapping Timeoffbalances
-            CreateMap<TimeOffBalances, TimeoffBalancesListVm>().ReverseMap();
+          
             CreateMap<TimeOffBalances, CreateTimeOffBalancesCommand>().ReverseMap();
             CreateMap<TimeOffBalances, ListTimeOffBalancesOfEmployeeVm>().ReverseMap();
-            CreateMap<TimeOffBalances,UpdateTimeOffBalancesCommand>().ReverseMap();
+            CreateMap<TimeOffBalances,ValidateTimeOffBalancesCommand>().ReverseMap();
+            CreateMap<TimeOffBalances, RefuseTimeOffBalancesCommand>().ReverseMap();
 
 
         }

@@ -16,8 +16,10 @@ namespace Plateform_RH_Finlogik.Persistance.Repositories
            
         }
 
-       
-       
+        public Employee GetByID(int id)
+        {
+            return  _dbContext.Set<Employee>().SingleOrDefault(u => u.Id== id);   
+        }
 
         public async Task<Employee> GetUser(string email, string password)
         {

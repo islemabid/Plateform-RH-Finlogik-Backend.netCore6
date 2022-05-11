@@ -23,6 +23,14 @@ namespace Plateform_RH_Finlogik.Persistance.Repositories
             return alltimeoffbalances;
 
         }
+        public async Task<List<TimeOffBalances>> Getall()
+        {
+
+            var alltimeoffbalances = await _dbContext.TimeOffBalances.Include("LeaveType").ToListAsync();
+
+            return alltimeoffbalances;
+
+        }
 
 
     }

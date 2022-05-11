@@ -2,24 +2,21 @@
 using MediatR;
 using Plateform_RH_Finlogik.Application.Contracts.Persistance;
 using Plateform_RH_Finlogik.Application.Exceptions;
+using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.ValidateTimeOffBalances;
 using Plateform_RH_Finlogik.Application.Helpers;
 using Plateform_RH_Finlogik.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.UpdateTimeOffBalances
+
+namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.VaidateTimeOffBalances
 {
-    public class UpdateTimeOffBalancesCommandHandler : IRequestHandler<UpdateTimeOffBalancesCommand>
+    public class ValidateTimeOffBalancesCommandHandler : IRequestHandler<ValidateTimeOffBalancesCommand>
     {
         private readonly ItimeoffBalancesRepository _timeoffbalanceRepository;
         private readonly ILeaveBalancesRepository _leaveBalancesRepository;
 
         private readonly IMapper _mapper;
 
-        public UpdateTimeOffBalancesCommandHandler(IMapper mapper, ILeaveBalancesRepository leaveBalancesRepository, ItimeoffBalancesRepository timeoffbalanceRepository)
+        public ValidateTimeOffBalancesCommandHandler(IMapper mapper, ILeaveBalancesRepository leaveBalancesRepository, ItimeoffBalancesRepository timeoffbalanceRepository)
         {
             _mapper = mapper;
             _timeoffbalanceRepository = timeoffbalanceRepository;
@@ -27,7 +24,7 @@ namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.Updat
 
         }
 
-        public async Task<Unit> Handle(UpdateTimeOffBalancesCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(ValidateTimeOffBalancesCommand request, CancellationToken cancellationToken)
         {
 
             var timeoffbalnceToUpdate = await _timeoffbalanceRepository.GetByIDAsync(request.Id);
@@ -85,7 +82,7 @@ namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.Updat
             leaveBalance.numberDays -= NbDays;
             await _leaveBalancesRepository.UpdateAsync(leaveBalance);
 
-            _mapper.Map(request, timeoffbalnceToUpdate, typeof(UpdateTimeOffBalancesCommand), typeof(TimeOffBalances));
+            _mapper.Map(request, timeoffbalnceToUpdate, typeof(ValidateTimeOffBalancesCommand), typeof(TimeOffBalances));
 
                 await _timeoffbalanceRepository.UpdateAsync(timeoffbalnceToUpdate);
 
