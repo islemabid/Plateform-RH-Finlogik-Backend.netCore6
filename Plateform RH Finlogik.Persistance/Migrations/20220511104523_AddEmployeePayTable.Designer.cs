@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Plateform_RH_Finlogik.Persistance;
 
@@ -11,9 +12,10 @@ using Plateform_RH_Finlogik.Persistance;
 namespace Plateform_RH_Finlogik.Persistance.Migrations
 {
     [DbContext(typeof(PlateformRHDbcontext))]
-    partial class PlateformRHDbcontextModelSnapshot : ModelSnapshot
+    [Migration("20220511104523_AddEmployeePayTable")]
+    partial class AddEmployeePayTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -230,32 +232,30 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
                     b.Property<long>("FixedSalary")
                         .HasColumnType("bigint");
 
                     b.Property<int>("IdEmployee")
                         .HasColumnType("int");
 
-                    b.Property<int?>("MealTicket")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Mounth")
+                    b.Property<string>("MealTicket")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Prime")
-                        .HasColumnType("int");
+                    b.Property<string>("Prime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TicketPassGift")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Year")
+                    b.Property<string>("TciketPassGift")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdEmployee");
+                    b.HasIndex("EmployeeId");
 
                     b.ToTable("EmployeePay");
                 });
@@ -560,7 +560,7 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
                 {
                     b.HasOne("Plateform_RH_Finlogik.Domain.Entities.Employee", "Employee")
                         .WithMany("EmployeePay")
-                        .HasForeignKey("IdEmployee")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

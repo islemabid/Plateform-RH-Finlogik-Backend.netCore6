@@ -28,6 +28,8 @@ namespace Plateform_RH_Finlogik.Persistance
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<LeaveType> LeaveType { get; set; }
         public DbSet<LeaveBalance> LeaveBalance { get; set; }
+        public DbSet<EmployeePay> EmployeePay { get; set; }
+        
 
 
 

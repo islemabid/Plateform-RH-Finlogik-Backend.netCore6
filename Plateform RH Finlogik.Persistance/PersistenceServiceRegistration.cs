@@ -36,7 +36,7 @@ namespace Plateform_RH_Finlogik.Persistance
             services.AddScoped<INotificationRepository, NotificationRepository>();
             services.AddScoped<ILeaveTypeRepository, LeaveTypeRepository>();
             services.AddScoped<ILeaveBalancesRepository, LeaveBalancesRepository>();
-            
+            services.AddScoped<IEmployeePayRepository, EmployeePayRepository>();
 
 
 

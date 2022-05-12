@@ -51,6 +51,7 @@ namespace Plateform_RH_Finlogik.Domain.Entities
         public virtual ICollection<HistoryContrat> HistoryContrats { get; set; }
         public virtual ICollection<TimeOffBalances> TimeOffBalances { get; set; }
         public virtual ICollection<LeaveBalance> LeaveBalance { get; set; }
+        public virtual ICollection<EmployeePay> EmployeePay { get; set; }
 
 
 

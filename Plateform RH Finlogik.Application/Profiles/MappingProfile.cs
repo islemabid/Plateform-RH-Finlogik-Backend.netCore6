@@ -27,7 +27,6 @@ using Plateform_RH_Finlogik.Application.Features.Roles.Commands.UpdateRole;
 using Plateform_RH_Finlogik.Application.Features.Roles.Queries.GetRolesList;
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.CreateTimeOffBalances;
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.ValidateTimeOffBalances;
-using Plateform_RH_Finlogik.Application.Features.TimeBalances.Queries.GetTimeOffBalancesList;
 using Plateform_RH_Finlogik.Domain.Entities;
 using Plateform_RH_Finlogik.Application.Features.Offers.Queries.GetOfferById;
 using Plateform_RH_Finlogik.Application.Features.Candidats.Queries.GetCandidatsList;
@@ -38,6 +37,9 @@ using Plateform_RH_Finlogik.Application.Features.TimeBalances.Queries.GetTimeOff
 using Plateform_RH_Finlogik.Application.Features.LeaveTypes.Queries.GetListLeaveType;
 using Plateform_RH_Finlogik.Application.Features.LeaveBalances.Queries.GetLeaveBalncesByIDEmpoyee_IDLeaveType;
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.RefuseTimeOffBalances;
+using Plateform_RH_Finlogik.Application.Features.EmployeesPay.Queries.GetEmployeePayList;
+using Plateform_RH_Finlogik.Application.Features.EmployeesPay.Commands.CreateEmployeePay;
+using Plateform_RH_Finlogik.Application.Features.EmployeesPay.Queries.GetHistoryPayOfEmployee;
 
 namespace Plateform_RH_Finlogik.Application.Application.Profiles
 {
@@ -110,6 +112,11 @@ namespace Plateform_RH_Finlogik.Application.Application.Profiles
             CreateMap<TimeOffBalances, ListTimeOffBalancesOfEmployeeVm>().ReverseMap();
             CreateMap<TimeOffBalances,ValidateTimeOffBalancesCommand>().ReverseMap();
             CreateMap<TimeOffBalances, RefuseTimeOffBalancesCommand>().ReverseMap();
+
+            //mapping PayRoll 
+            CreateMap<EmployeePay, EmployeePayListVm>().ReverseMap();
+            CreateMap<EmployeePay, CreateEmployeePayCommand>().ReverseMap(); 
+            CreateMap<EmployeePay, HistoryPayVm>().ReverseMap();
 
 
         }
