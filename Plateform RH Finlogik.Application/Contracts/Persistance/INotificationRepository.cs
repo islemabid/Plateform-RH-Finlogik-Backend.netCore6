@@ -13,5 +13,6 @@ namespace Plateform_RH_Finlogik.Application.Contracts.Persistance
     {
        Task< int> GetNotificationCount();
         Task<List<NotificationResult>> GetNotificationMessage();
+         
     }
 }

@@ -2,6 +2,7 @@
 using MediatR;
 using Plateform_RH_Finlogik.Application.Contracts.Persistance;
 using Plateform_RH_Finlogik.Application.Exceptions;
+using Plateform_RH_Finlogik.Application.Helpers;
 using Plateform_RH_Finlogik.Application.Persistance;
 using Plateform_RH_Finlogik.Domain.Entities;
 
@@ -41,7 +42,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Commands.UpdateEm
            
 
             _mapper.Map(request, employeeToUpdate, typeof(UpdateEmployeeCommand), typeof(Employee));
-
+            employeeToUpdate.Password = Helper.Encrypt(request.Password);
             await _employeeRepository.UpdateAsync(employeeToUpdate);
 
             List<EmployeePost> allPostsByEmployeeID = _employeePostRepository.GetAllEmployeesPostsByEmployeeID(request.Id).Where(a => a.isActive == true).ToList();

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Plateform_RH_Finlogik.Application.Features.Notifications.Commands.UpdateNotificationsStatus;
 using Plateform_RH_Finlogik.Application.Features.Notifications.Queries.GetNotificationCount;
 using Plateform_RH_Finlogik.Application.Features.Notifications.Queries.GetNotificationMessage;
 using System.Net;
@@ -39,6 +40,16 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             var count = await _mediator.Send(new GetNotificationCountQuery());
             return Ok(count);
      }
+     [HttpPut(Name = "UpdateNotificationStatus")]
+     [ProducesResponseType(StatusCodes.Status204NoContent)]
+     [ProducesResponseType(StatusCodes.Status404NotFound)]
+     [ProducesDefaultResponseType]
+      public async Task<ActionResult> Update([FromBody] UpdateNotificationsStatusCommand updateNotificationsStatusCommand)
+      {
+
+            await _mediator.Send(updateNotificationsStatusCommand);
+            return NoContent();
+       }
 
     }
 }

@@ -14,7 +14,11 @@ namespace Plateform_RH_Finlogik.Persistance
            : base(options)
         {
         }
+
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<WorkingHoursSummary> WorkingHoursSummarys { get; set; }
+        public DbSet<Pointage> Pointages { get; set; }
+        public DbSet<Holidays> Holidays { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Departement> Departement { get; set; }

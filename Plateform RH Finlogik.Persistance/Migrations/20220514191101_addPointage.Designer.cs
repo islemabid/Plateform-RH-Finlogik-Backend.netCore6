@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Plateform_RH_Finlogik.Persistance;
 
@@ -11,9 +12,10 @@ using Plateform_RH_Finlogik.Persistance;
 namespace Plateform_RH_Finlogik.Persistance.Migrations
 {
     [DbContext(typeof(PlateformRHDbcontext))]
-    partial class PlateformRHDbcontextModelSnapshot : ModelSnapshot
+    [Migration("20220514191101_addPointage")]
+    partial class addPointage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -321,29 +323,6 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
                     b.ToTable("HistoryContrat");
                 });
 
-            modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.Holidays", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Holidays");
-                });
-
             modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.LeaveBalance", b =>
                 {
                     b.Property<int>("Id")
@@ -464,9 +443,6 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
                     b.Property<int>("IdEmployee")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsCalculated")
-                        .HasColumnType("bit");
-
                     b.Property<string>("action")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -567,30 +543,6 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
                     b.HasIndex("IdLeaveType");
 
                     b.ToTable("TimeOffBalances");
-                });
-
-            modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.WorkingHoursSummary", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
-
-                    b.Property<int>("IdEmployee")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<float>("hours")
-                        .HasColumnType("real");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("IdEmployee");
-
-                    b.ToTable("WorkingHoursSummarys");
                 });
 
             modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.ApplicationOffer", b =>
@@ -727,17 +679,6 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
                     b.Navigation("Employee");
 
                     b.Navigation("LeaveType");
-                });
-
-            modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.WorkingHoursSummary", b =>
-                {
-                    b.HasOne("Plateform_RH_Finlogik.Domain.Entities.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("IdEmployee")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("Plateform_RH_Finlogik.Domain.Entities.Candidat", b =>

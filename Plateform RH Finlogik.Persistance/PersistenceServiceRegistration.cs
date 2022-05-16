@@ -37,6 +37,11 @@ namespace Plateform_RH_Finlogik.Persistance
             services.AddScoped<ILeaveTypeRepository, LeaveTypeRepository>();
             services.AddScoped<ILeaveBalancesRepository, LeaveBalancesRepository>();
             services.AddScoped<IEmployeePayRepository, EmployeePayRepository>();
+            services.AddScoped<IPointageRepository, PointageRepositroy>();
+            services.AddScoped<IWorkingHoursSummaryRepository, WorkingHoursSummaryRepository>();
+            services.AddScoped<IHolidayRepository, HolidayRepository>();
+
+            
 
 
 

@@ -1,18 +1,13 @@
-﻿using AutoMapper;
+﻿
 using Microsoft.IdentityModel.Tokens;
 using Plateform_RH_Finlogik.Application.Contracts.Jwt;
 using Plateform_RH_Finlogik.Application.Contracts.Persistance;
 using Plateform_RH_Finlogik.Application.Models.Authentification;
-using Plateform_RH_Finlogik.Application.Persistance;
-using Plateform_RH_Finlogik.Domain.Entities;
 using Plateform_RH_Finlogik_._JWT.Helpers;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using BC = BCrypt.Net.BCrypt;
+
 
 namespace Plateform_RH_Finlogik_._JWT.Services
 {

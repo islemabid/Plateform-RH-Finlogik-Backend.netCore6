@@ -1,0 +1,12 @@
+﻿
+using MediatR;
+
+namespace Plateform_RH_Finlogik.Application.Features.Notifications.Commands.UpdateNotificationsStatus
+{
+    public class UpdateNotificationsStatusCommand : IRequest
+    {
+        public int id { get; set; }
+        public string NameCandidat { get; set; }
+        public bool Status { get; set; }
+    }
+}

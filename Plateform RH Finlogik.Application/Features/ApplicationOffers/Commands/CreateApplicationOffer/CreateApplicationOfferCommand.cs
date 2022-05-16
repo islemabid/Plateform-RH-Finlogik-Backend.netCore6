@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Plateform_RH_Finlogik.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,6 @@ namespace Plateform_RH_Finlogik.Application.Features.ApplicationOffers.Commands.
     {
         public int IdOffer { get; set; }
         public int IdCandidat { get; set; }
-
         public DateTime AssignmentDate { get; set; }=DateTime.Now;
         public string CvUrl { get; set; }
 

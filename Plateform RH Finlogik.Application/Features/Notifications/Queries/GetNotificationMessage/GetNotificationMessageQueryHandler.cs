@@ -1,14 +1,9 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.SignalR;
 using Plateform_RH_Finlogik.Application.Contracts.Interfaces;
 using Plateform_RH_Finlogik.Application.Contracts.Persistance;
-using Plateform_RH_Finlogik.Application.Features.HubClient;
-using Plateform_RH_Finlogik.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Plateform_RH_Finlogik.Application.Features.Notifications.Queries.GetNotificationMessage
 {
@@ -16,17 +11,19 @@ namespace Plateform_RH_Finlogik.Application.Features.Notifications.Queries.GetNo
     {
      
         private readonly INotificationRepository _notificationRepository;
+        private readonly IMapper _mapper;
 
-        public GetNotificationMessageQueryHandler(INotificationRepository notificationRepository)
+        public GetNotificationMessageQueryHandler(IMapper mapper,INotificationRepository notificationRepository)
         {
-            
+            _mapper = mapper;
             _notificationRepository = notificationRepository;
         }
 
-        public Task<List<NotificationResult>> Handle(GetNotificationMessageQuery request, CancellationToken cancellationToken)
+        public async  Task<List<NotificationResult>> Handle(GetNotificationMessageQuery request, CancellationToken cancellationToken)
         {
-            var results = _notificationRepository.GetNotificationMessage();
-            return results;
+            var results = await  _notificationRepository.GetNotificationMessage();
+            return _mapper.Map<List<NotificationResult>>(results);
+            
 
         }
     }

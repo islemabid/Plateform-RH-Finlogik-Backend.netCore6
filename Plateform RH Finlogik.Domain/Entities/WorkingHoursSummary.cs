@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Plateform_RH_Finlogik.Domain.Entities
+{
+    public class WorkingHoursSummary
+    { [Key]
+        public int id { get; set; }
+
+        public  float hours { get; set; }
+
+        public DateTime date { get; set; }
+
+        [ForeignKey("Employee")]
+        public int IdEmployee { get; set; }
+
+        public virtual Employee Employee { get; set; }
+    }
+}
