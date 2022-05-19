@@ -6,7 +6,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Notifications.Commands.Upda
     public class UpdateNotificationsStatusCommand : IRequest
     {
         public int id { get; set; }
-        public string NameCandidat { get; set; }
+        public string Message { get; set; }
         public bool Status { get; set; }
     }
 }

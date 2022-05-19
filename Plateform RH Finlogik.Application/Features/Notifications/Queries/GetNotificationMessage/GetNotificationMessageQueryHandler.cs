@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.SignalR;
-using Plateform_RH_Finlogik.Application.Contracts.Interfaces;
 using Plateform_RH_Finlogik.Application.Contracts.Persistance;
 
 

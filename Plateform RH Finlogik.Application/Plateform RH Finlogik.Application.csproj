@@ -28,7 +28,6 @@
     <Folder Include="Features\EmployeesPay\Commands\UpdateEmployeePay\" />
     <Folder Include="Features\EmployeesPosts\Commands\" />
     <Folder Include="Features\HistoryContrats\Commands\" />
-    <Folder Include="Features\Holiday\Queries\" />
     <Folder Include="Features\LeaveTypes\Commands\CreateLeaveType\" />
   </ItemGroup>
 

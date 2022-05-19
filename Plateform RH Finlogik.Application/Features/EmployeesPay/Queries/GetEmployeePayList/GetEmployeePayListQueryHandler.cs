@@ -9,18 +9,39 @@ namespace Plateform_RH_Finlogik.Application.Features.EmployeesPay.Queries.GetEmp
     {
 
         private readonly IEmployeePayRepository _payRepository;
-    private readonly IMapper _mapper;
+        private readonly IEmployeeRepository _employeeRepositroy;
 
-    public GetEmployeePayListQueryHandler(IMapper mapper, IEmployeePayRepository payRepository)
+    public GetEmployeePayListQueryHandler(IEmployeeRepository employeeRepositroy, IEmployeePayRepository payRepository)
     {
-        _mapper = mapper;
+        _employeeRepositroy = employeeRepositroy;
         _payRepository = payRepository;
     }
 
     public async Task<List<EmployeePayListVm>> Handle(GetEmployeePayListQuery request, CancellationToken cancellationToken)
     {
         var allPays = await _payRepository.GetAllAsync();
-        return _mapper.Map<List<EmployeePayListVm>>(allPays);
+        List<EmployeePayListVm> payrool = new List<EmployeePayListVm>();
+        foreach(var pay in allPays)
+            {
+                EmployeePayListVm e = new EmployeePayListVm
+                {
+                    Id = pay.Id,
+                    Year = pay.Year,
+                    Mounth = pay.Mounth,
+                    FixedSalary = pay.FixedSalary,
+                    MealTicket = pay.MealTicket,
+                    TicketPassGift = pay.TicketPassGift,
+                    Prime = pay.Prime,
+                    IdEmployee = pay.IdEmployee,
+                    employeeFullName = _employeeRepositroy.GetByID(pay.IdEmployee).FirstName + " " + _employeeRepositroy.GetByID(pay.IdEmployee).LastName,
+
+
+
+                };
+                payrool.Add(e);
+            }
+
+        return payrool;
     }
 }
     

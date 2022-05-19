@@ -1,8 +1,10 @@
-﻿using MediatR;
+﻿
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Plateform_RH_Finlogik.Application.Features.LeaveBalances.Queries.GetLeaveBalncesByIDEmpoyee_IDLeaveType;
+using Plateform_RH_Finlogik.Application.Features.TimeBalances.Command.CancelTimeOffBalances;
+
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.CreateTimeOffBalances;
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.DeleteTimeOffBalances;
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.RefuseTimeOffBalances;
@@ -77,11 +79,11 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             return NoContent();
         }
       
-        [HttpGet("{idEmployee,idleavetype}", Name = "GetLeaveBalanceByIDEmployee_IDLeaveType")]
-        public async Task<ActionResult<LeaveBalancesVm>> GetLeaveBalanceByIDEmployee_IDLeaveType(int idEmployee,int idleavetype)
+        [HttpDelete("cancel/{idRequest}", Name = "GetRequestTocancel")]
+        public async Task<ActionResult> GetRequestTocancel(int idRequest)
         {
-            var getLeaveBalncesByIDEmpoyee_IDLeaveTypeQuery = new GetLeaveBalncesByIDEmpoyee_IDLeaveTypeQuery() { IdEmployee = idEmployee, IdLeaveType=idleavetype };
-            return Ok(await _mediator.Send(getLeaveBalncesByIDEmpoyee_IDLeaveTypeQuery));
+            var cancelTimeOffBalancesCommand = new CancelTimeOffBalancesCommand() { Id = idRequest };
+            return Ok(await _mediator.Send(cancelTimeOffBalancesCommand));
         }
 
 

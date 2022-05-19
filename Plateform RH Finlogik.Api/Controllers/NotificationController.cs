@@ -1,17 +1,14 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Plateform_RH_Finlogik.Application.Features.Notifications.Commands.UpdateNotificationsStatus;
 using Plateform_RH_Finlogik.Application.Features.Notifications.Queries.GetNotificationCount;
 using Plateform_RH_Finlogik.Application.Features.Notifications.Queries.GetNotificationMessage;
-using System.Net;
+
 
 namespace Plateform_RH_Finlogik.Api.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
+   
     [ApiController]
     public class NotificationController : ControllerBase
 

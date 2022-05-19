@@ -1,4 +1,6 @@
 ﻿
+using Plateform_RH_Finlogik.Domain.Entities;
+
 namespace Plateform_RH_Finlogik.Application.Features.EmployeesPay.Queries.GetEmployeePayList
 {
     public class EmployeePayListVm
@@ -11,5 +13,6 @@ namespace Plateform_RH_Finlogik.Application.Features.EmployeesPay.Queries.GetEmp
         public int? TicketPassGift { get; set; }
         public float? Prime { get; set; }
         public int IdEmployee { get; set; }
+        public string employeeFullName { get; set; }
     }
 }

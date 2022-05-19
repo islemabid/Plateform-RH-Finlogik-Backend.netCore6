@@ -44,6 +44,9 @@ using Plateform_RH_Finlogik.Application.Features.PointageEmployee.Commands.Creat
 using Plateform_RH_Finlogik.Application.Features.Notifications.Commands.UpdateNotificationsStatus;
 using Plateform_RH_Finlogik.Application.Features.Notifications.Queries.GetNotificationMessage;
 using Plateform_RH_Finlogik.Application.Features.Holiday.Commands.CreateHoliday;
+using Plateform_RH_Finlogik.Application.Features.Holiday.Queries.GetAllHolidays;
+using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.DeleteTimeOffBalances;
+using Plateform_RH_Finlogik.Application.Features.TimeBalances.Command.CancelTimeOffBalances;
 
 namespace Plateform_RH_Finlogik.Application.Application.Profiles
 {
@@ -116,9 +119,16 @@ namespace Plateform_RH_Finlogik.Application.Application.Profiles
             CreateMap<TimeOffBalances, ListTimeOffBalancesOfEmployeeVm>().ReverseMap();
             CreateMap<TimeOffBalances,ValidateTimeOffBalancesCommand>().ReverseMap();
             CreateMap<TimeOffBalances, RefuseTimeOffBalancesCommand>().ReverseMap();
+            CreateMap<TimeOffBalances, DeleteTimeOffBalancesCommand>().ReverseMap();
+            CreateMap<TimeOffBalances, DeleteTimeOffBalancesCommand>().ReverseMap();
+            CreateMap<TimeOffBalances, CancelTimeOffBalancesCommand>().ReverseMap();
+            
+
 
             //mapping PayRoll 
-            CreateMap<EmployeePay, EmployeePayListVm>().ReverseMap();
+
+
+
             CreateMap<EmployeePay, CreateEmployeePayCommand>().ReverseMap(); 
             CreateMap<EmployeePay, HistoryPayVm>().ReverseMap();
 
@@ -131,7 +141,10 @@ namespace Plateform_RH_Finlogik.Application.Application.Profiles
 
             //mapping Holidays
             CreateMap<Holidays, CreateHolidayCommand>().ReverseMap();
+            CreateMap<Holidays, HolidayVm>().ReverseMap();
             
+
+
         }
 
     }

@@ -40,7 +40,7 @@ namespace Plateform_RH_Finlogik.Application.Features.ApplicationOffers.Commands.
             @applicationOffer = await _applicationOffer.AddAsync(applicationOffer);
             Notification notification = new Notification()
             {
-                NameCandidat = (await _candidatRepository.GetByIDAsync(request.IdCandidat)).FirstName+""+ (await _candidatRepository.GetByIDAsync(request.IdCandidat)).LastName,
+                Message = "New Candidat added"+" "+(await _candidatRepository.GetByIDAsync(request.IdCandidat)).FirstName+" "+ (await _candidatRepository.GetByIDAsync(request.IdCandidat)).LastName,
                 Status = true
 
             };
