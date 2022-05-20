@@ -37,7 +37,6 @@ using Plateform_RH_Finlogik.Application.Features.TimeBalances.Queries.GetTimeOff
 using Plateform_RH_Finlogik.Application.Features.LeaveTypes.Queries.GetListLeaveType;
 using Plateform_RH_Finlogik.Application.Features.LeaveBalances.Queries.GetLeaveBalncesByIDEmpoyee_IDLeaveType;
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.RefuseTimeOffBalances;
-using Plateform_RH_Finlogik.Application.Features.EmployeesPay.Queries.GetEmployeePayList;
 using Plateform_RH_Finlogik.Application.Features.EmployeesPay.Commands.CreateEmployeePay;
 using Plateform_RH_Finlogik.Application.Features.EmployeesPay.Queries.GetHistoryPayOfEmployee;
 using Plateform_RH_Finlogik.Application.Features.PointageEmployee.Commands.CreatePointage;
@@ -47,6 +46,8 @@ using Plateform_RH_Finlogik.Application.Features.Holiday.Commands.CreateHoliday;
 using Plateform_RH_Finlogik.Application.Features.Holiday.Queries.GetAllHolidays;
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.DeleteTimeOffBalances;
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Command.CancelTimeOffBalances;
+using Plateform_RH_Finlogik.Application.Features.PointageEmployee.Queries.GetAllWorkingHoursByIDEmployee;
+using Plateform_RH_Finlogik.Application.Features.PointageEmployee.Queries.GetallEmployeesWorkingHours;
 
 namespace Plateform_RH_Finlogik.Application.Application.Profiles
 {
@@ -125,15 +126,15 @@ namespace Plateform_RH_Finlogik.Application.Application.Profiles
             
 
 
-            //mapping PayRoll 
-
-
-
+            //mapping PayRoll
             CreateMap<EmployeePay, CreateEmployeePayCommand>().ReverseMap(); 
             CreateMap<EmployeePay, HistoryPayVm>().ReverseMap();
 
             //mapping pointage
             CreateMap<Pointage, CreatePointageCommand>().ReverseMap();
+            CreateMap<WorkingHoursSummary, AllWorkingHoursOfEmployeeVm>().ReverseMap();
+            CreateMap<WorkingHoursSummary, WorkingHoursOfAllEmployees>().ReverseMap();
+            
 
             //mapping Notifications 
             CreateMap<Notification, UpdateNotificationsStatusCommand>().ReverseMap();

@@ -1,13 +1,9 @@
-﻿using AutoMapper;
+﻿
 using MediatR;
 using Plateform_RH_Finlogik.Application.Contracts.Persistance;
 using Plateform_RH_Finlogik.Application.Persistance;
 using Plateform_RH_Finlogik.Domain.Entities;
-using BC = BCrypt.Net.BCrypt;
 
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Plateform_RH_Finlogik.Application.Helpers;
 
 namespace Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeesList

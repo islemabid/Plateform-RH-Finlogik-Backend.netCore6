@@ -8,7 +8,7 @@ namespace Plateform_RH_Finlogik.Application.Features.PointageEmployee.Commands.C
     {
       
 
-        public DateTime dateAction { get; set; }
+        public DateTime dateAction { get; set; }=DateTime.Now;
 
         public string action { get; set; }
 
