@@ -15,6 +15,7 @@ namespace Plateform_RH_Finlogik.Api.Controllers
         {
             private readonly IMediator _mediator;
 
+
             public ApplicationOfferController(IMediator mediator)
             {
                 _mediator = mediator;
