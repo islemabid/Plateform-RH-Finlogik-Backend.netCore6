@@ -32,8 +32,9 @@ namespace Plateform_RH_Finlogik.Application.Features.EmployeesPay.Queries.GetEmp
                     MealTicket = pay.MealTicket,
                     TicketPassGift = pay.TicketPassGift,
                     Prime = pay.Prime,
+                    status = pay.status,
                     IdEmployee = pay.IdEmployee,
-                    employeeFullName = _employeeRepositroy.GetByID(pay.IdEmployee).FirstName + " " + _employeeRepositroy.GetByID(pay.IdEmployee).LastName,
+                    employeeFullName = _employeeRepositroy.GetByID(pay.IdEmployee).FirstName + "  " + _employeeRepositroy.GetByID(pay.IdEmployee).LastName,
 
 
 

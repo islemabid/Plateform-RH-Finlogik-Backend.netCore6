@@ -1,17 +1,11 @@
 ﻿
 
-using MailKit.Security;
-using Microsoft.Extensions.Options;
-using MimeKit;
-using Plateform_RH_Finlogik.Application.Contracts.EmailCandidat;
-using Plateform_RH_Finlogik.Application.Models.EmailCandidat;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+
+using Plateform_RH_Finlogik.Application.Contracts.Email;
+using Plateform_RH_Finlogik.Application.Models.Email;
 using System.Net;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Plateform_RH_Finlogik_.InfrastructureMail.MailServices
 {     

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Plateform_RH_Finlogik.Application.Features.EmployeesPay.Commands.CreateEmployeePay;
+using Plateform_RH_Finlogik.Application.Features.EmployeesPay.Commands.UpdateEmployeePay;
 using Plateform_RH_Finlogik.Application.Features.EmployeesPay.Queries.GetEmployeePayList;
 using Plateform_RH_Finlogik.Application.Features.EmployeesPay.Queries.GetHistoryPayOfEmployee;
 
@@ -21,7 +22,7 @@ namespace Plateform_RH_Finlogik.Api.Controllers
         {
             _mediator = mediator;
         }
-        [HttpGet("all", Name = "GetAllEmployeesPays")]
+        [HttpGet("all", Name = "GetAllEmployeesPays"), Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<List<EmployeePayListVm>>> GetAllEmployeesPays()
         {
@@ -35,11 +36,21 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             return Ok(await _mediator.Send(getHistoryPayOfEmployeeQuery));
         }
 
-        [HttpPost(Name = "AddEmployeePay")]
+        [HttpPost(Name = "AddEmployeePay"), Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
         public async Task<ActionResult> Create([FromBody] CreateEmployeePayCommand createEmployeePayCommand)
         {
             var pay = await _mediator.Send(createEmployeePayCommand);
             return Ok(pay);
+        }
+        [HttpPut(Name = "UpdateEmployeePay"), Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult> Update([FromBody] UpdateEmployeePayCommand updateEmployeePayCommand)
+        {
+
+            await _mediator.Send(updateEmployeePayCommand);
+            return NoContent();
         }
     }
 }

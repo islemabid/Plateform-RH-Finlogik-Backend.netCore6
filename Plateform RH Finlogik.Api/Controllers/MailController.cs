@@ -1,23 +1,21 @@
 ﻿
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Plateform_RH_Finlogik.Application.Contracts.EmailCandidat;
-using Plateform_RH_Finlogik.Application.Models.EmailCandidat;
+using Plateform_RH_Finlogik.Application.Contracts.Email;
+using Plateform_RH_Finlogik.Application.Models.Email;
 
 namespace Plateform_RH_Finlogik.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MailCandidatController : ControllerBase
+    public class MailController : ControllerBase
     {
         private readonly IMailService _mailService;
-        public MailCandidatController(IMailService mailService)
+        public MailController(IMailService mailService)
         {
             _mailService = mailService;
         }
 
-        [HttpPost("Send"), Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
+        [HttpPost("Send")]
         public async Task<IActionResult> Send([FromBody] MailRequest request)
         {
             try

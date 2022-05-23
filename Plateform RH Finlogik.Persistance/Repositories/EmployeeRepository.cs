@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Plateform_RH_Finlogik.Application.Contracts.Persistance;
 using Plateform_RH_Finlogik.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Plateform_RH_Finlogik.Persistance.Repositories
 {
@@ -25,6 +20,23 @@ namespace Plateform_RH_Finlogik.Persistance.Repositories
         {
             return await _dbContext.Set<Employee>().Include(u=> u.Role).SingleOrDefaultAsync(u => u.WorkEmail == email && u.Password == password);
         }
-       
+
+
+        public async Task<Employee> GetUserByEmail(string email)
+        {
+            return await _dbContext.Set<Employee>().SingleOrDefaultAsync(u => u.WorkEmail == email);
+        }
+
+        public async Task<Employee> UpdateUserPassword(string email , string password)
+        {
+            Employee employee = await _dbContext.Set<Employee>().SingleOrDefaultAsync(u => u.WorkEmail == email);
+
+            employee.Password = password;
+            _dbContext.Entry(employee).State = EntityState.Modified;
+            _dbContext.SaveChanges();
+            return employee;
+        }
+
+
     }
 }

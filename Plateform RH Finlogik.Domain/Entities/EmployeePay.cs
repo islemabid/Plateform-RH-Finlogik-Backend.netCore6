@@ -15,6 +15,7 @@ namespace Plateform_RH_Finlogik.Domain.Entities
         public int? MealTicket { get; set; }
         public int? TicketPassGift { get; set; }
         public int? Prime { get; set; }
+        public string status { get; set; }
 
         [ForeignKey("Employee")]
         public int IdEmployee { get; set; }

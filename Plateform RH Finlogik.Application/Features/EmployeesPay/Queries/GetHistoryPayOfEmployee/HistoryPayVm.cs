@@ -14,5 +14,6 @@ namespace Plateform_RH_Finlogik.Application.Features.EmployeesPay.Queries.GetHis
         public int? MealTicket { get; set; }
         public int? TicketPassGift { get; set; }
         public float? Prime { get; set; }
+        public string status { get; set; }
     }
 }

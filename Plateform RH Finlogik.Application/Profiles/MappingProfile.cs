@@ -10,7 +10,6 @@ using Plateform_RH_Finlogik.Application.Features.Departements.Commands.UpdateDep
 using Plateform_RH_Finlogik.Application.Features.Departements.Queries.GetDepartementsList;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEmployee;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.UpdateEmployee;
-using Plateform_RH_Finlogik.Application.Features.Employees.Commands.UpdateProfil;
 using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeeDetail;
 using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeesList;
 using Plateform_RH_Finlogik.Application.Features.EmployeesPosts.Queries.GetEmployeesPostsList;
@@ -48,6 +47,9 @@ using Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.DeleteTim
 using Plateform_RH_Finlogik.Application.Features.TimeBalances.Command.CancelTimeOffBalances;
 using Plateform_RH_Finlogik.Application.Features.PointageEmployee.Queries.GetAllWorkingHoursByIDEmployee;
 using Plateform_RH_Finlogik.Application.Features.PointageEmployee.Queries.GetallEmployeesWorkingHours;
+using Plateform_RH_Finlogik.Application.Features.EmployeesPay.Commands.UpdateEmployeePay;
+using Plateform_RH_Finlogik.Application.Features.Employees.Queries.ForgotPassword;
+using Plateform_RH_Finlogik.Application.Features.Employees.Commands.UpdatePasswordEmployee;
 
 namespace Plateform_RH_Finlogik.Application.Application.Profiles
 {
@@ -61,7 +63,10 @@ namespace Plateform_RH_Finlogik.Application.Application.Profiles
             CreateMap<Employee, EmployeeDto>().ReverseMap();
             CreateMap<Employee, EmployeeDetailVm>().ReverseMap();
             CreateMap<Employee, UpdateEmployeeCommand>().ReverseMap();
-            CreateMap<Employee, UpdateProfilCommand>().ReverseMap();
+            CreateMap<Employee, ForgotPasswodQuery>().ReverseMap();
+            CreateMap<Employee, UpdatePasswordCommand>().ReverseMap();
+            
+
             //mapping EmployeePost
             CreateMap<EmployeePost, EmployeePostListVm>().ReverseMap();
             CreateMap<EmployeePost, PostListByIDEmployeeVm>().ReverseMap();
@@ -129,6 +134,8 @@ namespace Plateform_RH_Finlogik.Application.Application.Profiles
             //mapping PayRoll
             CreateMap<EmployeePay, CreateEmployeePayCommand>().ReverseMap(); 
             CreateMap<EmployeePay, HistoryPayVm>().ReverseMap();
+            CreateMap<EmployeePay, UpdateEmployeePayCommand>().ReverseMap();
+            
 
             //mapping pointage
             CreateMap<Pointage, CreatePointageCommand>().ReverseMap();

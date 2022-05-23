@@ -6,7 +6,8 @@ using Plateform_RH_Finlogik.Application.Features.Employees;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEmployee;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.DeleteEmployee;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.UpdateEmployee;
-using Plateform_RH_Finlogik.Application.Features.Employees.Commands.UpdateProfil;
+using Plateform_RH_Finlogik.Application.Features.Employees.Commands.UpdatePasswordEmployee;
+using Plateform_RH_Finlogik.Application.Features.Employees.Queries.ForgotPassword;
 using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeeDetail;
 using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeesList;
 
@@ -50,13 +51,19 @@ namespace Plateform_RH_Finlogik.Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
         public async Task<ActionResult> Update( [FromBody] UpdateEmployeeCommand updateEmployeeCommand)
-        {
+        { 
           
             await _mediator.Send(updateEmployeeCommand);
             return NoContent();
         }
-      
-        
+
+        [HttpGet("forgotPassword/{Email}", Name = "forgotPassword")]
+        public async Task<ActionResult<ForgotPasswordDto>> forgotPassword([FromRoute] string Email)
+        {
+            var forgotPasswodQuery = new ForgotPasswodQuery() { WorkEmail = Email };
+            return Ok(await _mediator.Send(forgotPasswodQuery));
+        }
+
 
         [HttpDelete("{id}", Name = "DeleteEmployee"), Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Ressources Humaines")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -70,14 +77,15 @@ namespace Plateform_RH_Finlogik.Api.Controllers
         }
        
 
-        [HttpPut("profil",Name = "UpdateEmployeeProfil")]
+ 
+        [HttpPut("UpdatePasswordEmployee", Name = "UpdatePasswordEmployee")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public async Task<ActionResult> UpdateEmployeeProfil([FromBody] UpdateProfilCommand updateProfilCommand)
+        public async Task<ActionResult> UpdatePasswordEmployee([FromBody] UpdatePasswordCommand updatePasswordCommand)
         {
 
-            await _mediator.Send(updateProfilCommand);
+            await _mediator.Send(updatePasswordCommand);
             return NoContent();
         }
     }

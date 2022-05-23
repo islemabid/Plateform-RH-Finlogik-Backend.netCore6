@@ -1,5 +1,5 @@
 ﻿
-namespace Plateform_RH_Finlogik.Application.Models.EmailCandidat
+namespace Plateform_RH_Finlogik.Application.Models.Email
 {
     public class MailRequest
     {

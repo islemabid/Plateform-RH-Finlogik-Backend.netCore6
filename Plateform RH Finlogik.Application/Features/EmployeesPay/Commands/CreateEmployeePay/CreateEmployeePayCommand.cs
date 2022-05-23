@@ -15,6 +15,7 @@ namespace Plateform_RH_Finlogik.Application.Features.EmployeesPay.Commands.Creat
         public int? MealTicket { get; set; }
         public int? TicketPassGift { get; set; }
         public float? Prime { get; set; }
+        public string status { get; set; }
         public int IdEmployee { get; set; }
     }
 }
