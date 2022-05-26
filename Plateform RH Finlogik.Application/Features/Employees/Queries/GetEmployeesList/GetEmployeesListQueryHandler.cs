@@ -50,7 +50,6 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmploy
                     Diplome = employee.Diplome,
                     Password = Helper.Decrypt( employee.Password),
                     PersonnelPhone = employee.PersonnelPhone,
-                    HoursPerWeek = employee.HoursPerWeek,
                     Gender = employee.Gender,
                     IdDepartement = employee.IdDepartement,
                     IdPost = _employeePostRepository.GetCurrentPostByEmployeeID(employee.Id).Id,

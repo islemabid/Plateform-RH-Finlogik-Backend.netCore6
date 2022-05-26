@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Queries.GetTimeOffBalancesList
 {
@@ -10,7 +6,7 @@ namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Queries.GetTim
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public long Cin { get; set; }
+        public string Cin { get; set; }
         public string WorkEmail { get; set; }
 
 

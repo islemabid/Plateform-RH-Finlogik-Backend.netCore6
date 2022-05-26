@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿
 using MediatR;
 using Plateform_RH_Finlogik.Application.Contracts.Persistance;
 using Plateform_RH_Finlogik.Application.Persistance;
@@ -12,11 +12,11 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmploy
         private readonly IAsyncRepository<Employee> _employeeRepository;
         private readonly IEmployeePostRepository _employeePostRepository;
         private readonly IHistoryContratRepository _historyContratRepository;
-        private readonly IMapper _mapper;
+   
 
-        public GetEmployeeDetailQueryHandler(IMapper mapper, IAsyncRepository<Employee> employeeRepository, IEmployeePostRepository employeePostRepository, IHistoryContratRepository historyContratRepository)
+        public GetEmployeeDetailQueryHandler( IAsyncRepository<Employee> employeeRepository, IEmployeePostRepository employeePostRepository, IHistoryContratRepository historyContratRepository)
         {
-            _mapper = mapper;
+            
             _employeeRepository = employeeRepository;
             _employeePostRepository = employeePostRepository;
             _historyContratRepository = historyContratRepository;
@@ -48,7 +48,6 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmploy
                 Diplome = employee.Diplome,
                 Password = Helper.Decrypt( employee.Password),
                 PersonnelPhone = employee.PersonnelPhone,
-                HoursPerWeek = employee.HoursPerWeek,
                 Gender = employee.Gender,
                 IdDepartement = employee.IdDepartement,
                 Post = _employeePostRepository.GetCurrentPostByEmployeeID(request.Id),

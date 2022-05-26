@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.Configuration;
-using System.Linq;
+
 using System.Net;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace .Helper
+
+namespace PLateform_RH_Finlogik.SendEmail.Helper
 {
     public static class Mail
     {

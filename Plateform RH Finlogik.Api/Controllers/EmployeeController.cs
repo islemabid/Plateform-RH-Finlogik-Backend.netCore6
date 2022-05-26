@@ -8,6 +8,7 @@ using Plateform_RH_Finlogik.Application.Features.Employees.Commands.DeleteEmploy
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.UpdateEmployee;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.UpdatePasswordEmployee;
 using Plateform_RH_Finlogik.Application.Features.Employees.Queries.ForgotPassword;
+using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeebyemail;
 using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeeDetail;
 using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeesList;
 
@@ -75,10 +76,15 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             await _mediator.Send(deleteEmployeeCommand);
             return NoContent();
         }
-       
+        [HttpGet("Email/{WorkEmail}", Name = "GetEmployeebyemail")]
+        public async Task<ActionResult<EmployeeByEmail>> GetEmployeebyemail(string WorkEmail)
+        {
+            var getEmployeebyemailQuery = new GetEmployeebyemailQuery() { WorkEmail = WorkEmail };
+            return Ok(await _mediator.Send(getEmployeebyemailQuery));
+        }
+        
 
- 
-        [HttpPut("UpdatePasswordEmployee", Name = "UpdatePasswordEmployee")]
+       [HttpPut("UpdatePasswordEmployee", Name = "UpdatePasswordEmployee")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]

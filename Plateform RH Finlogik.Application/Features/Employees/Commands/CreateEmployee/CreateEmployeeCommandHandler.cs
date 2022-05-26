@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
 using Plateform_RH_Finlogik.Application.Contracts.Persistance;
-using BC = BCrypt.Net.BCrypt;
 using Plateform_RH_Finlogik.Domain.Entities;
 using Plateform_RH_Finlogik.Application.Helpers;
 
@@ -51,7 +50,6 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEm
                 Diplome = request.Diplome,
                 Password = Helper.Encrypt(request.Password),
                 PersonnelPhone = request.PersonnelPhone,
-                HoursPerWeek = request.HoursPerWeek,
                 Gender = request.Gender,
                 IdDepartement = request.IdDepartement,
                 isActive = true

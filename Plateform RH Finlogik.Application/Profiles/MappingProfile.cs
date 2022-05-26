@@ -50,6 +50,7 @@ using Plateform_RH_Finlogik.Application.Features.PointageEmployee.Queries.Getall
 using Plateform_RH_Finlogik.Application.Features.EmployeesPay.Commands.UpdateEmployeePay;
 using Plateform_RH_Finlogik.Application.Features.Employees.Queries.ForgotPassword;
 using Plateform_RH_Finlogik.Application.Features.Employees.Commands.UpdatePasswordEmployee;
+using Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeebyemail;
 
 namespace Plateform_RH_Finlogik.Application.Application.Profiles
 {
@@ -65,7 +66,9 @@ namespace Plateform_RH_Finlogik.Application.Application.Profiles
             CreateMap<Employee, UpdateEmployeeCommand>().ReverseMap();
             CreateMap<Employee, ForgotPasswodQuery>().ReverseMap();
             CreateMap<Employee, UpdatePasswordCommand>().ReverseMap();
+            CreateMap<Employee, EmployeeByEmail>().ReverseMap();
             
+
 
             //mapping EmployeePost
             CreateMap<EmployeePost, EmployeePostListVm>().ReverseMap();
