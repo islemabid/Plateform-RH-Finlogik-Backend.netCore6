@@ -23,13 +23,20 @@ namespace Plateform_RH_Finlogik.Application.Features.Posts.Commands.CreatePost
 
         public async Task<int> Handle(CreatePostCommand request, CancellationToken cancellationToken)
         {
-            var @post = _mapper.Map<Post>(request);
+            if (request != null && request.ShortDescription!="" && request.LongDescription!="")
+            {
+                var @post = _mapper.Map<Post>(request);
 
-            @post = await _postRepository.AddAsync(@post);
+                @post = await _postRepository.AddAsync(@post);
 
 
 
-            return @post.Id;
+                return @post.Id;
+            }
+            else
+            {
+                throw new Exception($"failed");
+            }
 
         }
 

@@ -29,19 +29,26 @@ namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.Creat
 
         public async Task<int> Handle(CreateTimeOffBalancesCommand request, CancellationToken cancellationToken)
         {
-            var @timeoffbalance= _mapper.Map<TimeOffBalances>(request);
-
-            @timeoffbalance = await _timeoffbalanceRepository.AddAsync(@timeoffbalance);
-
-            Notification notification = new Notification()
+            if (request != null)
             {
-                Message = (await _employeeRepository.GetByIDAsync(request.IdEmployee)).FirstName+""+ (await _employeeRepository.GetByIDAsync(request.IdEmployee)).LastName+" "+"passed a conge",
-                Status = true
+                var @timeoffbalance = _mapper.Map<TimeOffBalances>(request);
 
-            };
-            _notificationRepository.AddAsync(notification);
-            await _hubContext.Clients.All.BroadcastMessage();
-            return @timeoffbalance.Id;
+                @timeoffbalance = await _timeoffbalanceRepository.AddAsync(@timeoffbalance);
+
+                Notification notification = new Notification()
+                {
+                    Message = (await _employeeRepository.GetByIDAsync(request.IdEmployee)).FirstName + "" + (await _employeeRepository.GetByIDAsync(request.IdEmployee)).LastName + " " + "passed a conge",
+                    Status = true
+
+                };
+                _notificationRepository.AddAsync(notification);
+                await _hubContext.Clients.All.BroadcastMessage();
+                return @timeoffbalance.Id;
+            }
+            else
+            {
+                throw new Exception($"failed");
+            }
 
         }
 

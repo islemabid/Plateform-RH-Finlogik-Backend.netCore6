@@ -2,11 +2,7 @@
 using MediatR;
 using Plateform_RH_Finlogik.Application.Contracts.Persistance;
 using Plateform_RH_Finlogik.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Plateform_RH_Finlogik.Application.Features.Departements.Commands.CreateDepartement
 {
@@ -23,13 +19,18 @@ namespace Plateform_RH_Finlogik.Application.Features.Departements.Commands.Creat
 
         public async Task<int> Handle(CreateDepartementCommand request, CancellationToken cancellationToken)
         {
-            var @dep = _mapper.Map<Departement>(request);
+            if (request.LongDescription != "" && request.ShortDescription!="")
+            {
+                var @dep = _mapper.Map<Departement>(request);
 
-            @dep = await _departementRepository.AddAsync(@dep);
+                @dep = await _departementRepository.AddAsync(@dep);
 
-
-
-            return @dep.Id;
+                return @dep.Id;
+            }
+            else
+            {
+                throw new Exception($"failed");
+            }
 
         }
 

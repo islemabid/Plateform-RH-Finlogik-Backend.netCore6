@@ -2,11 +2,6 @@
 using MediatR;
 using Plateform_RH_Finlogik.Application.Contracts.Persistance;
 using Plateform_RH_Finlogik.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Plateform_RH_Finlogik.Application.Features.Contrats.Commands.CreateContrat
 {
@@ -23,13 +18,18 @@ namespace Plateform_RH_Finlogik.Application.Features.Contrats.Commands.CreateCon
 
         public async Task<int> Handle(CreateContratCommand request, CancellationToken cancellationToken)
         {
-            var @contrat = _mapper.Map<Contrat>(request);
+            if (request.LongDescription != "" && request.ShortDescription!="")
+            {
+                var @contrat = _mapper.Map<Contrat>(request);
 
-            @contrat = await _contratRepository.AddAsync(@contrat);
+                @contrat = await _contratRepository.AddAsync(@contrat);
 
-
-
-            return @contrat.Id;
+                return @contrat.Id;
+            }
+            else
+            {
+                throw new Exception($"failed");
+            }
 
         }
 

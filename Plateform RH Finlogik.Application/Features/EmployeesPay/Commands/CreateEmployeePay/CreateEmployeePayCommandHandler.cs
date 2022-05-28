@@ -2,11 +2,7 @@
 using MediatR;
 using Plateform_RH_Finlogik.Application.Contracts.Persistance;
 using Plateform_RH_Finlogik.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Plateform_RH_Finlogik.Application.Features.EmployeesPay.Commands.CreateEmployeePay
 {
@@ -23,13 +19,19 @@ namespace Plateform_RH_Finlogik.Application.Features.EmployeesPay.Commands.Creat
 
         public async Task<int> Handle(CreateEmployeePayCommand request, CancellationToken cancellationToken)
         {
-            var @pay = _mapper.Map<EmployeePay>(request);
+            if (request != null && request.Mounth!="" && request.Year!="" && request.IdEmployee!=null && request.FixedSalary!=null)
+            {
+                var @pay = _mapper.Map<EmployeePay>(request);
 
-            @pay = await _payRepository.AddAsync(@pay);
+                @pay = await _payRepository.AddAsync(@pay);
+                return @pay.Id;
+            }
+            else
+            {
+                throw new Exception($"failed");
+            }
 
-
-
-            return @pay.Id;
+           
 
         }
 

@@ -19,13 +19,20 @@ namespace Plateform_RH_Finlogik.Application.Features.Offers.Commands.CreateOffer
 
         public async Task<int> Handle(CreateOfferCommand request, CancellationToken cancellationToken)
         {
-            var @offer = _mapper.Map<Offer>(request);
+            if (request != null && request.type!="" && request.OfferMinExperience != null && request.OfferName != "" && request.ExpirationDate!=null)
+            {
+                var @offer = _mapper.Map<Offer>(request);
 
-            @offer = await _offerRepository.AddAsync(@offer);
+                @offer = await _offerRepository.AddAsync(@offer);
 
 
 
-            return @offer.Id;
+                return @offer.Id;
+            }
+            else
+            {
+                throw new Exception($"failed");
+            }
 
         }
 

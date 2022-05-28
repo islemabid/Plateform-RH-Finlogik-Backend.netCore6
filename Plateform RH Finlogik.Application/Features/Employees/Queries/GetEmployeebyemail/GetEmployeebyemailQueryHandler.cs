@@ -19,7 +19,14 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmploy
         public async Task<EmployeeByEmail> Handle(GetEmployeebyemailQuery request, CancellationToken cancellationToken)
         {
             var employee = await _employeeRepository.GetUserByEmail(request.WorkEmail);
-            return _mapper.Map<EmployeeByEmail>(employee);
+            if (employee != null)
+            {
+                return _mapper.Map<EmployeeByEmail>(employee);
+            }
+            else
+            {
+                throw new Exception($"user found");
+            }
         }
     }
 }
