@@ -14,8 +14,15 @@ variables:
   azureSPNName: 'YOUR-SPN-NAME' #get it from your AzureDevOps portal
   azureAppServiceName: 'Your-Azure-AppService-Name' #get it from your Azure portal
 
-# Build the app for .NET 6 framework
 steps:
+- task: UseDotNet@2
+  displayName: 'Use .NET Core sdk'
+  inputs:
+    packageType: 'sdk'
+    version: '6.0.x'
+    includePreviewVersions: true
+
+# Build the app for .NET 6 framework
 - task: UseDotNet@2
   inputs:
     version: $(dotNetVersion)
