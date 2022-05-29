@@ -21,11 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plateform RH Finlogik.Api",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plateform RH Finlogik . JWT", "Plateform RH Finlogik . JWT\Plateform RH Finlogik . JWT.csproj", "{E56C4807-50F4-4975-84E1-22AB339978CE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SendEmail", "SendEmail", "{712D4127-E930-4711-AE93-92914CD2F17C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plateform Rh Finlogik.InfrastructureMail", "Plateform Rh Finlogik.InfrastructureMail\Plateform Rh Finlogik.InfrastructureMail.csproj", "{4EA1F948-D07F-4B39-9489-B1A99C83A01A}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLateform RH Finlogik.SendEmail", "PLateform RH Finlogik.SendEmail\PLateform RH Finlogik.SendEmail.csproj", "{1A1D248C-DB90-4ECE-BA65-5776624164AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,10 +53,6 @@ Global
 		{4EA1F948-D07F-4B39-9489-B1A99C83A01A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EA1F948-D07F-4B39-9489-B1A99C83A01A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EA1F948-D07F-4B39-9489-B1A99C83A01A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1A1D248C-DB90-4ECE-BA65-5776624164AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A1D248C-DB90-4ECE-BA65-5776624164AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A1D248C-DB90-4ECE-BA65-5776624164AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A1D248C-DB90-4ECE-BA65-5776624164AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,9 +66,7 @@ Global
 		{713E2E07-1B73-47FE-9C93-CBD82AB3E3E4} = {2EC8599F-CE53-4D6F-8533-92D2B6314972}
 		{C18F6C69-ED07-4DF9-B314-A1E6A3C3F393} = {767CFE16-40F4-4B79-80BC-51B140C772ED}
 		{E56C4807-50F4-4975-84E1-22AB339978CE} = {2EC8599F-CE53-4D6F-8533-92D2B6314972}
-		{712D4127-E930-4711-AE93-92914CD2F17C} = {B040836F-918A-4675-B325-C5D5A6EDE16E}
 		{4EA1F948-D07F-4B39-9489-B1A99C83A01A} = {2EC8599F-CE53-4D6F-8533-92D2B6314972}
-		{1A1D248C-DB90-4ECE-BA65-5776624164AB} = {712D4127-E930-4711-AE93-92914CD2F17C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D470C570-5C39-44D1-B37A-0B44665FAFA3}
