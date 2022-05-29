@@ -1,45 +1,36 @@
+#This is a Build Deploy Pipeline for .NET 6 Web App to Azure App Service using Azure DevOps Pipeline
 
-stages:
-  - stage: build_stage
-    displayName: "Build"
-    jobs:
-      - job: build_job
-        steps:
-          - task: UseDotNet@2
-            displayName: "Install .NET Core SDK"
-            inputs:
-              version: 6.0
-              performMultiLevelLookup: true
-              includePreviewVersions: true # Required for preview versions
+trigger:
+- master
 
-          - task: DotNetCoreCLI@2
-            displayName: "Dotnet Restore"
-            inputs:
-              command: "restore"
-              feedsToUse: "select"
-              feedRestore: "store/feedName"
-              projects: "**/*.csproj"
-              includeNuGetOrg: true
+pool:
+  vmImage: ubuntu-latest
 
-          - task: DotNetCoreCLI@2
-            displayName: "Dotnet Build"
-            inputs:
-              projects: src.sln # solution file or project files
-              command: "build"
-              arguments: "--configuration $(buildConfiguration)"
+variables:
+  buildConfiguration: 'Release'
+  dotNetFramework: 'net6.0'
+  dotNetVersion: '6.0.x'
+  targetRuntime: 'linux-x64'
 
-          # Publish projects to specified folder.
-          - task: DotNetCoreCLI@2
-            displayName: "Dotnet Publish"
-            inputs:
-              command: "publish"
-              publishWebProjects: true
-              projects: "**/*.csproj"
-              arguments: "-o $(Build.ArtifactStagingDirectory)"
-              zipAfterPublish: true
-              modifyOutputPath: true
-            # this code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
-          - task: PublishPipelineArtifact@1
-            inputs:
-              targetPath: "$(Build.ArtifactStagingDirectory)"
-              artifactName: "artefactName"
+# Build the app for .NET 6 framework
+steps:
+- task: UseDotNet@2
+  inputs:
+    version: $(dotNetVersion)
+    includePreviewVersions: true
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'Build .NET 6 Application'
+
+# Publish it as .NET 6 self-contained application for linux runtime
+- task: DotNetCoreCLI@2
+  inputs:
+    command: publish
+    publishWebProjects: True
+    arguments: '--configuration $(BuildConfiguration) --framework $(dotNetFramework) --runtime $(targetRuntime) --self-contained --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: True
+
+# Package the file and uploads them as an artifact of the build
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)' 
+    artifactName: 'MinimalAPI'
