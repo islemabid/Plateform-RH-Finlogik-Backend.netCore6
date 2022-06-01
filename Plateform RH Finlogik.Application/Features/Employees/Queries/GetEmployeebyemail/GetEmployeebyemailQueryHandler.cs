@@ -18,7 +18,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmploy
         }
         public async Task<EmployeeByEmail> Handle(GetEmployeebyemailQuery request, CancellationToken cancellationToken)
         {
-            var employee = await _employeeRepository.GetUserByEmail(request.WorkEmail);
+            var employee =  _employeeRepository.GetUserByEmail(request.WorkEmail);
             if (employee != null)
             {
                 return _mapper.Map<EmployeeByEmail>(employee);

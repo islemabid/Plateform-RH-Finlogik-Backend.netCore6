@@ -1,11 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Plateform_RH_Finlogik.Application.Contracts.Persistance;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Plateform_RH_Finlogik.Application.Features.HistoryContrats.Queries.GetHistoryContratsByEmployeeIDList
 {
@@ -23,7 +19,7 @@ namespace Plateform_RH_Finlogik.Application.Features.HistoryContrats.Queries.Get
     
     public async Task<List<HistoryContratsListByEmployeeIDVm>> Handle(GetHistoryContratsByEmployeeIDQuery request, CancellationToken cancellationToken)
         {
-            var allHistoryContratsByEmployeeID = _historyContratRepository.GetAllHistoryContratByEmployeeID(request.IdEmployee).OrderBy(x => x.StartDate);
+            var allHistoryContratsByEmployeeID = _historyContratRepository.GetAllHistoryContratByEmployeeID(request.IdEmployee).OrderByDescending(x => x.StartDate);
             return _mapper.Map<List<HistoryContratsListByEmployeeIDVm>>(allHistoryContratsByEmployeeID);
         }
     }

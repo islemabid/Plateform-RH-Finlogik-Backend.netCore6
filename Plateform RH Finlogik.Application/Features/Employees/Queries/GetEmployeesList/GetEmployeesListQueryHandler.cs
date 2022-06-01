@@ -26,7 +26,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmploy
 
         public async Task<List<EmployeeListVm>> Handle(GetEmployeesListQuery request, CancellationToken cancellationToken)
         {
-            IEnumerable<Employee> allEmployees = (await _employeeRepository.GetAllAsync()).Where(x => x.isActive == true).OrderBy(x => x.BirthDate);
+            IEnumerable<Employee> allEmployees = (await _employeeRepository.GetAllAsync()).Where(x => x.isActive == true).OrderByDescending(x => x.Id);
             List <EmployeeListVm> employeeListVm = new List<EmployeeListVm>();
             foreach (Employee employee in allEmployees)
             {

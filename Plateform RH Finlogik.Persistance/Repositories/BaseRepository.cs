@@ -1,10 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Plateform_RH_Finlogik.Application.Persistance;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Plateform_RH_Finlogik.Persistance.Repositories
 {

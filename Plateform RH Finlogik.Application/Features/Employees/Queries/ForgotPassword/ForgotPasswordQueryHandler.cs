@@ -19,7 +19,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Queries.ForgotPas
 
         public  async Task<ForgotPasswordDto> Handle(ForgotPasswodQuery request, CancellationToken cancellationToken)
         {
-            var employe = await _employeeRepository.GetUserByEmail(request.WorkEmail);
+            var employe =  _employeeRepository.GetUserByEmail(request.WorkEmail);
             ForgotPasswordDto @employeeDTo = new ForgotPasswordDto
             {
                 Cin =employe.Cin,

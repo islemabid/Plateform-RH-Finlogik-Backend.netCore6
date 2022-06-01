@@ -2,11 +2,7 @@
 using MediatR;
 using Plateform_RH_Finlogik.Application.Persistance;
 using Plateform_RH_Finlogik.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Plateform_RH_Finlogik.Application.Features.Offers.Queries.GetOffersList
 {
@@ -24,7 +20,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Offers.Queries.GetOffersLis
 
         public async Task<List<OffersListVm>> Handle(GetOffersListQuery request, CancellationToken cancellationToken)
         {
-            var allOffers = (await _offerRepository.GetAllAsync()).Where(x => x.IsDeleted == false);
+            var allOffers = (await _offerRepository.GetAllAsync()).Where(x => x.IsDeleted == false).OrderByDescending(x=>x.Id);
             return _mapper.Map<List<OffersListVm>>(allOffers);
         }
     }

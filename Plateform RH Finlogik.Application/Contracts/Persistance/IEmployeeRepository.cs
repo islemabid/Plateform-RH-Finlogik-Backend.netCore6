@@ -12,7 +12,7 @@ namespace Plateform_RH_Finlogik.Application.Contracts.Persistance
     {
         Task<Employee> GetUser(string email, string password);
         Employee GetByID(int id);
-        Task<Employee> GetUserByEmail(string email);
+        Employee GetUserByEmail(string email);
         Task<Employee> UpdateUserPassword(string email, string password);
 
     }

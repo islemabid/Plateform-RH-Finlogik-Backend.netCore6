@@ -10,9 +10,11 @@ namespace Plateform_RH_Finlogik.Api.Controllers
     public class MailController : ControllerBase
     {
         private readonly IMailService _mailService;
-        public MailController(IMailService mailService)
+        private readonly IMailCandidatService _candidatMail;
+        public MailController(IMailService mailService, IMailCandidatService candidatMail)
         {
             _mailService = mailService;
+            _candidatMail = candidatMail;
         }
 
         [HttpPost("Send")]
@@ -30,5 +32,20 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             }
 
         }
+       /* [HttpPost("SendCandidatMail")]
+        public async Task<IActionResult> SendMail([FromBody] MailRequest request)
+        {
+            try
+            {
+                await _candidatMail.SendEmailCandidatAsync(request);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }*/
     }
 }

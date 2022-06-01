@@ -20,7 +20,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Holiday.Queries.GetAllHolid
 
         public async Task<List<HolidayVm>> Handle(GetAllHolidaysQuery request, CancellationToken cancellationToken)
         {
-            var allholidays = await _holidayRepository.GetAllAsync();
+            var allholidays = (await _holidayRepository.GetAllAsync()).OrderByDescending(x=>x.Id);
             return _mapper.Map<List<HolidayVm>>(allholidays);
         }
     }

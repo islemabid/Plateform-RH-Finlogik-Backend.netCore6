@@ -35,81 +35,85 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Commands.CreateEm
             {
                 var result = _employeeRepository.GetUserByEmail(request.WorkEmail);
 
-                    var employee = new Employee()
-                    {
-                        FirstName = request.FirstName,
-                        LastName = request.LastName,
-                        Adress = request.Adress,
-                        Cin = request.Cin,
-                        PersonnelEmail = request.PersonnelEmail,
-                        WorkEmail = request.WorkEmail,
-                        WorkPhone = request.WorkPhone,
-                        IdRole = request.IdRole,
-                        ImageUrl = request.ImageUrl,
-                        BirthDate = request.BirthDate,
-                        City = request.City,
-                        Contry = request.Contry,
-                        CNSSNumber = request.CNSSNumber,
-                        postalCode = request.postalCode,
-                        Region = request.Region,
-                        Diplome = request.Diplome,
-                        Password = Helper.Encrypt(request.Password),
-                        PersonnelPhone = request.PersonnelPhone,
-                        Gender = request.Gender,
-                        IdDepartement = request.IdDepartement,
-                        isActive = true
-                    };
+                if (result != null) { throw new Exception($"user found"); }
+                else 
+                { 
+                var employee = new Employee()
+                {
+                    FirstName = request.FirstName,
+                    LastName = request.LastName,
+                    Adress = request.Adress,
+                    Cin = request.Cin,
+                    PersonnelEmail = request.PersonnelEmail,
+                    WorkEmail = request.WorkEmail,
+                    WorkPhone = request.WorkPhone,
+                    IdRole = request.IdRole,
+                    ImageUrl = request.ImageUrl,
+                    BirthDate = request.BirthDate,
+                    City = request.City,
+                    Contry = request.Contry,
+                    CNSSNumber = request.CNSSNumber,
+                    postalCode = request.postalCode,
+                    Region = request.Region,
+                    Diplome = request.Diplome,
+                    Password = Helper.Encrypt(request.Password),
+                    PersonnelPhone = request.PersonnelPhone,
+                    Gender = request.Gender,
+                    IdDepartement = request.IdDepartement,
+                    isActive = true
+                };
 
-                    await _employeeRepository.AddAsync(employee);
+                await _employeeRepository.AddAsync(employee);
 
-                    var employeePost = new EmployeePost
-                    {
-                        IdEmployee = employee.Id,
-                        IdPost = request.IdPost,
-                        StartDate = DateTime.Now,
-                        isActive = true
+                var employeePost = new EmployeePost
+                {
+                    IdEmployee = employee.Id,
+                    IdPost = request.IdPost,
+                    StartDate = DateTime.Now,
+                    isActive = true
 
-                    };
+                };
 
-                    await _employeePostRepository.AddAsync(employeePost);
+                await _employeePostRepository.AddAsync(employeePost);
 
 
-                    var employeeContrat = new HistoryContrat
-                    {
-                        IdEmployee = employee.Id,
-                        IdContrat = request.IdContrat,
-                        StartDate = DateTime.Now,
-                        EndDate = request.EndDate,
-                        isActive = true
+                var employeeContrat = new HistoryContrat
+                {
+                    IdEmployee = employee.Id,
+                    IdContrat = request.IdContrat,
+                    StartDate = DateTime.Now,
+                    EndDate = request.EndDate,
+                    isActive = true
 
-                    };
+                };
 
-                    await _historyContratRepository.AddAsync(employeeContrat);
+                await _historyContratRepository.AddAsync(employeeContrat);
 
-                    var leaveBalance = new LeaveBalance
-                    {
-                        IdEmployee = employee.Id,
-                        IdLeaveType = 1,
-                        numberDays = 5
-                    };
-                    var leaveBalance1 = new LeaveBalance
-                    {
-                        IdEmployee = employee.Id,
-                        IdLeaveType = 2,
-                        numberDays = 0
-                    };
-                    await _leaveBalancesRepository.AddAsync(leaveBalance);
-                    await _leaveBalancesRepository.AddAsync(leaveBalance1);
+                var leaveBalance = new LeaveBalance
+                {
+                    IdEmployee = employee.Id,
+                    IdLeaveType = 1,
+                    numberDays = 5
+                };
+                var leaveBalance1 = new LeaveBalance
+                {
+                    IdEmployee = employee.Id,
+                    IdLeaveType = 2,
+                    numberDays = 0
+                };
+                await _leaveBalancesRepository.AddAsync(leaveBalance);
+                await _leaveBalancesRepository.AddAsync(leaveBalance1);
 
-                    EmployeeDto @employeeDTo = _mapper.Map<EmployeeDto>(employee);
-                    return @employeeDTo;
-                
-               
+                EmployeeDto @employeeDTo = _mapper.Map<EmployeeDto>(employee);
+                return @employeeDTo;
+
+
             }
+        }
             else
             {
 
-                throw new Exception($"user found");
+                throw new Exception($"error");
 
             }
         }

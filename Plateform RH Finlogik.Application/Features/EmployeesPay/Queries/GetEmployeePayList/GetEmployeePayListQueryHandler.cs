@@ -19,7 +19,7 @@ namespace Plateform_RH_Finlogik.Application.Features.EmployeesPay.Queries.GetEmp
 
     public async Task<List<EmployeePayListVm>> Handle(GetEmployeePayListQuery request, CancellationToken cancellationToken)
     {
-        var allPays = await _payRepository.GetAllAsync();
+        var allPays = (await _payRepository.GetAllAsync()).OrderByDescending(x=>x.Id);
         List<EmployeePayListVm> payrool = new List<EmployeePayListVm>();
         foreach(var pay in allPays)
             {

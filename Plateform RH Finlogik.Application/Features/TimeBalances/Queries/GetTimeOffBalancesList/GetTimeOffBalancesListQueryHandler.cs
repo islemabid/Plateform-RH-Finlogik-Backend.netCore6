@@ -21,7 +21,7 @@ namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Queries.GetTim
         public async Task<List<TimeoffBalancesListVm>> Handle(GetTimeOffBalancesListQuery request, CancellationToken cancellationToken)
         {
            
-            var allTimeoffBalances= (await _timeoffbalanceRepository.Getall()).Where(x=>x.IsActive==true);
+            var allTimeoffBalances= (await _timeoffbalanceRepository.Getall()).Where(x=>x.IsActive==true).OrderByDescending(x=>x.Id);
             List<TimeoffBalancesListVm> timeoffBalancesListVm = new List<TimeoffBalancesListVm>();
             foreach (var timeoffBalance in allTimeoffBalances)
             {

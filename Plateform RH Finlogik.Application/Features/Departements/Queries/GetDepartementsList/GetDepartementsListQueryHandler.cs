@@ -2,11 +2,7 @@
 using MediatR;
 using Plateform_RH_Finlogik.Application.Persistance;
 using Plateform_RH_Finlogik.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Plateform_RH_Finlogik.Application.Features.Departements.Queries.GetDepartementsList
 {
@@ -23,7 +19,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Departements.Queries.GetDep
 
         public async Task<List<DepartementsListVm>> Handle(GetDepartementsListQuery request, CancellationToken cancellationToken)
         {
-            var allDepartements = await _departementRepository.GetAllAsync();
+            var allDepartements = (await _departementRepository.GetAllAsync()).OrderByDescending(x=>x.Id);
             return _mapper.Map<List<DepartementsListVm>>(allDepartements);
         }
 

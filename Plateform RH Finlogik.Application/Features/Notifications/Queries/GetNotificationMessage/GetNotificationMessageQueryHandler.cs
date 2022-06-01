@@ -19,7 +19,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Notifications.Queries.GetNo
 
         public async  Task<List<NotificationResult>> Handle(GetNotificationMessageQuery request, CancellationToken cancellationToken)
         {
-            var results = await  _notificationRepository.GetNotificationMessage();
+            var results = (await  _notificationRepository.GetNotificationMessage()).OrderByDescending(x=>x.Id);
             return _mapper.Map<List<NotificationResult>>(results);
             
 

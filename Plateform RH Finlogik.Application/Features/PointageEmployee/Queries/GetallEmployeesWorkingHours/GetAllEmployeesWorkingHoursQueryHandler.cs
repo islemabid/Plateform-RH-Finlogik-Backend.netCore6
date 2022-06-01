@@ -24,8 +24,8 @@ namespace Plateform_RH_Finlogik.Application.Features.PointageEmployee.Queries.Ge
 
         public async Task<List<WorkingHoursOfAllEmployees>> Handle(GetAllEmployeesWorkingHoursQuery request, CancellationToken cancellationToken)
         {
-          
-            List<WorkingHoursSummary> allWorkingHours =  _workingHoursSummaryRepository.GetAllWorkingHoursSummary();
+
+            List<WorkingHoursSummary> allWorkingHours = _workingHoursSummaryRepository.GetAllWorkingHoursSummary();
             List<WorkingHoursOfAllEmployees> workingHours = new List<WorkingHoursOfAllEmployees>();
             foreach (WorkingHoursSummary s in allWorkingHours)
             {

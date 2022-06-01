@@ -22,9 +22,10 @@ namespace Plateform_RH_Finlogik.Persistance.Repositories
         }
 
 
-        public async Task<Employee> GetUserByEmail(string email)
+        public  Employee GetUserByEmail(string email)
         {
-            return await _dbContext.Set<Employee>().SingleOrDefaultAsync(u => u.WorkEmail == email);
+            return _dbContext.Set<Employee>().SingleOrDefault(u => u.WorkEmail == email);
+            
         }
 
         public async Task<Employee> UpdateUserPassword(string email , string password)

@@ -2,11 +2,7 @@
 using MediatR;
 using Plateform_RH_Finlogik.Application.Persistance;
 using Plateform_RH_Finlogik.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Plateform_RH_Finlogik.Application.Features.Contrats.Queries.GetContratsList
 {
@@ -23,7 +19,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Contrats.Queries.GetContrat
 
         public async Task<List<ContratsListVm>> Handle(GetContratsListQuery request, CancellationToken cancellationToken)
         {
-            var allcontrats = await _contratRepository.GetAllAsync();
+            var allcontrats = (await _contratRepository.GetAllAsync()).OrderByDescending(x=>x.Id);
             return _mapper.Map<List<ContratsListVm>>(allcontrats);
         }
 

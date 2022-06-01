@@ -20,7 +20,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Posts.Queries.GetPostsList
 
         public async Task<List<PostListVm>> Handle(GetPostsListQuery request, CancellationToken cancellationToken)
         {
-            var allPosts = (await _postRepository.GetAllAsync()).Where(x => x.IsDeleted == false);
+            var allPosts = (await _postRepository.GetAllAsync()).Where(x => x.IsDeleted == false).OrderByDescending(x=>x.Id);
             return _mapper.Map<List<PostListVm>>(allPosts);
         }
     }

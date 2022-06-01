@@ -23,7 +23,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Candidats.Queries.GetCandid
 
         public async Task<List<CandidatsListVm>> Handle(GetCandidatsListQuery request, CancellationToken cancellationToken)
         {
-            var allcandidats = await _candidatRepository.GetAllAsync();
+            var allcandidats = (await _candidatRepository.GetAllAsync()).OrderByDescending(x=>x.Id);
             return _mapper.Map<List<CandidatsListVm>>(allcandidats);
         }
 
