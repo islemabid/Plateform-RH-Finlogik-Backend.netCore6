@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plateform RH Finlogik . JWT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plateform Rh Finlogik.InfrastructureMail", "Plateform Rh Finlogik.InfrastructureMail\Plateform Rh Finlogik.InfrastructureMail.csproj", "{4EA1F948-D07F-4B39-9489-B1A99C83A01A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plateform RH  Finlogik.Application.UnitTests", "Plateform RH  Finlogik.Application.UnitTests\Plateform RH  Finlogik.Application.UnitTests.csproj", "{0AF4D2B0-FD7D-4BCC-B8A7-DA90296B548B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{4EA1F948-D07F-4B39-9489-B1A99C83A01A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EA1F948-D07F-4B39-9489-B1A99C83A01A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EA1F948-D07F-4B39-9489-B1A99C83A01A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AF4D2B0-FD7D-4BCC-B8A7-DA90296B548B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AF4D2B0-FD7D-4BCC-B8A7-DA90296B548B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AF4D2B0-FD7D-4BCC-B8A7-DA90296B548B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AF4D2B0-FD7D-4BCC-B8A7-DA90296B548B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{C18F6C69-ED07-4DF9-B314-A1E6A3C3F393} = {767CFE16-40F4-4B79-80BC-51B140C772ED}
 		{E56C4807-50F4-4975-84E1-22AB339978CE} = {2EC8599F-CE53-4D6F-8533-92D2B6314972}
 		{4EA1F948-D07F-4B39-9489-B1A99C83A01A} = {2EC8599F-CE53-4D6F-8533-92D2B6314972}
+		{0AF4D2B0-FD7D-4BCC-B8A7-DA90296B548B} = {101B3300-446C-4739-8C03-B2F4590AC168}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D470C570-5C39-44D1-B37A-0B44665FAFA3}

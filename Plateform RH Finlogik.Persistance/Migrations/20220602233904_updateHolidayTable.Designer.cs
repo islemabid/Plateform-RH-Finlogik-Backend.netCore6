@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Plateform_RH_Finlogik.Persistance;
 
@@ -11,9 +12,10 @@ using Plateform_RH_Finlogik.Persistance;
 namespace Plateform_RH_Finlogik.Persistance.Migrations
 {
     [DbContext(typeof(PlateformRHDbcontext))]
-    partial class PlateformRHDbcontextModelSnapshot : ModelSnapshot
+    [Migration("20220602233904_updateHolidayTable")]
+    partial class updateHolidayTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -331,7 +333,10 @@ namespace Plateform_RH_Finlogik.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime>("End")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Start")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("title")

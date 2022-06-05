@@ -12,23 +12,32 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Queries.ForgotPas
 
         public ForgotPasswordQueryHandler(IEmployeeRepository employeeRepository)
         {
-            
+
             _employeeRepository = employeeRepository;
 
         }
 
-        public  async Task<ForgotPasswordDto> Handle(ForgotPasswodQuery request, CancellationToken cancellationToken)
+        public async Task<ForgotPasswordDto> Handle(ForgotPasswodQuery request, CancellationToken cancellationToken)
         {
-            var employe =  _employeeRepository.GetUserByEmail(request.WorkEmail);
-            ForgotPasswordDto @employeeDTo = new ForgotPasswordDto
+            var employe = _employeeRepository.GetUserByEmail(request.WorkEmail);
+            if (employe != null)
             {
-                Cin =employe.Cin,
-                Id = employe.Id,
-                FirstName = employe.FirstName,
-                LastName = employe.LastName,
-                WorkEmail = employe.WorkEmail
-            };
-            return @employeeDTo;
+                ForgotPasswordDto @employeeDTo = new ForgotPasswordDto
+                {
+                    Cin = employe.Cin,
+                    Id = employe.Id,
+                    FirstName = employe.FirstName,
+                    LastName = employe.LastName,
+                    WorkEmail = employe.WorkEmail
+                };
+                return @employeeDTo;
+            }
+
+            else
+            {
+
+                throw new Exception($"error");
+            }
         }
     }
 

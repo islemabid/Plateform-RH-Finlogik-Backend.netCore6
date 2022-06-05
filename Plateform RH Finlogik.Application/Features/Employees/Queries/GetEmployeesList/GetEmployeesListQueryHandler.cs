@@ -5,6 +5,7 @@ using Plateform_RH_Finlogik.Application.Persistance;
 using Plateform_RH_Finlogik.Domain.Entities;
 
 using Plateform_RH_Finlogik.Application.Helpers;
+using AutoMapper;
 
 namespace Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmployeesList
 {
@@ -13,7 +14,7 @@ namespace Plateform_RH_Finlogik.Application.Features.Employees.Queries.GetEmploy
         private readonly IAsyncRepository<Employee> _employeeRepository;
         private readonly IEmployeePostRepository _employeePostRepository;
         private readonly IHistoryContratRepository _historyContratRepository;
-
+     
 
         public GetEmployeesListQueryHandler(IAsyncRepository<Employee> employeeRepository, IEmployeePostRepository employeePostRepository, IHistoryContratRepository historyContratRepository)
         {
