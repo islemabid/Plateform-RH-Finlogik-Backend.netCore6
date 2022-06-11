@@ -32,7 +32,7 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             }
 
         }
-       /* [HttpPost("SendCandidatMail")]
+       [HttpPost("SendCandidatMail")]
         public async Task<IActionResult> SendMail([FromBody] MailRequest request)
         {
             try
@@ -46,6 +46,6 @@ namespace Plateform_RH_Finlogik.Api.Controllers
                 throw ex;
             }
 
-        }*/
+        }
     }
 }

@@ -1,5 +1,7 @@
 ﻿
 
+
+
 using Moq;
 using Plateform_RH_Finlogik.Application.Persistance;
 using Plateform_RH_Finlogik.Domain.Entities;
@@ -9,37 +11,114 @@ namespace Plateform_RH__Finlogik.Application.UnitTests.Mocks
 {
     public class RepositoryMocks
     {
-        /*public static Mock<IAsyncRepository<Employee>> GetEmployeeRepository()
+        public static Mock<IAsyncRepository<Role>> GetRoleRepository()
         {
            
 
-            var employees = new List<Employee>
+            var roles = new List<Role>
             {
-                new Employee { 
-                    Id = 1, FirstName="ghazi", LastName="ghassara", Adress="sfax"
+                new Role { 
+                    Id = 1, Name="employee"
+                },
+                new Role {
+                    Id = 2, Name="consultant"
+                },
+                   new Role {
+                    Id = 3, Name="testeur"
                 },
 
-                new Employee {
-                    Id = 2, FirstName="salma", LastName="ghassara", Adress="sfax"
-                },
-                 new Employee {
-                    Id = 5, FirstName="ons", LastName="ghassara", Adress="sfax"
-                },
+
+
 
             };
 
-            var mockEmployeeRepository = new Mock<IAsyncRepository<Employee>>();
-            mockEmployeeRepository.Setup(repo => repo.GetAllAsync()).ReturnsAsync(employees);
+            var mockRoleRepository = new Mock<IAsyncRepository<Role>>();
+            mockRoleRepository.Setup(repo => repo.GetAllAsync()).ReturnsAsync(roles);
 
-            mockEmployeeRepository.Setup(repo => repo.AddAsync(It.IsAny<Employee>())).ReturnsAsync(
-                (Employee employee) =>
+            mockRoleRepository.Setup(repo => repo.AddAsync(It.IsAny<Role>())).ReturnsAsync(
+                (Role role) =>
                 {
-                    employees.Add(employee);
-                    return employee;
+                    roles.Add(role);
+                    return role;
                 });
 
-            return mockEmployeeRepository;
+            return mockRoleRepository;
         }
-    }*/
+        public static Mock<IAsyncRepository<Offer>> GetOfferRepository()
+        {
+
+
+            var offers = new List<Offer>
+            {
+                new Offer {
+                    Id = 1, OfferDescription="Offer1"
+                },
+                new Offer {
+                    Id = 2, OfferDescription="Offer2"
+                },
+                   new Offer {
+                    Id = 3, OfferDescription="Offer3"
+                },
+                   new Offer {
+                    Id = 4, OfferDescription="Offer4"
+                },
+
+
+
+
+
+            };
+
+            var mockOfferRepository = new Mock<IAsyncRepository<Offer>>();
+            mockOfferRepository.Setup(repo => repo.GetAllAsync()).ReturnsAsync(offers);
+
+            mockOfferRepository.Setup(repo => repo.AddAsync(It.IsAny<Offer>())).ReturnsAsync(
+                (Offer offer) =>
+                {
+                    offers.Add(offer);
+                    return offer;
+                });
+
+            return mockOfferRepository;
+        }
+        public static Mock<IAsyncRepository<LeaveType>> GetLeaveRepository()
+        {
+
+
+            var leaves = new List<LeaveType>
+            {
+                new LeaveType {
+                    Id = 1,Description="test"
+                },
+                new LeaveType {
+                    Id = 2,  Description="test2"
+                },
+                   new LeaveType {
+                    Id = 3,Description="test3"
+                },
+                new LeaveType {
+                    Id = 4,  Description="test4"
+                },
+
+
+
+
+
+
+            };
+
+            var mockLeaveRepository = new Mock<IAsyncRepository<LeaveType>>();
+            mockLeaveRepository.Setup(repo => repo.GetAllAsync()).ReturnsAsync(leaves);
+
+            mockLeaveRepository.Setup(repo => repo.AddAsync(It.IsAny<LeaveType>())).ReturnsAsync(
+                (LeaveType l) =>
+                {
+                    leaves.Add(l);
+                    return l;
+                });
+
+            return mockLeaveRepository;
+        }
+    }
 }
-}
+

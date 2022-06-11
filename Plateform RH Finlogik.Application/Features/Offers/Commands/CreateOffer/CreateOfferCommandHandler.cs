@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Plateform_RH_Finlogik.Application.Contracts.Persistance;
+using Plateform_RH_Finlogik.Application.Persistance;
 using Plateform_RH_Finlogik.Domain.Entities;
 
 
@@ -8,9 +9,9 @@ namespace Plateform_RH_Finlogik.Application.Features.Offers.Commands.CreateOffer
 {
     public class CreateOfferCommandHandler : IRequestHandler<CreateOfferCommand, int>
     {
-        private readonly IOfferRepository _offerRepository;
+        private readonly IAsyncRepository<Offer> _offerRepository;
         private readonly IMapper _mapper;
-        public CreateOfferCommandHandler(IMapper mapper, IOfferRepository offerRepository)
+        public CreateOfferCommandHandler(IMapper mapper, IAsyncRepository<Offer> offerRepository)
         {
             _mapper = mapper;
             _offerRepository = offerRepository;

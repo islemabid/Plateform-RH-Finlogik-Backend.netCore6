@@ -40,7 +40,7 @@ namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Command.Cancel
             {
                 Notification notification = new Notification()
                 {
-                    Message = (await _employeeRepository.GetByIDAsync(timeoffbalancesToCancel.IdEmployee)).FirstName + " " + (await _employeeRepository.GetByIDAsync(timeoffbalancesToCancel.IdEmployee)).LastName + " " + " demande to cancel a conge",
+                    Message = (await _employeeRepository.GetByIDAsync(timeoffbalancesToCancel.IdEmployee)).FirstName + " " + (await _employeeRepository.GetByIDAsync(timeoffbalancesToCancel.IdEmployee)).LastName + " " + " request to cancel conge",
                     Status = true
 
                 };

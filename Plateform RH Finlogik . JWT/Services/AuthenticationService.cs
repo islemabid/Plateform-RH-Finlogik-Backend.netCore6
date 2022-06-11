@@ -66,30 +66,7 @@ namespace Plateform_RH_Finlogik_._JWT.Services
         
 
 
-        /*  public async Task<RegistrationResponse> RegisterAsync(RegistrationRequest request)
-          {
-              var existingUser = await _userRepository.GetByEmailAsync(request.PersonnelEmail);
-              if (existingUser == null)
-              {
-                  request.ID = new Guid();
-                  var @user = _mapper.Map<User>(request);
+    
 
-                  var result = await _userRepository.AddAsync(@user);
-                  if (result != null)
-                  {
-                      return new RegistrationResponse() { message = "success registration" };
-                  }
-                  else
-                  {
-                      throw new Exception($"failed");
-                  }
-              }
-              else
-              {
-                  throw new Exception($"Email  already exists.");
-              }
-
-          }
-        */
     }
 }

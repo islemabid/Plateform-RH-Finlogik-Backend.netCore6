@@ -59,7 +59,7 @@ namespace Plateform_RH_Finlogik.Api.Controllers
         }
 
         [HttpGet("forgotPassword/{Email}", Name = "forgotPassword")]
-        public async Task<ActionResult<ForgotPasswordDto>> forgotPassword([FromRoute] string Email)
+        public async Task<ActionResult<ForgotPasswordDto>> forgotPassword(string Email)
         {
             var forgotPasswodQuery = new ForgotPasswodQuery() { WorkEmail = Email };
             return Ok(await _mediator.Send(forgotPasswodQuery));
@@ -76,12 +76,7 @@ namespace Plateform_RH_Finlogik.Api.Controllers
             await _mediator.Send(deleteEmployeeCommand);
             return NoContent();
         }
-        [HttpGet("Email/{WorkEmail}", Name = "GetEmployeebyemail")]
-        public async Task<ActionResult<EmployeeByEmail>> GetEmployeebyemail(string WorkEmail)
-        {
-            var getEmployeebyemailQuery = new GetEmployeebyemailQuery() { WorkEmail = WorkEmail };
-            return Ok(await _mediator.Send(getEmployeebyemailQuery));
-        }
+     
         
 
        [HttpPut("UpdatePasswordEmployee", Name = "UpdatePasswordEmployee")]

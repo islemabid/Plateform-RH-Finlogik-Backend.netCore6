@@ -37,7 +37,7 @@ namespace Plateform_RH_Finlogik.Application.Features.TimeBalances.Commands.Creat
 
                 Notification notification = new Notification()
                 {
-                    Message = (await _employeeRepository.GetByIDAsync(request.IdEmployee)).FirstName + "" + (await _employeeRepository.GetByIDAsync(request.IdEmployee)).LastName + " " + "passed a conge",
+                    Message = (await _employeeRepository.GetByIDAsync(request.IdEmployee)).FirstName + " " + (await _employeeRepository.GetByIDAsync(request.IdEmployee)).LastName + " " + "passed a conge",
                     Status = true
 
                 };
